@@ -12,7 +12,14 @@ export const metadata = {
 export default function UserProfilePage() {
   return (
     <main>
-      <div>Here comes the user profile.</div>
+      <div>
+        <h1> User profile</h1>
+        <p>Rachel Mendoza</p>
+        <p>New York</p>
+      </div>
+      <div>
+        <p> Photos of events created by user.</p>
+      </div>
     </main>
   );
 }
