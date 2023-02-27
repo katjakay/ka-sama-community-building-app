@@ -1,7 +1,11 @@
+import Link from 'next/link';
+
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
-  title: 'Ka-sama welcome page',
+  title: 'Ka-sama',
   description:
-    'Discover the unique blend of Pilates and island culture with our online store. Our certified instructors bring the energy and spirit of the Philippines to each session. Shop now for personalized classes and equipment to help you reach your fitness goals.',
+    'Discover a space for community building and cultural preservation, to help users connect with their roots and build a sense of pride and identity around their heritage',
   icons: {
     shortcut: '/icon.svg',
   },
@@ -10,7 +14,8 @@ export const metadata = {
 export default function HomePage() {
   return (
     <main>
-      <div>Here comes some content later on.</div>
+      <div>The users logs in / signs up here.</div>
+      <Link href="/login">Login</Link>
     </main>
   );
 }
