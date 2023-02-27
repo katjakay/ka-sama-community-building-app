@@ -9,7 +9,7 @@ type Event = {
   description: string | null;
 };
 
-// get all events
+// Get all events
 export const getEvents = cache(async () => {
   const events = await sql<Event[]>`
     SELECT * FROM events
@@ -17,7 +17,7 @@ export const getEvents = cache(async () => {
   return events;
 });
 
-// get a single event
+// Get a single event
 export const getEventById = cache(async (id: number) => {
   const [event] = await sql<Event[]>`
     SELECT
@@ -30,7 +30,7 @@ export const getEventById = cache(async (id: number) => {
   return event;
 });
 
-// create a new event
+// Create a new event
 export const createEvent = cache(
   async (
     title: string,
@@ -49,7 +49,7 @@ export const createEvent = cache(
   },
 );
 
-// update a event by ID
+// Update an event by ID
 export const updateEventById = cache(
   async (
     id: number,
@@ -74,7 +74,7 @@ export const updateEventById = cache(
   },
 );
 
-// delete a event by ID
+// Delete an event by ID
 export const deleteEventById = cache(async (id: number) => {
   const [event] = await sql<Event[]>`
     DELETE FROM
