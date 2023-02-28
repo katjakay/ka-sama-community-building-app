@@ -26,7 +26,7 @@ export const POST = async (request: NextRequest) => {
     );
   }
 
-  // check if string is empty
+  // 2. check if string is empty
   if (!result.data.username || !result.data.password) {
     return NextResponse.json(
       { errors: [{ message: 'username or password is empty' }] },
@@ -34,7 +34,7 @@ export const POST = async (request: NextRequest) => {
     );
   }
 
-  // 2. check user
+  // 3. check user
   const user = await getUserByUsername(result.data.username);
 
   if (user) {
@@ -44,9 +44,9 @@ export const POST = async (request: NextRequest) => {
     );
   }
 
-  // 3. hash the password
+  // 4. hash the password
   const passwordHash = await bcrypt.hash(result.data.password, 12);
 
-  // 4. create the user
-  // 5. return the new username
+  // 5. create the user
+  // 6. return the new username
 };

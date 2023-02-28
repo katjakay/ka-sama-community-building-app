@@ -25,9 +25,10 @@ export default async function EventsPage() {
             <div key={`event-${event.id}`}>
               <h3 className="text-2xl mr-10">{event.title}</h3>
               <p className="text-sm">{event.date}</p>
+
               <Image
-                src={`/images/${event.id}.png`}
-                alt={event.id}
+                src="/images/example.avif"
+                alt={event.title}
                 width="100"
                 height="200"
               />

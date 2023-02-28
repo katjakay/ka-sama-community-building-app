@@ -1,3 +1,6 @@
+import { notFound } from 'next/navigation';
+import { getUserByUsername } from '../../../database/users';
+
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
@@ -9,8 +12,12 @@ export const metadata = {
   },
 };
 
-export default function UserProfilePage() {
+type Props = { params: { username: string } };
+
+export default async function UserProfile({ params }: Props) {
   return (
+const user = await getUserByUsername(params.username);
+
     <main>
       <div>
         <h1> User profile</h1>
