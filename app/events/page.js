@@ -1,4 +1,4 @@
-import Image from 'next/image';
+// import Image from 'next/image';
 import { getEvents } from '../../database/events';
 
 export const dynamic = 'force-dynamic';
@@ -26,12 +26,12 @@ export default async function EventsPage() {
               <h3 className="text-2xl mr-10">{event.title}</h3>
               <p className="text-sm">{event.date}</p>
 
-              <Image
-                src="/images/example.avif"
+              <img
+                className="h-auto max-w-lg rounded-lg"
+                src="https://images.unsplash.com/photo-1677531713783-7e83cec23efb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
                 alt={event.title}
-                width="100"
-                height="200"
               />
+
               {/* <p className="text-lg">{event.description}</p> */}
               <div className="flex flex-wrap justify-end">
                 <button
