@@ -44,7 +44,7 @@ export default function CreateEventForm() {
       <div className="flex flex-wrap justify-center">
         <button
           type="button"
-          className="text-white bg-blue-700 font-regular text-sm rounded m-4 min-w-full h-11"
+          className="text-white bg-yellow text-white font-regular text-sm rounded m-4 min-w-full h-11"
         >
           Create event
         </button>

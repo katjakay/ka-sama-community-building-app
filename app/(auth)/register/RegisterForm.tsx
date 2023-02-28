@@ -44,20 +44,27 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
         <div key={`error-${error.message}`}>Error: {error.message}</div>
       ))}
       <label>
-        username:
+        Username
         <input
+          className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           value={username}
           onChange={(event) => setUsername(event.currentTarget.value)}
         />
       </label>
       <label>
-        password:
+        Password{' '}
         <input
+          className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           value={password}
           onChange={(event) => setPassword(event.currentTarget.value)}
         />
       </label>
-      <button>Register</button>
+      <button
+        type="button"
+        className="text-white bg-brown text-white font-regular text-sm rounded mt-4 mb-4 min-w-full h-11"
+      >
+        Register
+      </button>
     </form>
   );
 }

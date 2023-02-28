@@ -1,5 +1,4 @@
 import './globals.css';
-import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,7 +12,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head />
       <body className="m-2 p-2">
-        <nav>
+        {/* <nav>
           <ul className="flex flex-wrap items-center justify-between mx-auto">
             <li className="inline-block p-4">
               <Link href="/">Home</Link>
@@ -28,7 +27,7 @@ export default function RootLayout({ children }) {
               <Link href="/profile">Profile</Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
         {children}
       </body>
     </html>
