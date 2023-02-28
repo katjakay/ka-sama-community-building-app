@@ -12,14 +12,22 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head />
-      <body>
+      <body className="m-2 p-2">
         <nav>
-          <div>
-            <Link href="/">Home</Link>
-            <Link href="/events">Events</Link>
-            <Link href="/create">Create</Link>
-            <Link href="/profile">Profile</Link>
-          </div>
+          <ul className="flex flex-wrap items-center justify-between mx-auto">
+            <li className="inline-block p-4">
+              <Link href="/">Home</Link>
+            </li>
+            <li className="inline-block p-4">
+              <Link href="/events">Events</Link>
+            </li>
+            <li className="inline-block p-4">
+              <Link href="/create">Create</Link>
+            </li>
+            <li className="inline-block p-4">
+              <Link href="/profile">Profile</Link>
+            </li>
+          </ul>
         </nav>
         {children}
       </body>

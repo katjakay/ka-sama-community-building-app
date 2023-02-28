@@ -19,6 +19,7 @@ export default function UserProfilePage() {
       </div>
       <div>
         <p> Photos of events created by user.</p>
+        <button> Edit profile</button>
       </div>
     </main>
   );
