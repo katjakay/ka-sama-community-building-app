@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
@@ -48,16 +50,14 @@ export default function HomePage() {
           </mark>
         </div>
         <div className="flex flex-wrap justify-center">
-          <a
-            href="/login"
-            className="btn text-white bg-yellow font-regular text-m rounded m-4 min-w-full h-11"
-          >
-            Login
-          </a>
-          <a href="/register" className="text-xs font-normal underline">
-            {' '}
-            Register now
-          </a>
+          <Link href="/login">
+            <button
+              type="button"
+              className="text-white bg-yellow text-white font-regular text-sm rounded mt-4 mb-4 min-w-full h-11"
+            >
+              Login
+            </button>
+          </Link>
         </div>
       </div>
     </main>

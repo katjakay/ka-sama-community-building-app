@@ -1,5 +1,5 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "cSpell.words": ["daisyui", "tailwindcss"]
+  "cSpell.words": ["Cinetype", "daisyui", "tailwindcss", "upleveled"]
 }
