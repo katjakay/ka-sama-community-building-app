@@ -1,8 +1,21 @@
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+import { getValidSessionByToken } from '../../../database/sessions';
 import LoginForm from './LoginForm';
 
 type Props = { searchParams: { returnTo?: string | string[] } };
 
-export default function LoginPage(props: Props) {
+export default async function LoginPage(props: Props) {
+  // check if I  have valid session
+  const sessionTokenCookie = cookies().get('sessionToken');
+
+  const session =
+    sessionTokenCookie &&
+    (await getValidSessionByToken(sessionTokenCookie.value));
+  if (session) {
+    redirect('/');
+  }
+
   return (
     <main className="m-6 mt-10">
       <h3 className="text-yellow">LOGIN</h3>
@@ -10,6 +23,7 @@ export default function LoginPage(props: Props) {
         Welcome back, login to join and create
       </h1>
       <span>
+        {/* if no render login component */}
         <LoginForm returnTo={props.searchParams.returnTo} />
         {/* <div className="avatar">
           <div className="w-24 rounded">
