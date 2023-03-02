@@ -96,7 +96,7 @@ export default async function SingleEventPage(props: Props) {
         <p className="text-bold text-brown mb-2">WHAT TO EXPECT</p>
         <p>{oneEvent.description}</p>
       </div>
-      <div className="nav bar">
+      <div>
         <button
           type="button"
           className="text-white bg-yellow text-white font-regular text-sm rounded mt-4 mb-4 min-w-full h-11"

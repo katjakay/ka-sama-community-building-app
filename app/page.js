@@ -49,13 +49,14 @@ export default function HomePage() {
             KA-SAMA.
           </mark>
         </div>
-        <div className="flex flex-wrap justify-center">
+        <div className="object-bottom">
           <Link href="/login">
             <button
               type="button"
               className="text-white bg-yellow text-white font-regular text-sm rounded mt-4 mb-4 min-w-full h-11"
             >
-              Login
+              {' '}
+              DISCOVER
             </button>
           </Link>
         </div>
