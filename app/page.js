@@ -13,8 +13,8 @@ export const metadata = {
 
 export default function HomePage() {
   return (
-    <main className="flex flex-wrap justify-center m-5">
-      <div className="text-center">
+    <main className="flex flex-wrap justify-center m-5 min-h-screen">
+      <div className="text-center min-h-screen justify-items-stretch">
         <h1 className="text-6xl m-7">Mabuhay, welcome!</h1>
         <div>
           Building a stronger filipino community through events, anywhere in the

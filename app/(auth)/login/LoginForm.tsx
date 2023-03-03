@@ -61,10 +61,7 @@ export default function LoginForm(props: { returnTo?: string | string[] }) {
             onChange={(event) => setPassword(event.currentTarget.value)}
           />
         </label>
-        <button
-          type="button"
-          className="text-white bg-yellow text-white font-regular text-sm rounded mt-4 mb-4 min-w-full h-11"
-        >
+        <button className="text-white bg-yellow text-white font-regular text-sm rounded mt-4 mb-4 min-w-full h-11">
           Login
         </button>
       </form>

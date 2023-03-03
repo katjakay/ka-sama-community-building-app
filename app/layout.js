@@ -46,7 +46,7 @@ export default async function RootLayout({ children }) {
                     <Link href="/logout" prefetch={false}>
                       LOGOUT{' '}
                     </Link>
-                    {user && user.username}
+                    Nice to see you, {user && user.username}
                   </li>
                 </ul>
               </div>

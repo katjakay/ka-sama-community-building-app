@@ -60,10 +60,7 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
           onChange={(event) => setPassword(event.currentTarget.value)}
         />
       </label>
-      <button
-        type="button"
-        className="text-white bg-brown text-white font-regular text-sm rounded mt-4 mb-4 min-w-full h-11"
-      >
+      <button className="text-white bg-brown text-white font-regular text-sm rounded mt-4 mb-4 min-w-full h-11">
         Register
       </button>
     </form>

@@ -1,7 +1,16 @@
 import { cookies } from 'next/headers';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { getValidSessionByToken } from '../../../database/sessions';
 import LoginForm from './LoginForm';
+
+export const metadata = {
+  title: 'Login',
+  description: 'Placeholder for Login page.',
+  icons: {
+    shortcut: '/icon.svg',
+  },
+};
 
 type Props = { searchParams: { returnTo?: string | string[] } };
 
@@ -34,6 +43,9 @@ export default async function LoginPage(props: Props) {
             />
           </div> */}
         {/* </div> */}
+        <div className="text-center">
+          <Link href="/register"> Register now</Link>
+        </div>
       </span>
     </main>
   );

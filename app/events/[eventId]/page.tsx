@@ -1,7 +1,8 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import FooterNav from '../../../components/FooterNav';
-import HeaderNav from '../../../components/HeaderNav';
+// import HeaderNav from '../../../components/HeaderNav';
 import { getEventById } from '../../../database/events';
 import { eventNotFoundMetadata } from './not-found';
 
@@ -38,51 +39,54 @@ export default async function SingleEventPage(props: Props) {
 
   return (
     <main className="m-8 mt-10">
-      <HeaderNav />
+      {/* <HeaderNav /> */}
       <div>
         <h3 className="text-yellow">{oneEvent.title}</h3>
         <div className="badge badge-primary mt-5 ">UPCOMING</div>
         <h1 className="text-4xl mt-3 mb-3">{oneEvent.title}</h1>
         <div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="blue"
-            className="w-5 h-5"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
+          <Link href="/">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="blue"
+              className="w-5 h-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
 
-          <p className="mt-2">{oneEvent.date}</p>
+            <p className="mt-2">{oneEvent.date}</p>
+          </Link>
         </div>
         <div>
-          {' '}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="blue"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
-            />
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-            />
-          </svg>
-          <p className="mt-2">{oneEvent.location}</p>
+          <Link href="/create">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="blue"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+              />
+            </svg>
+            <p className="mt-2">{oneEvent.location}</p>
+          </Link>
         </div>
         <div className="mt-6 mb-6">
           <Image

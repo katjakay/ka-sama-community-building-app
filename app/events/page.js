@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import FooterNav from '../../components/FooterNav';
-import HeaderNav from '../../components/HeaderNav';
+// import HeaderNav from '../../components/HeaderNav';
 import { getEvents } from '../../database/events';
 
 export const dynamic = 'force-dynamic';
@@ -20,7 +20,7 @@ export default async function EventsPage() {
 
   return (
     <main className="m-8 mt-10">
-      <HeaderNav />
+      {/* <HeaderNav /> */}
       <h3 className="text-yellow">EVENTS</h3>
       <h1 className="text-4xl mt-4">All events</h1>
       <p className="text-4xl mb-6 mt-0 text-gray-500">Checkout the latest</p>
