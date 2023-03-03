@@ -24,10 +24,6 @@ module.exports = {
       sans: ['Supply', 'sans-serif'],
       mono: ['Cinetype', 'sans-serif'],
     },
-    color: {
-      'yellow-green': '#C5C32B',
-      'brown-red': '#A24300',
-    },
   },
   plugins: [require('daisyui')],
 };

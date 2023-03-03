@@ -14,32 +14,6 @@ export const metadata = {
 export default function HomePage() {
   return (
     <main className="flex flex-wrap justify-center m-5">
-      <div className="navbar">
-        <div className="flex-1 px-2 lg:flex-none" />
-        <div className="flex justify-end flex-2 px-0">
-          <div className="flex items-stretch">
-            <div className="dropdown dropdown-end">
-              <label tabIndex={0} className="btn btn-ghost rounded-btn">
-                MENU
-              </label>
-              <ul className="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4">
-                <li>
-                  <a href="/">Home</a>
-                </li>
-                <li>
-                  <a href="/events">Events</a>
-                </li>
-                <li>
-                  <a href="/create">Create</a>
-                </li>
-                <li>
-                  <a>Profile</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
       <div className="text-center">
         <h1 className="text-6xl m-7">Mabuhay, welcome!</h1>
         <div>

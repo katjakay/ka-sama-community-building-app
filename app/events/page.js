@@ -29,19 +29,19 @@ export default async function EventsPage() {
           return (
             <div
               key={`event-${event.id}`}
-              className="card card-compact w-96 bg-base-100 shadow-xl mt-2"
+              className="card card-compact w-auto bg-base-100 shadow-xl mt-2 mb-4"
             >
               <figure>
                 <Image
-                  className="h-auto max-w-lg mt-4 mb-4 rounded-lg"
+                  className="h-auto min-w-min mb-4 rounded-lg"
                   src={`/images/${event.id}.png`}
                   alt={event.title}
-                  width="380"
+                  width="500"
                   height="600"
                 />
               </figure>
               <div className="card-body">
-                <h2 className="card-title mr-20">{event.title}</h2>
+                <h2 className="card-title mr-24 text-3xl">{event.title}</h2>
                 <p>{event.date}</p>
                 <div className="card-actions justify-end">
                   <Link href={`/events/${event.id}`}>

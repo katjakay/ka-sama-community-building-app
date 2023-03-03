@@ -1,8 +1,24 @@
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+import { getValidSessionByToken } from '../../../database/sessions';
 import RegisterForm from './RegisterForm';
 
 type Props = { searchParams: { returnTo?: string | string[] } };
 
-export default function RegisterPage(props: Props) {
+export default async function RegisterPage(props: Props) {
+  // check if i have a valid session
+  const sessionTokenCookie = cookies().get('sessionToken');
+  console.log(sessionTokenCookie);
+
+  const session =
+    sessionTokenCookie &&
+    (await getValidSessionByToken(sessionTokenCookie.value));
+
+  // if yes redirect to home
+  if (session) {
+    redirect('/');
+  }
+
   return (
     <main className="m-6 mt-10">
       <h3 className="text-brown">REGISTER</h3>

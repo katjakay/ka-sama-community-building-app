@@ -12,6 +12,7 @@ export default async function LoginPage(props: Props) {
   const session =
     sessionTokenCookie &&
     (await getValidSessionByToken(sessionTokenCookie.value));
+
   if (session) {
     redirect('/');
   }
@@ -24,7 +25,7 @@ export default async function LoginPage(props: Props) {
       </h1>
       <span>
         {/* if no render login component */}
-        <LoginForm returnTo={props.searchParams.returnTo} />
+        <LoginForm returnTo={props.searchParams.returnTo} />{' '}
         {/* <div className="avatar">
           <div className="w-24 rounded">
             <img
