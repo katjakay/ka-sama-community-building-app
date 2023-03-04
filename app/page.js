@@ -16,15 +16,18 @@ export default function HomePage() {
     <main className="flex flex-wrap justify-center m-5 min-h-screen">
       <div className="text-center min-h-screen justify-items-stretch">
         <h1 className="text-6xl m-7">Mabuhay, welcome!</h1>
-        <div>
+        <div className="text-2xl mt-20">
           Building a stronger filipino community through events, anywhere in the
-          world. Never alone always mag{' '}
-          <mark className="px-6 text-2xl text-white bg-blue dark:bg-blue-500">
-            KA-SAMA.
-          </mark>
+          world. Never alone always mag
+          <br />
+          <div className="mt-4 mb-24">
+            <mark className="px-6 text-6xl text-white bg-blue dark:bg-blue-500">
+              KA-SAMA.
+            </mark>
+          </div>
         </div>
         <div className="object-bottom">
-          <Link href="/login">
+          <Link href="/events">
             <button
               type="button"
               className="text-white bg-yellow text-white font-regular text-sm rounded mt-4 mb-4 min-w-full h-11"

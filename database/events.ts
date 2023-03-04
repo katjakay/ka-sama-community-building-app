@@ -1,7 +1,7 @@
 import { cache } from 'react';
 import { sql } from './connect';
 
-type Event = {
+export type Event = {
   id: number;
   title: string;
   date: number;
@@ -16,6 +16,18 @@ export const getEvents = cache(async () => {
   `;
   return events;
 });
+
+export const getEventsWithLimitAndOffset = cache(
+  async (limit: number, offset: number) => {
+    const events = await sql<Event[]>`
+    SELECT * FROM events
+    Limit ${limit}
+    offset ${offset}
+  `;
+
+    return events;
+  },
+);
 
 // Get a single event
 export const getEventById = cache(async (id: number) => {

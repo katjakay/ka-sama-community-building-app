@@ -3,7 +3,7 @@
 export default function FooterNav() {
   return (
     <span className="btm-nav">
-      <a href="/">
+      <a href="/events">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5"
@@ -19,7 +19,7 @@ export default function FooterNav() {
           />
         </svg>
       </a>
-      <a className="active">
+      <a href="/create" className="active">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

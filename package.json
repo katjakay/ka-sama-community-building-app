@@ -19,6 +19,8 @@
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
     "bcrypt": "^5.1.0",
+    "cloudinary-core": "^2.13.0",
+    "cloudinary-react": "^1.8.1",
     "cookie": "^0.5.0",
     "daisyui": "^2.51.2",
     "dotenv-cli": "^7.0.0",

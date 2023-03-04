@@ -1,4 +1,4 @@
-import CreateEventForm from './CreateEventForm';
+import CreateEventForm from './DashboardCreate';
 
 export const metadata = {
   title: 'Create event',
