@@ -52,6 +52,7 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
           onChange={(event) => setUsername(event.currentTarget.value)}
         />
       </label>
+
       <label>
         Password{' '}
         <input

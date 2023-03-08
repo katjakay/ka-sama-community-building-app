@@ -1,8 +1,10 @@
+import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
+import AddEventForm from '../../components/AddEventForm';
 import FooterNav from '../../components/FooterNav';
-// import HeaderNav from '../../components/HeaderNav';
 import { getEvents } from '../../database/events';
+import { getUserBySessionToken } from '../../database/users';
 
 export const dynamic = 'force-dynamic';
 
@@ -17,7 +19,14 @@ export const metadata = {
 
 export default async function EventsPage() {
   const events = await getEvents();
+  const cookieStore = cookies();
+  const sessionToken = cookieStore.get('sessionToken');
 
+  // 2. validate that session
+  // 3. get the user profile matching the session
+  const user = !sessionToken?.value
+    ? undefined
+    : await getUserBySessionToken(sessionToken.value);
   return (
     <main className="m-8 mt-10">
       {/* <HeaderNav /> */}
@@ -32,7 +41,7 @@ export default async function EventsPage() {
               className="card card-compact w-auto bg-base-100 shadow-xl mt-2 mb-4"
             >
               <figure>
-                {event.imageUrl && (
+                {!!event.imageUrl && (
                   <Image
                     className="h-auto min-w-min mb-4 rounded-lg"
                     src={event.imageUrl}
@@ -57,6 +66,7 @@ export default async function EventsPage() {
           );
         })}
       </span>
+      {user && <AddEventForm user={user} events={events} />}
       <FooterNav />
     </main>
   );

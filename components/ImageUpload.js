@@ -4,6 +4,8 @@ import { useState } from 'react';
 
 export default function ImageUpload() {
   const [result, setResult] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+
   const handleImageUpload = (event) => {
     event.preventDefault();
     const file = event.currentTarget['fileInput'].files[0];
@@ -26,12 +28,16 @@ export default function ImageUpload() {
   return (
     <div>
       <form onSubmit={handleImageUpload}>
-        <input id="fileInput" type="file" />
-        <input type="submit" />
+        <input
+          className="file-input file-input-bordered file-input-primary w-full max-w-xs"
+          id="fileInput"
+          type="file"
+        />
+        <button>Submit</button>
       </form>
       <br />
       <br />
-      Result:
+      Preview:
       <br />
       <pre>{JSON.stringify(result, null, 2)}</pre>
     </div>

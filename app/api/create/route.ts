@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { createEvent, Event } from '../../../database/events';
 import { getUserBySessionToken } from '../../../database/users';
 
-const eventSchema = z.object({
+const eventType = z.object({
   title: z.string(),
   date: z.string(),
   location: z.string(),
@@ -18,7 +18,7 @@ export type EventsResponseBodyGet =
       error: string;
     }
   | {
-      event: Event[];
+      events: Event[];
     };
 
 export type EventsResponseBodyPost =
@@ -29,50 +29,24 @@ export type EventsResponseBodyPost =
       event: Event;
     };
 
-// export async function GET(
-//   request: NextRequest,
-// ): Promise<NextResponse<EventsResponseBodyGet>> {
-//   // this should be a public api method (unprotected)
-//   const { searchParams } = new URL(request.url);
-
-//   const limit = Number(searchParams.get('limit'));
-//   const offset = Number(searchParams.get('offset'));
-
-//   if (!limit || !offset) {
-//     return NextResponse.json(
-//       {
-//         error: 'Limit and Offset need to be passed as params',
-//       },
-//       { status: 400 },
-//     );
-//   }
-
-//   const events = await getEventsWithLimitAndOffset(limit, offset);
-
-//   return NextResponse.json({ events: events });
-// }
-
 export async function POST(
   request: NextRequest,
 ): Promise<NextResponse<EventsResponseBodyPost>> {
+  const body = await request.json();
+  const result = eventType.safeParse(body);
   const cookieStore = cookies();
   const token = cookieStore.get('sessionToken');
+
   const user = token && (await getUserBySessionToken(token.value));
 
   if (!user) {
     return NextResponse.json({ error: 'session token is not valid' });
   }
 
-  const body = await request.json();
-  const result = eventSchema.safeParse(body);
-
   if (!result.success) {
-    console.log(result.error.issues);
-
     return NextResponse.json(
       {
-        error:
-          'Request body is missing one of the needed properties title, date, location, description & image url',
+        error: 'Please add title and review text',
       },
       { status: 400 },
     );

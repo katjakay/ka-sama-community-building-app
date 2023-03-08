@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { NextResponse } from 'next/server';
 import FooterNav from '../../../components/FooterNav';
-// import HeaderNav from '../../../components/HeaderNav';
 import { getEventById } from '../../../database/events';
 import { getUserBySessionToken } from '../../../database/users';
 import AddEventToProfile from './AddEventToProfile';
@@ -100,13 +99,15 @@ export default async function SingleEventPage(props: Props) {
           </Link>
         </div>
         <div className="mt-6 mb-6">
-          <Image
-            className="card w-100 bg-base-100 shadow-m"
-            src={`/images/${oneEvent.id}.png`}
-            alt={oneEvent.title}
-            width="800"
-            height="600"
-          />
+          {!!oneEvent.imageUrl && (
+            <Image
+              className="card w-100 bg-base-100 shadow-m"
+              src={oneEvent.imageUrl}
+              alt={oneEvent.title}
+              width="800"
+              height="600"
+            />
+          )}
         </div>
         <p className="text-bold text-brown mb-2">WHAT TO EXPECT</p>
         <p>{oneEvent.description}</p>

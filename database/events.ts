@@ -4,9 +4,10 @@ import { sql } from './connect';
 export type Event = {
   id: number;
   title: string;
-  date: number;
+  date: string;
   location: string;
   description: string;
+  imageUrl: string;
   userId: number;
 };
 
@@ -47,16 +48,17 @@ export const getEventById = cache(async (id: number) => {
 export const createEvent = cache(
   async (
     title: string,
-    date: number,
+    date: string,
     location: string,
     description: string,
+    imageUrl: string,
     userId: number,
   ) => {
     const [event] = await sql<Event[]>`
       INSERT INTO events
-        (title, date, location, description, user_id)
+        (title, date, location, description, image_url, user_id)
       VALUES
-        (${title}, ${date}, ${location}, ${description}, ${userId})
+        (${title}, ${date}, ${location}, ${description}, ${imageUrl} ${userId})
       RETURNING *
     `;
     return event;
@@ -68,9 +70,10 @@ export const updateEventById = cache(
   async (
     id: number,
     title: string,
-    date: number,
+    date: string,
     location: string,
     description: string,
+    imageUrl: string,
     userId: number,
   ) => {
     const [event] = await sql<Event[]>`
@@ -82,6 +85,7 @@ export const updateEventById = cache(
       date = ${date},
       location = ${location},
         description = ${description},
+        imageUrl={imageUrl},
         userId = ${userId}
       WHERE
         id = ${id}
