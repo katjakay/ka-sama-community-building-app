@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import {
   createEvent,
+  Event,
   getEventsWithLimitAndOffset,
 } from '../../../database/events';
 import { getUserBySessionToken } from '../../../database/users';
@@ -12,9 +13,28 @@ const eventSchema = z.object({
   date: z.number(),
   location: z.string(),
   description: z.string(),
+  userId: z.number(),
 });
 
-export async function GET(request: NextRequest) {
+export type EventsResponseBodyGet =
+  | {
+      error: string;
+    }
+  | {
+      events: Event[];
+    };
+
+export type EventsResponseBodyPost =
+  | {
+      error: string;
+    }
+  | {
+      event: Event;
+    };
+
+export async function GET(
+  request: NextRequest,
+): Promise<NextResponse<EventsResponseBodyGet>> {
   // this should be a public api method (unprotected)
   const { searchParams } = new URL(request.url);
 
@@ -35,8 +55,11 @@ export async function GET(request: NextRequest) {
   return NextResponse.json({ events: events });
 }
 
-export async function POST(request: NextRequest) {
+export async function POST(
+  request: NextRequest,
+): Promise<NextResponse<EventsResponseBodyPost>> {
   // this is a protected Route Handler
+
   // 1. get the session token from the cookie
   const cookieStore = cookies();
   const token = cookieStore.get('sessionToken');
@@ -60,7 +83,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         error:
-          'Request body is missing one of the needed properties firstName, type and accessory ',
+          'Request body is missing one of the needed properties title, date, location and description ',
       },
       { status: 400 },
     );
@@ -71,7 +94,14 @@ export async function POST(request: NextRequest) {
     result.data.date,
     result.data.location,
     result.data.description,
+    user.id,
   );
 
+  if (!newEvent) {
+    return NextResponse.json(
+      { error: 'Comment not created!' },
+      { status: 500 },
+    );
+  }
   return NextResponse.json({ event: newEvent });
 }

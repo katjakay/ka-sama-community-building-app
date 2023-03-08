@@ -5,7 +5,9 @@ export async function up(sql) {
   title varchar(500) NOT NULL,
     date varchar(50) NOT NULL,
     location varchar(500) NOT NULL,
-    description varchar(1000)
+    description varchar(1000),
+    image_url varchar(100),
+    user_id integer REFERENCES users (id)
   )
   `;
 }

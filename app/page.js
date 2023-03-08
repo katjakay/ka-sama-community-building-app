@@ -28,12 +28,21 @@ export default function HomePage() {
         </div>
         <div className="object-bottom">
           <Link href="/events">
-            <button
-              type="button"
-              className="text-white bg-yellow text-white font-regular text-sm rounded mt-4 mb-4 min-w-full h-11"
-            >
-              {' '}
-              DISCOVER
+            <button className="btn btn-circle bg-yellow">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                />
+              </svg>
             </button>
           </Link>
         </div>

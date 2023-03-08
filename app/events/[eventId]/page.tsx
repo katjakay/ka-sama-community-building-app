@@ -1,9 +1,13 @@
+import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { NextResponse } from 'next/server';
 import FooterNav from '../../../components/FooterNav';
 // import HeaderNav from '../../../components/HeaderNav';
 import { getEventById } from '../../../database/events';
+import { getUserBySessionToken } from '../../../database/users';
+import AddEventToProfile from './AddEventToProfile';
 import { eventNotFoundMetadata } from './not-found';
 
 export const dynamic = 'force-dynamic';
@@ -31,6 +35,13 @@ export async function generateMetadata(props: Props) {
 }
 
 export default async function SingleEventPage(props: Props) {
+  const cookieStore = cookies();
+  const token = cookieStore.get('sessionToken');
+
+  const user = token && (await getUserBySessionToken(token.value));
+  if (!user) {
+    return NextResponse.json({ error: 'session token is not valid' });
+  }
   const oneEvent = await getEventById(parseInt(props.params.eventId));
 
   if (!oneEvent) {
@@ -41,7 +52,7 @@ export default async function SingleEventPage(props: Props) {
     <main className="m-8 mt-10">
       {/* <HeaderNav /> */}
       <div>
-        <h3 className="text-yellow">{oneEvent.title}</h3>
+        <h3 className="text-yellow">{oneEvent.title.toUpperCase()}</h3>
         <div className="badge badge-primary mt-5 ">UPCOMING</div>
         <h1 className="text-4xl mt-3 mb-3">{oneEvent.title}</h1>
         <div>
@@ -90,25 +101,17 @@ export default async function SingleEventPage(props: Props) {
         </div>
         <div className="mt-6 mb-6">
           <Image
-            className="card w-96 bg-base-100 shadow-m"
+            className="card w-100 bg-base-100 shadow-m"
             src={`/images/${oneEvent.id}.png`}
             alt={oneEvent.title}
-            width="400"
-            height="200"
+            width="800"
+            height="600"
           />
         </div>
         <p className="text-bold text-brown mb-2">WHAT TO EXPECT</p>
         <p>{oneEvent.description}</p>
       </div>
-      <div>
-        <button
-          type="button"
-          className="text-white bg-yellow text-white font-regular text-sm rounded mt-4 mb-4 min-w-full h-11"
-        >
-          {' '}
-          YES! I'm joining
-        </button>
-      </div>
+      <AddEventToProfile />
       <FooterNav />
     </main>
   );

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import FooterNav from '../../../components/FooterNav';
+import ImageUpload from '../../../components/ImageUpload';
 import { getUserByUsername } from '../../../database/users';
 
 type Props = { params: { username: string } };
@@ -14,7 +15,8 @@ export default async function UserProfile({ params }: Props) {
 
   return (
     <main className="m-8 mt-10">
-      <div>
+      <h3 className="text-yellow">MY PROFILE</h3>
+      <div className="mt-4">
         <div className="avatar online">
           <div className="w-40 rounded-full">
             <img
@@ -58,6 +60,7 @@ export default async function UserProfile({ params }: Props) {
             </button>
           </Link>
         </div>
+        <ImageUpload />
       </div>
       <FooterNav />
     </main>

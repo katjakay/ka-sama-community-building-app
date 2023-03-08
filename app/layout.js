@@ -31,6 +31,7 @@ export default async function RootLayout({ children }) {
                   <li>
                     <a href="/">HOME</a>
                   </li>
+
                   <li>
                     <a href="/events">EVENTS</a>
                   </li>
@@ -46,7 +47,11 @@ export default async function RootLayout({ children }) {
                     <Link href="/logout" prefetch={false}>
                       LOGOUT{' '}
                     </Link>
-                    Nice to see you, {user && user.username}
+                  </li>
+                  <li>
+                    <Link href={`/profile/${user && user.username}`}>
+                      Nice to see you, {user && user.username}
+                    </Link>
                   </li>
                 </ul>
               </div>

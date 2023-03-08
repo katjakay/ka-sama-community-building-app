@@ -6,7 +6,8 @@ export type Event = {
   title: string;
   date: number;
   location: string;
-  description: string | null;
+  description: string;
+  userId: number;
 };
 
 // Get all events
@@ -49,12 +50,13 @@ export const createEvent = cache(
     date: number,
     location: string,
     description: string,
+    userId: number,
   ) => {
     const [event] = await sql<Event[]>`
       INSERT INTO events
-        (title, date, location, description)
+        (title, date, location, description, user_id)
       VALUES
-        (${title}, ${date}, ${location}, ${description})
+        (${title}, ${date}, ${location}, ${description}, ${userId})
       RETURNING *
     `;
     return event;
@@ -69,15 +71,18 @@ export const updateEventById = cache(
     date: number,
     location: string,
     description: string,
+    userId: number,
   ) => {
     const [event] = await sql<Event[]>`
       UPDATE
         events
       SET
+      id = ${id},
       title = ${title},
       date = ${date},
       location = ${location},
-        description = ${description}
+        description = ${description},
+        userId = ${userId}
       WHERE
         id = ${id}
       RETURNING *

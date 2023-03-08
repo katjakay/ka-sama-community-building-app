@@ -1,4 +1,4 @@
-import CreateEventForm from './EventDashboard';
+import EventDashboard from '../../components/AddEventForm';
 
 export const metadata = {
   title: 'Create event',
@@ -10,8 +10,11 @@ export const metadata = {
 
 export default function CreateEventPage() {
   return (
-    <main>
-      <CreateEventForm />
+    <main className="m-8 mt-10">
+      <div>
+        <h3 className="text-yellow">HOST YOUR EVENT</h3>
+      </div>
+      <EventDashboard />
     </main>
   );
 }

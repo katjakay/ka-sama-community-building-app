@@ -32,16 +32,20 @@ export default async function EventsPage() {
               className="card card-compact w-auto bg-base-100 shadow-xl mt-2 mb-4"
             >
               <figure>
-                <Image
-                  className="h-auto min-w-min mb-4 rounded-lg"
-                  src={`/images/${event.id}.png`}
-                  alt={event.title}
-                  width="500"
-                  height="600"
-                />
+                {event.imageUrl && (
+                  <Image
+                    className="h-auto min-w-min mb-4 rounded-lg"
+                    src={event.imageUrl}
+                    alt="event photo"
+                    width="500"
+                    height="600"
+                  />
+                )}
               </figure>
+
               <div className="card-body">
                 <h2 className="card-title mr-24 text-3xl">{event.title}</h2>
+                <div className="badge badge-primary mt-2 ">UPCOMING</div>
                 <p>{event.date}</p>
                 <div className="card-actions justify-end">
                   <Link href={`/events/${event.id}`}>
