@@ -66,7 +66,6 @@ export default async function EventsPage() {
           );
         })}
       </span>
-      {user && <AddEventForm user={user} events={events} />}
       <FooterNav />
     </main>
   );

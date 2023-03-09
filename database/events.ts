@@ -58,7 +58,7 @@ export const createEvent = cache(
       INSERT INTO events
         (title, date, location, description, image_url, user_id)
       VALUES
-        (${title}, ${date}, ${location}, ${description}, ${imageUrl} ${userId})
+        (${title}, ${date}, ${location}, ${description}, ${imageUrl}, ${userId})
       RETURNING *
     `;
     return event;
