@@ -1,7 +1,6 @@
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
-import AddEventForm from '../../components/AddEventForm';
 import FooterNav from '../../components/FooterNav';
 import { getEvents } from '../../database/events';
 import { getUserBySessionToken } from '../../database/users';

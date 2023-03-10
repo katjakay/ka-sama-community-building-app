@@ -1,12 +1,13 @@
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { NextResponse } from 'next/server';
 import FooterNav from '../../../components/FooterNav';
+import { getAttendance } from '../../../database/attendance';
 import { getEventById } from '../../../database/events';
 import { getUserBySessionToken } from '../../../database/users';
-import AddEventToProfile from './AddEventToProfile';
+import AddAttendance from './AddAttendance';
 import { eventNotFoundMetadata } from './not-found';
 
 export const dynamic = 'force-dynamic';
@@ -14,6 +15,7 @@ export const dynamic = 'force-dynamic';
 type Props = {
   params: {
     eventId: string;
+    // attendance: Attendance[];
   };
 };
 
@@ -34,18 +36,24 @@ export async function generateMetadata(props: Props) {
 }
 
 export default async function SingleEventPage(props: Props) {
+  const oneEvent = await getEventById(parseInt(props.params.eventId));
+
   const cookieStore = cookies();
   const token = cookieStore.get('sessionToken');
 
   const user = token && (await getUserBySessionToken(token.value));
   if (!user) {
-    return NextResponse.json({ error: 'session token is not valid' });
+    return (
+      NextResponse.json({ error: 'session token is not valid' }),
+      redirect(`/login?returnTo=/events/${props.params.eventId}}`)
+    );
   }
-  const oneEvent = await getEventById(parseInt(props.params.eventId));
 
   if (!oneEvent) {
     notFound();
   }
+
+  const attendances = await getAttendance(oneEvent.id);
 
   return (
     <main className="m-8 mt-10">
@@ -112,7 +120,11 @@ export default async function SingleEventPage(props: Props) {
         <p className="text-bold text-brown mb-2">WHAT TO EXPECT</p>
         <p>{oneEvent.description}</p>
       </div>
-      <AddEventToProfile />
+      <AddAttendance
+        userId={user.id}
+        eventId={oneEvent.id}
+        attendances={attendances}
+      />
       <FooterNav />
     </main>
   );

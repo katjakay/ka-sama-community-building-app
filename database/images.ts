@@ -16,27 +16,27 @@ export const getImage = cache(async () => {
   return images;
 });
 
-// Get a single image
-export const getImageById = cache(async (id: number) => {
+// Get all images from a user
+export const getImagesByUserId = cache(async (userId: number) => {
   const [image] = await sql<Image[]>`
     SELECT
       *
     FROM
     images
     WHERE
-      id = ${id}
+    userId = ${userId}
   `;
   return image;
 });
 
 // Create a new image
 export const createImage = cache(
-  async (id: number, userId: string, eventId: string, imageUrl: string) => {
+  async (userId: number, eventId: number, imageUrl: string) => {
     const [image] = await sql<Image[]>`
       INSERT INTO images
-        (id, , userId, eventId, imageUrl)
+        (userId, eventId, imageUrl)
       VALUES
-        (${id}, ${userId}, ${eventId}, ${imageUrl})
+        (${userId}, ${eventId}, ${imageUrl})
       RETURNING *
     `;
     return image;
@@ -45,13 +45,7 @@ export const createImage = cache(
 
 // Update an image by ID
 export const updateImageById = cache(
-  async (
-    id: number,
-    userId: number,
-    eventId: number,
-
-    imageUrl: string,
-  ) => {
+  async (id: number, userId: number, eventId: number, imageUrl: string) => {
     const [image] = await sql<Image[]>`
       UPDATE
         images
@@ -68,13 +62,13 @@ export const updateImageById = cache(
   },
 );
 
-// Delete an image by ID
-export const deleteImageById = cache(async (id: number) => {
+// Delete an image by UserId
+export const deleteImageById = cache(async (userId: number) => {
   const [image] = await sql<Image[]>`
     DELETE FROM
       images
     WHERE
-      id = ${id}
+      userId = ${userId}
     RETURNING *
   `;
   return image;

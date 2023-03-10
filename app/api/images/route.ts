@@ -1,89 +1,102 @@
-import { v2 as cloudinary } from 'cloudinary';
-import formidable from 'formidable';
-import Formidable from 'formidable';
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { cookies } from 'next/headers';
+import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
+import { createImage, deleteImageById, Image } from '../../../database/images';
+import { getUserBySessionToken } from '../../../database/users';
 
-const endpoint = async (req: NextApiRequest, res: NextApiResponse) => {
-  cloudinary.config({
-    cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUDNAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
-  });
+const imageSchema = z.object({
+  userId: z.number(),
+  imageId: z.number(),
+  imageUrl: z.string(),
+});
 
-  const data = await new Promise<{ file: Formidable.File }>(
-    (resolve, reject) => {
-      const form = new formidable.IncomingForm({
-        keepExtensions: true,
-        multiples: false,
-      });
-      form.parse(req, (err, _fields, files) => {
-        if (err) return reject(err);
-        resolve({ file: files.file as Formidable.File });
-      });
-    },
+export type ImagesResponseBodyGet =
+  | {
+      error: string;
+    }
+  | {
+      image: Image[];
+    };
+
+export type ImagesResponseBodyPost =
+  | {
+      error: string;
+    }
+  | {
+      image: Image;
+    };
+
+export type ImagesResponseBodyDelete =
+  | {
+      error: string;
+    }
+  | {
+      image: Image;
+    };
+
+export async function POST(
+  request: NextRequest,
+): Promise<NextResponse<ImagesResponseBodyPost>> {
+  const cookieStore = cookies();
+  const token = cookieStore.get('sessionToken');
+  const user = token && (await getUserBySessionToken(token.value));
+
+  if (!user) {
+    return NextResponse.json({ error: 'session token is not valid' });
+  }
+
+  const body = await request.json();
+  const result = imageSchema.safeParse(body);
+
+  if (!result.success) {
+    console.log(result.error.issues);
+
+    return NextResponse.json(
+      {
+        error:
+          'Request body is missing one of the needed properties title, date, location, description & image url',
+      },
+      { status: 400 },
+    );
+  }
+
+  const newImage = await createImage(
+    result.data.userId,
+    result.data.imageId,
+    result.data.imageUrl,
   );
 
-  try {
-    const uploadedImage = await cloudinary.uploader.upload(data.file.path, {
-      width: 500,
-      crop: 'limit',
-    });
-    res.statusCode = 200;
-    res.json({ secure_url: uploadedImage.secure_url });
-  } catch (error) {
-    console.log(error);
-    res.statusCode = 500;
-    res.json({ secure_url: 'error' });
+  if (!newImage) {
+    return NextResponse.json({ error: 'Image not created!' }, { status: 500 });
   }
-};
+  return NextResponse.json({ image: newImage });
+}
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Record<string, string | string[]> },
+): Promise<NextResponse<ImagesResponseBodyDelete>> {
+  const imageId = Number(params.imageId);
 
-export default endpoint; // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
-const endpoint = async (req: NextApiRequest, res: NextApiResponse) => {
-  cloudinary.config({
-    cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUDNAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
-  });
-
-  const data = await new Promise<{ file: Formidable.File }>(
-    (resolve, reject) => {
-      const form = new formidable.IncomingForm({
-        keepExtensions: true,
-        multiples: false,
-      });
-      form.parse(req, (err, _fields, files) => {
-        if (err) return reject(err);
-        resolve({ file: files.file as Formidable.File });
-      });
-    },
-  );
-
-  try {
-    const uploadedImage = await cloudinary.uploader.upload(data.file.path, {
-      width: 500,
-      crop: 'limit',
-    });
-    res.statusCode = 200;
-    res.json({ secure_url: uploadedImage.secure_url });
-  } catch (error) {
-    console.log(error);
-    res.statusCode = 500;
-    res.json({ secure_url: 'error' });
+  if (!imageId) {
+    return NextResponse.json(
+      {
+        error: 'Image id is not valid',
+      },
+      { status: 400 },
+    );
   }
-};
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+  const oneImage = await deleteImageById(imageId);
 
-export default endpoint;
+  if (!oneImage) {
+    return NextResponse.json(
+      {
+        error: 'Image not found',
+      },
+      { status: 404 },
+    );
+  }
+
+  return NextResponse.json({ image: oneImage });
+}

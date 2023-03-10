@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import FooterNav from '../../../components/FooterNav';
-import ImageUpload from '../../../components/ImageUpload';
+import ImageUploadForm from '../../../components/ImageUploadForm';
+import { getAttendanceByUserIdAndEventId } from '../../../database/attendance';
 import { getUserByUsername } from '../../../database/users';
 
 type Props = { params: { username: string } };
@@ -12,6 +13,8 @@ export default async function UserProfile({ params }: Props) {
   if (!user) {
     notFound();
   }
+
+  const attendances = await getAttendanceByUserIdAndEventId(user.id);
 
   return (
     <main className="m-8 mt-10">
@@ -60,8 +63,17 @@ export default async function UserProfile({ params }: Props) {
             </button>
           </Link>
         </div>
-        <ImageUpload />
       </div>
+      <ImageUploadForm />
+      <span>
+        {attendances.map((attendance) => {
+          return (
+            <div key={`event-${attendance.eventId}`}>
+              <h1>{attendance.eventTitle}</h1>
+            </div>
+          );
+        })}
+      </span>
       <FooterNav />
     </main>
   );

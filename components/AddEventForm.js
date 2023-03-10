@@ -4,14 +4,53 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export default function AddEventForm(props) {
-  // const [events, setEvents] = useState('');
   const [title, setTitle] = useState('');
   const [location, setLocation] = useState('');
   const [date, setDate] = useState('');
   const [description, setDescription] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
-  const [error, setError] = useState();
+  const [imageSrc, setImageSrc] = useState('');
+  const [uploadData, setUploadData] = useState();
+  const [errors, setErrors] = useState();
   const router = useRouter();
+
+  function handleOnChange(changeEvent) {
+    const reader = new FileReader();
+
+    reader.onload = function (onLoadEvent) {
+      setImageSrc(onLoadEvent.target.result);
+      setUploadData(undefined);
+    };
+
+    reader.readAsDataURL(changeEvent.target.files[0]);
+  }
+
+  async function handleOnSubmit(event) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const fileInput = Array.from(form.elements).find(
+      ({ name }) => name === 'file',
+    );
+
+    const formData = new FormData();
+
+    for (const file of fileInput.files) {
+      formData.append('file', file);
+    }
+
+    formData.append('upload_preset', 'my-uploads');
+
+    const data = await fetch(
+      'https://api.cloudinary.com/v1_1/dy40peu7s/image/upload',
+      {
+        method: 'POST',
+        body: formData,
+      },
+    ).then((r) => r.json());
+
+    setImageSrc(data.secure_url);
+    setUploadData(data);
+  }
 
   return (
     <main>
@@ -20,12 +59,29 @@ export default function AddEventForm(props) {
         Drop your ideas here to preserve culture
       </h1>
 
-      <p className="text-brown">{error}</p>
+      <p className="text-brown">{errors}</p>
+
+      <form method="post" onChange={handleOnChange} onSubmit={handleOnSubmit}>
+        <label>
+          Upload your event image here:
+          <br />
+          <input
+            type="file"
+            name="file"
+            className="file-input file-input-bordered file-input-primary w-full max-w-xs mt-4 mb-4"
+          />
+        </label>
+        <img
+          className="card w-96 bg-base-100 shadow-xl"
+          src={imageSrc}
+          alt="jelly"
+        />
+        <button className="btn btn-sm mt-2 mb-6">Upload</button>
+      </form>
 
       <form
         onSubmit={async (event) => {
           event.preventDefault();
-
           const response = await fetch('api/events', {
             method: 'POST',
             body: JSON.stringify({
@@ -33,15 +89,14 @@ export default function AddEventForm(props) {
               date: date,
               location: location,
               description: description,
-              imageUrl: imageUrl,
+              imageUrl: imageSrc,
               userId: props.user.id,
             }),
           });
-
           const data = await response.json();
 
           if ('errors' in data) {
-            setError(data.errors);
+            setErrors(data.errors);
             return;
           }
         }}
@@ -59,7 +114,6 @@ export default function AddEventForm(props) {
             className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
-
         <div className="mb-6">
           <label
             htmlFor="title"
@@ -101,21 +155,6 @@ export default function AddEventForm(props) {
             className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
-        <div className="mb-6">
-          <label
-            htmlFor="large-input"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            Image (placeholder)
-          </label>
-          <input
-            value={imageUrl}
-            onChange={(event) => setImageUrl(event.currentTarget.value)}
-            id="large-input"
-            className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          />
-        </div>
-
         <div className="flex flex-wrap justify-center">
           <button
             className="text-white bg-yellow text-white font-regular text-sm rounded m-4 min-w-full h-11"
