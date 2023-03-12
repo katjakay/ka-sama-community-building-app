@@ -9,6 +9,8 @@ import { createSerializedRegisterSessionTokenCookie } from '../../../../util/coo
 const userSchema = z.object({
   username: z.string(),
   password: z.string(),
+  location: z.string(),
+  description: z.string(),
 });
 
 export type RegisterResponseBody =

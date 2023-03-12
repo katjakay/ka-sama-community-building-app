@@ -1,20 +1,31 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import FooterNav from '../../../components/FooterNav';
-import ImageUploadForm from '../../../components/ImageUploadForm';
 import { getAttendanceByUserIdAndEventId } from '../../../database/attendance';
+import { getEventById, getEvents } from '../../../database/events';
 import { getUserByUsername } from '../../../database/users';
 
-type Props = { params: { username: string } };
+type Props = {
+  params: {
+    eventId: number;
+    username: string;
+    userId: number;
+  };
+};
 
 export default async function UserProfile({ params }: Props) {
+  const oneEvent = await getEventById(params.eventId);
+  const attendances = await getAttendanceByUserIdAndEventId(params.userId);
+  const events = await getEvents();
+  const filteredAttendances = attendances.filter(
+    (attendance) => attendance.eventId === oneEvent?.id,
+  );
+
   const user = await getUserByUsername(params.username);
 
   if (!user) {
     notFound();
   }
-
-  const attendances = await getAttendanceByUserIdAndEventId(user.id);
 
   return (
     <main className="m-8 mt-10">
@@ -65,9 +76,9 @@ export default async function UserProfile({ params }: Props) {
         </div>
       </div>
       <span>
-        {attendances.map((attendance) => {
+        {filteredAttendances.map((attendance) => {
           return (
-            <div key={`event-${attendance.eventId}`}>
+            <div key={`event-${attendance.id}`}>
               <h1>{attendance.eventTitle}</h1>
             </div>
           );

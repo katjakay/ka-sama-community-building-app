@@ -3,13 +3,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import { NextResponse } from 'next/server';
+import AddAttendance from '../../../components/AddAttendance';
+import DeleteEvent from '../../../components/DeleteEvent';
 import FooterNav from '../../../components/FooterNav';
 import { getAttendance } from '../../../database/attendance';
 import { getEventById } from '../../../database/events';
 import { getUserBySessionToken } from '../../../database/users';
 import { events } from '../../../migrations/1678189022-insertIntoEvents.mjs';
-import AddAttendance from './AddAttendance';
-import DeleteEvent from './DeleteEvent';
 import { eventNotFoundMetadata } from './not-found';
 
 export const dynamic = 'force-dynamic';

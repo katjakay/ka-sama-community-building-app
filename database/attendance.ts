@@ -55,6 +55,7 @@ export const deleteAttendanceById = cache(async (id: number) => {
 });
 
 export type AttendanceByUserIdAndEventId = {
+  id: any;
   userId: number;
   eventId: number;
   eventTitle: string;

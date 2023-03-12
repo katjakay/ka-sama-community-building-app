@@ -35,8 +35,6 @@ export async function POST(
     );
   }
 
-  console.log('before createAttendance');
-
   const newAttendance = await createAttendance(result.data.eventId, user.id);
 
   if (!newAttendance) {
@@ -47,5 +45,3 @@ export async function POST(
   }
   return NextResponse.json({ attendance: newAttendance });
 }
-
-console.log('after createAttendance');

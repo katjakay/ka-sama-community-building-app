@@ -7,6 +7,8 @@ import { RegisterResponseBody } from '../../api/(auth)/register/route';
 export default function RegisterForm(props: { returnTo?: string | string[] }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [location, setLocation] = useState('');
+  const [description, setDescription] = useState('');
   const [errors, setErrors] = useState<{ message: string }[]>([]);
   const router = useRouter();
 
@@ -17,7 +19,7 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
 
         const response = await fetch('/api/register', {
           method: 'POST',
-          body: JSON.stringify({ username, password }),
+          body: JSON.stringify({ username, password, location, description }),
         });
 
         const data: RegisterResponseBody = await response.json();
@@ -52,7 +54,22 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
           onChange={(event) => setUsername(event.currentTarget.value)}
         />
       </label>
-
+      <label>
+        Hometown
+        <input
+          className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          value={location}
+          onChange={(event) => setLocation(event.currentTarget.value)}
+        />
+      </label>
+      <label>
+        Description
+        <input
+          className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          value={description}
+          onChange={(event) => setDescription(event.currentTarget.value)}
+        />
+      </label>
       <label>
         Password{' '}
         <input

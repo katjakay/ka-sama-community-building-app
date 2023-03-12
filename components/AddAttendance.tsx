@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Attendance } from '../../../database/attendance';
+import { Attendance } from '../database/attendance';
 
 type Props = {
   attendances: Attendance[];
