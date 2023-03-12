@@ -71,14 +71,15 @@ export default function AddEventForm(props) {
             className="file-input file-input-bordered file-input-primary w-full max-w-xs mt-4 mb-4"
           />
         </label>
+        <p>Preview</p>
         <img
           className="card w-96 bg-base-100 shadow-xl"
+          placeholder="https://res.cloudinary.com/dy40peu7s/image/upload/v1678432538/my-uploads/pd6gper7n2gtqvxxelck.png"
           src={imageSrc}
-          alt="jelly"
+          alt="User"
         />
         <button className="btn btn-sm mt-2 mb-6">Upload</button>
       </form>
-
       <form
         onSubmit={async (event) => {
           event.preventDefault();
@@ -152,7 +153,7 @@ export default function AddEventForm(props) {
             value={description}
             onChange={(event) => setDescription(event.currentTarget.value)}
             id="large-input"
-            className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block w-full p-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
         <div className="flex flex-wrap justify-center">

@@ -1,6 +1,5 @@
 import { cookies } from 'next/headers';
 import AddEventForm from '../../components/AddEventForm';
-import ImageUploadForm from '../../components/ImageUploadForm';
 import { getEventById } from '../../database/events';
 import { getUserBySessionToken } from '../../database/users';
 

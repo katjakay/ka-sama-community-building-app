@@ -13,37 +13,39 @@ export const metadata = {
 
 export default function HomePage() {
   return (
-    <main className="flex flex-wrap justify-center m-5 min-h-screen">
-      <div className="text-center min-h-screen justify-items-stretch">
-        <h1 className="text-6xl m-7">Mabuhay, welcome!</h1>
-        <div className="text-2xl mt-20">
-          Building a stronger filipino community through events, anywhere in the
-          world. Never alone always mag
-          <br />
-          <div className="mt-4 mb-24">
-            <mark className="px-6 text-6xl text-white bg-blue dark:bg-blue-500">
-              KA-SAMA.
-            </mark>
+    <main className="bg-white">
+      <div className="flex flex-wrap justify-center m-5 min-h-screen">
+        <div className="text-center min-h-screen justify-items-stretch">
+          <h1 className="text-6xl m-7">Mabuhay, welcome!</h1>
+          <div className="text-2xl mt-20">
+            Building a stronger filipino community through events, anywhere in
+            the world. Never alone always mag
+            <br />
+            <div className="mt-4 mb-24">
+              <mark className="px-6 text-6xl text-white bg-blue dark:bg-blue-500">
+                KA-SAMA.
+              </mark>
+            </div>
           </div>
-        </div>
-        <button className="btn btn-wide btn-primary">
           <Link href="/events">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-              />
-            </svg>
+            <button className="btn btn-wide btn-primary">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                />
+              </svg>
+            </button>
           </Link>
-        </button>
+        </div>
       </div>
     </main>
   );

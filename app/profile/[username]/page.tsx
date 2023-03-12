@@ -36,9 +36,9 @@ export default async function UserProfile({ params }: Props) {
         <div className="flex flex-col justify-center">
           <p>About me</p>
           <p>
-            I am a front-end based in Vienna, Austria With a passion for all the
-            cool things in life. I enjoy bouldering and explore new places in
-            the world.
+            I am a front-end developer based in Vienna, Austria With a passion
+            for all the cool things in life. I enjoy bouldering and explore new
+            places in the world.
           </p>
         </div>
         <div className="object-bottom">
@@ -64,7 +64,6 @@ export default async function UserProfile({ params }: Props) {
           </Link>
         </div>
       </div>
-      <ImageUploadForm />
       <span>
         {attendances.map((attendance) => {
           return (

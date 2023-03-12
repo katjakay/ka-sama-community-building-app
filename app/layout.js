@@ -18,7 +18,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <head />
-      <body className="mt-10 mb-4 p-2">
+      <body className="mb-4 p-2">
         <div className="navbar">
           <div className="flex-1 px-2 lg:flex-none" />
           <div className="flex justify-end flex-2 px-0">
@@ -27,7 +27,7 @@ export default async function RootLayout({ children }) {
                 <label tabIndex={0} className="btn btn-ghost rounded-btn">
                   MENU
                 </label>
-                <ul className="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4">
+                <ul className="menu dropdown-content p-2 shadow bg-beige rounded-box w-52 mt-4">
                   <li>
                     <a href="/">HOME</a>
                   </li>

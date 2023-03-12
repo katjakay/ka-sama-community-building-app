@@ -18,6 +18,7 @@ module.exports = {
       brown: '#A24300',
       blue: '#2F5FFF',
       white: '#FFFFFF',
+      beige: '#BEB3B5',
     },
     extend: {},
     fontFamily: {
