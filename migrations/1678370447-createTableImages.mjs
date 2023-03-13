@@ -4,7 +4,9 @@ export async function up(sql) {
     id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     user_id integer REFERENCES users (id),
    event_id integer REFERENCES events (id),
+   comment varchar(1000),
    image_url varchar(500)
+
   )
   `;
 }

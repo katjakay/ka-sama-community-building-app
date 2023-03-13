@@ -1,7 +1,7 @@
-import { cache } from 'react';
+import { cache, ReactNode } from 'react';
 import { sql } from './connect';
 
-type User = {
+export type User = {
   id: number;
   username: string;
   location: string;
@@ -41,7 +41,14 @@ export const getUserByUsernameWithPasswordHash = cache(
 );
 
 export const getUserByUsername = cache(async (username: string) => {
-  const [user] = await sql<{ id: number; username: string }[]>`
+  const [user] = await sql<
+    {
+      location: ReactNode;
+      description(): import('react').ReactNode;
+      id: number;
+      username: string;
+    }[]
+  >`
     SELECT
       id,
       username
@@ -60,14 +67,16 @@ export const createUser = cache(
     location: string,
     description: string,
   ) => {
-    const [user] = await sql<Event[]>`
+    const [user] = await sql<User[]>`
       INSERT INTO users
         (username, password_hash, location, description)
       VALUES
         (${username}, ${passwordHash}, ${location}, ${description})
       RETURNING
         id,
-        username
+        username,
+        location,
+        description
     `;
     return user;
   },

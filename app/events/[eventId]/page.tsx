@@ -3,20 +3,20 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import { NextResponse } from 'next/server';
-import AddAttendance from '../../../components/AddAttendance';
 import DeleteEvent from '../../../components/DeleteEvent';
 import FooterNav from '../../../components/FooterNav';
 import { getAttendance } from '../../../database/attendance';
 import { getEventById } from '../../../database/events';
 import { getUserBySessionToken } from '../../../database/users';
-import { events } from '../../../migrations/1678189022-insertIntoEvents.mjs';
 import { eventNotFoundMetadata } from './not-found';
 
 export const dynamic = 'force-dynamic';
 
 type Props = {
   params: {
+    userId: number;
     eventId: string;
+    imageUrl: string;
     // attendance: Attendance[];
   };
 };
@@ -39,7 +39,6 @@ export async function generateMetadata(props: Props) {
 
 export default async function SingleEventPage(props: Props) {
   const oneEvent = await getEventById(parseInt(props.params.eventId));
-
   const cookieStore = cookies();
   const token = cookieStore.get('sessionToken');
 
@@ -122,12 +121,16 @@ export default async function SingleEventPage(props: Props) {
         <p className="text-bold text-brown mb-2">WHAT TO EXPECT</p>
         <p>{oneEvent.description}</p>
       </div>
-      <AddAttendance
-        userId={user.id}
-        eventId={oneEvent.id}
-        attendances={attendances}
-      />
-      {user && <DeleteEvent events={oneEvent} user={user} />}
+      {/* <div>
+        {user && (
+          <AddAttendance
+            user={user}
+            event={oneEvent.id}
+            attendances={attendances}
+          />
+        )}{' '}
+        </div> */}
+      <div>{user && <DeleteEvent events={oneEvent} user={user} />}</div>
       <div className="mt-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -148,14 +151,6 @@ export default async function SingleEventPage(props: Props) {
             d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"
           />
         </svg>
-
-        <h1 className="text-4xl mt-3 mb-3">
-          LET'S CREATE TOGETHER - SHARE YOUR EVENT IMAGES AND CONNECT:
-        </h1>
-        <input
-          type="file"
-          className="file-input file-input-bordered file-input-brown w-full mt-4 max-w-xs"
-        />
       </div>
       <br />
       <br />

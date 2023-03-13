@@ -59,7 +59,12 @@ export async function POST(request: NextRequest) {
   const passwordHash = await bcrypt.hash(result.data.password, 12);
 
   // 4. create the user
-  const newUser = await createUser(result.data.username, passwordHash);
+  const newUser = await createUser(
+    result.data.username,
+    passwordHash,
+    result.data.location,
+    result.data.description,
+  );
 
   if (!newUser) {
     return NextResponse.json(

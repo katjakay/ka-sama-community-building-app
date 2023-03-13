@@ -10,6 +10,8 @@ type Props = {
     eventId: number;
     username: string;
     userId: number;
+    location: string;
+    description: string;
   };
 };
 
@@ -43,6 +45,7 @@ export default async function UserProfile({ params }: Props) {
           <h1 className="text-4xl mt-4 mb-3">
             Welcome back, {user.username.toUpperCase()}!
           </h1>
+          <p></p>
         </div>
         <div className="flex flex-col justify-center">
           <p>About me</p>
@@ -59,7 +62,7 @@ export default async function UserProfile({ params }: Props) {
               className="text-white bg-blue text-white font-regular text-sm rounded mt-4 min-w-full h-11"
             >
               {' '}
-              UP-COMING EVENTS
+              UPCOMING EVENTS
             </button>
           </Link>
         </div>

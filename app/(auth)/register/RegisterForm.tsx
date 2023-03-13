@@ -55,13 +55,14 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
         />
       </label>
       <label>
-        Hometown
+        Location
         <input
           className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           value={location}
           onChange={(event) => setLocation(event.currentTarget.value)}
         />
       </label>
+      s
       <label>
         Description
         <input

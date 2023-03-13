@@ -1,17 +1,6 @@
-'use client';
-
-// import { cookies } from 'next/headers';
-// import Link from 'next/link';
-// import { getUserBySessionToken } from '../database/users';
-
 export const dynamic = 'force-dynamic';
 
 export default function FooterNav() {
-  // const cookieStore = cookies();
-  // const token = cookieStore.get('sessionToken');
-
-  // const user = token && (await getUserBySessionToken(token.value));
-
   return (
     <span className="btm-nav">
       <a href="/events">
@@ -48,12 +37,10 @@ export default function FooterNav() {
       </a>
       <div className="avatar">
         <div className="w-8 rounded-full">
-          {/* <Link href={`/profile/${user && user.username}`}> */}
           <img
             src="https://cdn.shopify.com/s/files/1/0632/4659/8402/files/JUNACO_SEPT_2020_53_d019cd72-9817-4cd7-a9d2-da75f8268227.jpg?v=1652992090&width=750"
             alt="avatar user"
           />
-          {/* </Link> */}
         </div>
       </div>
     </span>

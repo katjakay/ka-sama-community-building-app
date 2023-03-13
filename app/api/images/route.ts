@@ -6,7 +6,8 @@ import { getUserBySessionToken } from '../../../database/users';
 
 const imageSchema = z.object({
   userId: z.number(),
-  imageId: z.number(),
+  eventId: z.number(),
+  comment: z.string(),
   imageUrl: z.string(),
 });
 
@@ -62,7 +63,8 @@ export async function POST(
 
   const newImage = await createImage(
     result.data.userId,
-    result.data.imageId,
+    result.data.eventId,
+    result.data.comment,
     result.data.imageUrl,
   );
 

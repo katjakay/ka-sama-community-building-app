@@ -4,9 +4,14 @@ import { useState } from 'react';
 import { Attendance } from '../database/attendance';
 
 type Props = {
+  user: {
+    id: number;
+    username: string;
+  };
+  event: {
+    id: number;
+  };
   attendances: Attendance[];
-  eventId: number;
-  userId: number;
 };
 
 export default function AddAttendance(props: Props) {
@@ -21,14 +26,14 @@ export default function AddAttendance(props: Props) {
         className="text-white bg-yellow text-white font-regular
        text-sm rounded mt-4 mb-4 min-w-full h-11"
         onClick={async () => {
-          const eventId = props.eventId;
           const response = await fetch('api/attendances', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              eventId,
+              eventId: props.event.id,
+              userId: props.user.id,
             }),
           });
 

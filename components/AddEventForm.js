@@ -100,6 +100,9 @@ export default function AddEventForm(props) {
             setErrors(data.errors);
             return;
           }
+
+          router.replace(`/events`);
+          router.refresh();
         }}
       >
         <div className="mb-6">
