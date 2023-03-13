@@ -29,7 +29,7 @@ export const createImage = cache(
       INSERT INTO images
         (user_id, event_id, comment,image_url)
       VALUES
-        (${userId}, ${eventId}, ${comment},${imageUrl})
+        (${userId}, ${eventId}, ${comment}, ${imageUrl})
       RETURNING *
     `;
     return image;

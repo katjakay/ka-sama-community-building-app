@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import LottieInteractive from '../components/LottieAnimation';
 
 export const dynamic = 'force-dynamic';
 
@@ -21,11 +22,14 @@ export default function HomePage() {
             Building a stronger filipino community through events, anywhere in
             the world. Never alone always mag
             <br />
-            <div className="mt-4 mb-24">
+            <div className="mt-4 mb-4">
               <mark className="px-6 text-6xl text-white bg-blue dark:bg-blue-500">
                 KA-SAMA.
               </mark>
             </div>
+          </div>
+          <div>
+            <LottieInteractive />
           </div>
           <Link href="/events">
             <button className="btn btn-wide btn-primary">

@@ -131,6 +131,9 @@ export default async function SingleEventPage(props: Props) {
         )}{' '}
         </div> */}
       <div>{user && <DeleteEvent events={oneEvent} user={user} />}</div>
+
+      {/* camera icon */}
+
       <div className="mt-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -151,6 +154,17 @@ export default async function SingleEventPage(props: Props) {
             d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"
           />
         </svg>
+        <div className="object-bottom" key={`event-${oneEvent.id}/event-feed`}>
+          <Link href={`/events/${oneEvent.id}/event-feed`}>
+            <button
+              type="button"
+              className="text-white bg-brown text-white font-regular text-sm rounded mt-2 mb-4 min-w-full h-11"
+            >
+              {' '}
+              VIEW EVENT PHOTOS{' '}
+            </button>
+          </Link>
+        </div>
       </div>
       <br />
       <br />

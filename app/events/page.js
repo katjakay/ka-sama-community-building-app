@@ -50,7 +50,6 @@ export default async function EventsPage() {
                   />
                 )}
               </figure>
-
               <div className="card-body">
                 <h2 className="card-title mr-24 text-3xl">{event.title}</h2>
                 <div className="badge badge-primary mt-2 ">UPCOMING</div>

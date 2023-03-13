@@ -1172,6 +1172,11 @@
     semver "^7.3.5"
     tar "^6.1.11"
 
+"@microsoft/fast-element@^1.4.0":
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/@microsoft/fast-element/-/fast-element-1.11.0.tgz#494f6c87057bcbb42406982d68a92887d6b5acb1"
+  integrity sha512-VKJYMkS5zgzHHb66sY7AFpYv6IfFhXrjQcAyNgi2ivD65My1XOhtjfKez5ELcLFRJfgZNAxvI8kE69apXERTkw==
+
 "@next/env@13.2.3":
   version "13.2.3"
   resolved "https://registry.yarnpkg.com/@next/env/-/env-13.2.3.tgz#77ca49edb3c1d7c5263bb8f2ebe686080e98279e"
@@ -4092,6 +4097,26 @@ loose-envify@^1.1.0, loose-envify@^1.4.0:
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
+
+lottie-interactive@^1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/lottie-interactive/-/lottie-interactive-1.3.2.tgz#f0a72c73726c3b2b51450710557391a89a3925fb"
+  integrity sha512-ToMCVEi1sdYVmBJe8Z5UhlkQQN3WWZBCJ8gKYlnQZdb6M4fJ1pTpcI6GJj2gwJq5hJnDpB3+2s2PXhZCdJgovA==
+  dependencies:
+    "@microsoft/fast-element" "^1.4.0"
+    lottie-web "^5.7.8"
+
+lottie-react@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/lottie-react/-/lottie-react-2.4.0.tgz#f7249eee2b1deee70457a2d142194fdf2456e4bd"
+  integrity sha512-pDJGj+AQlnlyHvOHFK7vLdsDcvbuqvwPZdMlJ360wrzGFurXeKPr8SiRCjLf3LrNYKANQtSsh5dz9UYQHuqx4w==
+  dependencies:
+    lottie-web "^5.10.2"
+
+lottie-web@^5.10.2, lottie-web@^5.7.8:
+  version "5.10.2"
+  resolved "https://registry.yarnpkg.com/lottie-web/-/lottie-web-5.10.2.tgz#a1c952b6734759fcd369eba73b6b7e3d9a76ce0b"
+  integrity sha512-d0PFIGiwuMsJYaF4uPo+qG8dEorlI+xFI2zrrFtE1bGO4WoLIz+NjremxEq1swpR7juR10aeOtmNh3d6G3ub0A==
 
 lru-cache@^5.1.1:
   version "5.1.1"
