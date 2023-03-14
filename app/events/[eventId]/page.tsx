@@ -3,9 +3,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import { NextResponse } from 'next/server';
+import AddAttendance from '../../../components/AddAttendance';
 import DeleteEvent from '../../../components/DeleteEvent';
 import FooterNav from '../../../components/FooterNav';
-import { getAttendance } from '../../../database/attendance';
+import { getAttendance } from '../../../database/attendances';
 import { getEventById } from '../../../database/events';
 import { getUserBySessionToken } from '../../../database/users';
 import { eventNotFoundMetadata } from './not-found';
@@ -17,7 +18,6 @@ type Props = {
     userId: number;
     eventId: string;
     imageUrl: string;
-    // attendance: Attendance[];
   };
 };
 
@@ -38,11 +38,12 @@ export async function generateMetadata(props: Props) {
 }
 
 export default async function SingleEventPage(props: Props) {
-  const oneEvent = await getEventById(parseInt(props.params.eventId));
   const cookieStore = cookies();
   const token = cookieStore.get('sessionToken');
 
   const user = token && (await getUserBySessionToken(token.value));
+  const oneEvent = await getEventById(parseInt(props.params.eventId));
+
   if (!user) {
     return (
       NextResponse.json({ error: 'session token is not valid' }),
@@ -121,15 +122,7 @@ export default async function SingleEventPage(props: Props) {
         <p className="text-bold text-brown mb-2">WHAT TO EXPECT</p>
         <p>{oneEvent.description}</p>
       </div>
-      {/* <div>
-        {user && (
-          <AddAttendance
-            user={user}
-            event={oneEvent.id}
-            attendances={attendances}
-          />
-        )}{' '}
-        </div> */}
+
       <div>{user && <DeleteEvent events={oneEvent} user={user} />}</div>
 
       {/* camera icon */}
@@ -165,6 +158,7 @@ export default async function SingleEventPage(props: Props) {
             </button>
           </Link>
         </div>
+        <AddAttendance user={user} event={oneEvent} attendances={attendances} />
       </div>
       <br />
       <br />

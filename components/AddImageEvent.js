@@ -74,8 +74,8 @@ export default function AddImageToEvent(props) {
             const response = await fetch('api/images', {
               method: 'POST',
               body: JSON.stringify({
-                userId: props.user.id,
-                eventId: props.user.id,
+                userId: props.userId,
+                eventId: props.eventId,
                 comment: comment,
                 imageUrl: imageSrc,
               }),
@@ -87,7 +87,7 @@ export default function AddImageToEvent(props) {
               return;
             }
 
-            router.replace(`/events/${event.id}`);
+            // router.replace(`/events/${event.id}`);
             router.refresh();
           }}
         >
@@ -96,7 +96,7 @@ export default function AddImageToEvent(props) {
               htmlFor="large-input"
               className="block mb-2 mt-4 text-xl font-medium text-gray-900 dark:text-white"
             >
-              Comment
+              Caption
             </label>
             <input
               value={comment}

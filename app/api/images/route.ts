@@ -1,7 +1,11 @@
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { createImage, deleteImageById, Image } from '../../../database/images';
+import {
+  createImage,
+  deleteImageByUserId,
+  Image,
+} from '../../../database/images';
 import { getUserBySessionToken } from '../../../database/users';
 
 const imageSchema = z.object({
@@ -89,7 +93,7 @@ export async function DELETE(
     );
   }
 
-  const oneImage = await deleteImageById(imageId);
+  const oneImage = await deleteImageByUserId(imageId);
 
   if (!oneImage) {
     return NextResponse.json(

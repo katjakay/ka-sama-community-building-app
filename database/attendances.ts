@@ -7,33 +7,20 @@ export type Attendance = {
   eventId: number;
 };
 
-// Get all attendance (for one user)
+// Get attendance (for one user)
 export const getAttendance = cache(async (userId: number) => {
   const attendances = await sql<Attendance[]>`
-    SELECT * FROM attendance WHERE attendance.user_id = ${userId}
+    SELECT * FROM attendances WHERE attendances.user_id = ${userId}
   `;
   return attendances;
-});
-
-// Get a single attendance
-export const getAttendanceById = cache(async (id: number) => {
-  const [attendance] = await sql<Attendance[]>`
-    SELECT
-      *
-    FROM
-    attendance
-    WHERE
-      id = ${id}
-  `;
-  return attendance;
 });
 
 // Create a new attendance
 export const createAttendance = cache(
   async (userId: number, eventId: number) => {
     const [attendance] = await sql<Attendance[]>`
-      INSERT INTO attendance
-        (userId, eventId)
+      INSERT INTO attendances
+        (user_id, event_id)
       VALUES
         (${userId}, ${eventId})
       RETURNING *
@@ -46,7 +33,7 @@ export const createAttendance = cache(
 export const deleteAttendanceById = cache(async (id: number) => {
   const [attendance] = await sql<Attendance[]>`
     DELETE FROM
-      attendance
+    attendances
     WHERE
       id = ${id}
     RETURNING *
@@ -66,7 +53,7 @@ export type AttendanceByUserIdAndEventId = {
 // displaying Attendance on user profile
 
 export const getAttendanceByUserIdAndEventId = cache(async (userId: number) => {
-  const attendanceOfUser = await sql<AttendanceByUserIdAndEventId[]>`
+  const attendancesOfUser = await sql<AttendanceByUserIdAndEventId[]>`
 SELECT
 users.id AS user_id,
 events.id AS event_id,
@@ -74,13 +61,13 @@ events.title AS event_title,
 events.date AS event_date,
 events.location AS event_location
 FROM
-attendance
+attendances
 INNER JOIN
-events ON attendance.event_id = events.id
+events ON attendances.event_id = events.id
 INNER JOIN
-users ON attendance.user_id = users.id
+users ON attendances.user_id = users.id
 WHERE
-attendance.user_id = ${userId}`;
+attendances.user_id = ${userId}`;
 
-  return attendanceOfUser;
+  return attendancesOfUser;
 });

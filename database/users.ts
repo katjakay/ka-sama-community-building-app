@@ -40,18 +40,20 @@ export const getUserByUsernameWithPasswordHash = cache(
   },
 );
 
-export const getUserByUsername = cache(async (username: string) => {
+export const getUserWithAllInfo = cache(async (username: string) => {
   const [user] = await sql<
     {
-      location: ReactNode;
-      description(): import('react').ReactNode;
+      location: string;
+      description: string;
       id: number;
       username: string;
     }[]
   >`
     SELECT
       id,
-      username
+      username,
+      location,
+      description
     FROM
       users
     WHERE

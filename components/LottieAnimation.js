@@ -2,8 +2,12 @@
 
 import Lottie from 'lottie-react';
 import React from 'react';
-import groovyWalkAnimation from './groovyWalk.json';
+import jugglingMaster from './jugglingMaster.json';
 
-const App = () => <Lottie animationData={groovyWalkAnimation} loop={true} />;
+const LottieAnimation = () => (
+  <div className="flex flex-wrap justify-center">
+    <Lottie className="w-60" animationData={jugglingMaster} loop={true} />
+  </div>
+);
 
-export default App;
+export default LottieAnimation;

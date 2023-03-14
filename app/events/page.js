@@ -26,6 +26,7 @@ export default async function EventsPage() {
   const user = !sessionToken?.value
     ? undefined
     : await getUserBySessionToken(sessionToken.value);
+
   return (
     <main className="m-8 mt-10">
       {/* <HeaderNav /> */}

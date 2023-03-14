@@ -1,17 +1,15 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import FooterNav from '../../../components/FooterNav';
-import { getAttendanceByUserIdAndEventId } from '../../../database/attendance';
+import { getAttendanceByUserIdAndEventId } from '../../../database/attendances';
 import { getEventById, getEvents } from '../../../database/events';
-import { getUserByUsername } from '../../../database/users';
+import { getUserWithAllInfo } from '../../../database/users';
 
 type Props = {
   params: {
-    eventId: number;
     username: string;
+    eventId: number;
     userId: number;
-    location: string;
-    description: string;
   };
 };
 
@@ -23,7 +21,7 @@ export default async function UserProfile({ params }: Props) {
     (attendance) => attendance.eventId === oneEvent?.id,
   );
 
-  const user = await getUserByUsername(params.username);
+  const user = await getUserWithAllInfo(params.username);
 
   if (!user) {
     notFound();
@@ -31,7 +29,7 @@ export default async function UserProfile({ params }: Props) {
 
   return (
     <main className="m-8 mt-10">
-      <h3 className="text-yellow">MY PROFILE</h3>
+      <h3 className="text-yellow"> {user.username}'s Profile</h3>
       <div className="mt-4">
         <div className="avatar online">
           <div className="w-40 rounded-full">
@@ -43,40 +41,39 @@ export default async function UserProfile({ params }: Props) {
         </div>
         <div className="flex flex-col justify-center">
           <h1 className="text-4xl mt-4 mb-3">
-            Welcome back, {user.username.toUpperCase()}!
+            Hi I am, {user.username.toUpperCase()}!
           </h1>
-          <p></p>
+          <div className="badge badge-primary badge-outline mt-4 mb-4">
+            Location
+          </div>{' '}
+          <p>{user.location}</p>
         </div>
-        <div className="flex flex-col justify-center">
-          <p>About me</p>
-          <p>
-            I am a front-end developer based in Vienna, Austria With a passion
-            for all the cool things in life. I enjoy bouldering and explore new
-            places in the world.
-          </p>
+        <div className="badge badge-primary badge-outline mt-4 mb-4">
+          About me
         </div>
-        <div className="object-bottom">
-          <Link href="/">
-            <button
-              type="button"
-              className="text-white bg-blue text-white font-regular text-sm rounded mt-4 min-w-full h-11"
-            >
-              {' '}
-              UPCOMING EVENTS
-            </button>
-          </Link>
-        </div>
-        <div className="object-bottom">
-          <Link href="/">
-            <button
-              type="button"
-              className="text-white bg-brown text-white font-regular text-sm rounded mt-2 mb-4 min-w-full h-11"
-            >
-              {' '}
-              MY EVENT PHOTOS
-            </button>
-          </Link>
-        </div>
+        <p>{user.description}</p>
+      </div>
+      <div className="object-bottom">
+        <Link href="/">
+          <button
+            type="button"
+            className="text-white bg-blue text-white font-regular text-sm rounded mt-4 min-w-full h-11"
+          >
+            {' '}
+            UPCOMING EVENTS
+          </button>
+        </Link>
+      </div>
+      <div className="object-bottom">
+        <Link href="/">
+          <button
+            type="button"
+            className="text-white bg-brown text-white font-regular text-sm rounded mt-2 mb-4 min-w-full h-11"
+          >
+            {' '}
+            MY EVENT PHOTOS
+          </button>
+        </Link>
       </div>
       <span>
         {filteredAttendances.map((attendance) => {

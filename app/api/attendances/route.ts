@@ -1,10 +1,11 @@
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { Attendance, createAttendance } from '../../../database/attendance';
+import { Attendance, createAttendance } from '../../../database/attendances';
 import { getUserBySessionToken } from '../../../database/users';
 
 const attendanceSchema = z.object({
+  userId: z.number(),
   eventId: z.number(),
 });
 
