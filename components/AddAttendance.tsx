@@ -27,7 +27,7 @@ export default function AddAttendance(props: Props) {
         className="text-white bg-yellow text-white font-regular
        text-sm rounded mt-4 mb-4 min-w-full h-11"
         onClick={async () => {
-          const response = await fetch('api/attendances', {
+          const response = await fetch('/api/attendances', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

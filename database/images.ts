@@ -10,16 +10,16 @@ export type Image = {
 };
 
 // Get all images from one user
-export const getImageById = cache(async (id: number) => {
-  const [image] = await sql<Image[]>`
+export const getImageByEventId = cache(async (eventId: number) => {
+  const images = await sql<Image[]>`
     SELECT
       *
     FROM
     images
     WHERE
-      id = ${id}
+      images.event_id = ${eventId}
   `;
-  return image;
+  return images;
 });
 
 // Create a new image

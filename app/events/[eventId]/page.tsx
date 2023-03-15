@@ -161,8 +161,8 @@ export default async function SingleEventPage(props: Props) {
           </Link>
         </div>
         <AddAttendance
-          userId={user.id}
-          eventId={oneEvent.id}
+          user={user}
+          oneEvent={oneEvent}
           attendances={attendances}
         />
       </div>

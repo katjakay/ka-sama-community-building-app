@@ -1,6 +1,8 @@
 import { cookies } from 'next/headers';
+import Image from 'next/image';
 import AddImageToEvent from '../../../../components/AddImageEvent';
 import { getEventById } from '../../../../database/events';
+import { getImageByEventId } from '../../../../database/images';
 import { getUserBySessionToken } from '../../../../database/users';
 
 export const dynamic = 'force-dynamic';
@@ -15,6 +17,7 @@ export const metadata = {
 
 export default async function ImagePageEvent(props) {
   const oneEvent = await getEventById(parseInt(props.params.eventId));
+  const images = await getImageByEventId(oneEvent.id);
 
   const cookieStore = cookies();
   const sessionToken = cookieStore.get('sessionToken');
@@ -49,37 +52,48 @@ export default async function ImagePageEvent(props) {
 
         <h1 className="text-4xl mt-2">Capture the moment...</h1>
       </div>
-      <div className="card card-compact w-96 mt-4 bg-base-100 shadow-xl">
-        <figure>
-          <img
-            src="https://res.cloudinary.com/dy40peu7s/image/upload/v1678741242/ka_sama/rdgcw4t09e0ylb99xf4i.jpg"
-            alt="Shoes"
-          />
-        </figure>
-        <div className="card-body">
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="blue"
-              className="w-6 h-6"
+
+      <span>
+        {images.map((image) => {
+          return (
+            <div
+              key={`oneEvent-${image.id}`}
+              className="card card-compact w-96 mt-4 bg-base-100 shadow-xl"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z"
-              />
-            </svg>
-            <p className="text-blue">Posted by Lola</p>
-          </div>
-          {/* This will be the caption from the user */}
-          <p>
-            I've learned so much during this event. will definitely come again!
-          </p>
-        </div>
-      </div>
+              <figure>
+                {!!image.imageUrl && (
+                  <Image
+                    src={image.imageUrl}
+                    alt="single event image"
+                    width="500"
+                    height="300"
+                  />
+                )}
+              </figure>
+              <div className="card-body">
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="blue"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z"
+                    />
+                  </svg>
+                  <p className="text-blue">{user.username}</p>
+                </div>
+                <p>{image.comment}</p>
+              </div>
+            </div>
+          );
+        })}
+      </span>
       <div className="mt-6">
         <svg
           xmlns="http://www.w3.org/2000/svg"
