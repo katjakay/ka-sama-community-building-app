@@ -8,7 +8,7 @@ export type Attendance = {
 };
 
 // Get attendance (for one user)
-export const getAttendance = cache(async (userId: number) => {
+export const getAttendances = cache(async (userId: number) => {
   const attendances = await sql<Attendance[]>`
     SELECT * FROM attendances WHERE attendances.user_id = ${userId}
   `;
@@ -23,7 +23,10 @@ export const createAttendance = cache(
         (user_id, event_id)
       VALUES
         (${userId}, ${eventId})
-      RETURNING *
+      RETURNING
+      id,
+      user_id,
+      event_id
     `;
     return attendance;
   },

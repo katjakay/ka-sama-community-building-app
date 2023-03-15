@@ -71,11 +71,11 @@ export default function AddImageToEvent(props) {
         <form
           onSubmit={async (event) => {
             event.preventDefault();
-            const response = await fetch('api/images', {
+            const response = await fetch('/api/images', {
               method: 'POST',
               body: JSON.stringify({
-                userId: props.userId,
-                eventId: props.eventId,
+                userId: props.user.id,
+                eventId: props.event.id,
                 comment: comment,
                 imageUrl: imageSrc,
               }),

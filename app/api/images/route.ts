@@ -1,11 +1,7 @@
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import {
-  createImage,
-  deleteImageByUserId,
-  Image,
-} from '../../../database/images';
+import { createImage, Image } from '../../../database/images';
 import { getUserBySessionToken } from '../../../database/users';
 
 const imageSchema = z.object({
@@ -24,14 +20,6 @@ export type ImagesResponseBodyGet =
     };
 
 export type ImagesResponseBodyPost =
-  | {
-      error: string;
-    }
-  | {
-      image: Image;
-    };
-
-export type ImagesResponseBodyDelete =
   | {
       error: string;
     }
@@ -76,33 +64,4 @@ export async function POST(
     return NextResponse.json({ error: 'Image not created!' }, { status: 500 });
   }
   return NextResponse.json({ image: newImage });
-}
-
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: Record<string, string | string[]> },
-): Promise<NextResponse<ImagesResponseBodyDelete>> {
-  const imageId = Number(params.imageId);
-
-  if (!imageId) {
-    return NextResponse.json(
-      {
-        error: 'Image id is not valid',
-      },
-      { status: 400 },
-    );
-  }
-
-  const oneImage = await deleteImageByUserId(imageId);
-
-  if (!oneImage) {
-    return NextResponse.json(
-      {
-        error: 'Image not found',
-      },
-      { status: 404 },
-    );
-  }
-
-  return NextResponse.json({ image: oneImage });
 }

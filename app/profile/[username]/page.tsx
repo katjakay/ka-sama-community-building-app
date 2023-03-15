@@ -45,7 +45,7 @@ export default async function UserProfile({ params }: Props) {
           </h1>
           <div className="badge badge-primary badge-outline mt-4 mb-4">
             Location
-          </div>{' '}
+          </div>
           <p>{user.location}</p>
         </div>
         <div className="badge badge-primary badge-outline mt-4 mb-4">

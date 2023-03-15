@@ -33,7 +33,7 @@ export default function EventCreatorWithAi() {
         To create your event description, all you need to do is type in a few
         keywords.
         <input
-          className="block w-full p-4 mt-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="block w-full p-10 mt-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
         />
@@ -50,7 +50,7 @@ export default function EventCreatorWithAi() {
         </div>
       )}
       <div>
-        <Link href="/create">
+        <Link className="link text-yellow" href="/create">
           <p> Back to create </p>
         </Link>
       </div>

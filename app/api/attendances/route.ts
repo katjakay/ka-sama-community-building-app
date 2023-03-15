@@ -36,7 +36,7 @@ export async function POST(
     );
   }
 
-  const newAttendance = await createAttendance(result.data.eventId, user.id);
+  const newAttendance = await createAttendance(user.id, result.data.eventId);
 
   if (!newAttendance) {
     return NextResponse.json(

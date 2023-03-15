@@ -6,7 +6,7 @@ import { NextResponse } from 'next/server';
 import AddAttendance from '../../../components/AddAttendance';
 import DeleteEvent from '../../../components/DeleteEvent';
 import FooterNav from '../../../components/FooterNav';
-import { getAttendance } from '../../../database/attendances';
+import { getAttendances } from '../../../database/attendances';
 import { getEventById } from '../../../database/events';
 import { getUserBySessionToken } from '../../../database/users';
 import { eventNotFoundMetadata } from './not-found';
@@ -42,6 +42,7 @@ export default async function SingleEventPage(props: Props) {
   const token = cookieStore.get('sessionToken');
 
   const user = token && (await getUserBySessionToken(token.value));
+
   const oneEvent = await getEventById(parseInt(props.params.eventId));
 
   if (!user) {
@@ -55,11 +56,12 @@ export default async function SingleEventPage(props: Props) {
     notFound();
   }
 
-  const attendances = await getAttendance(oneEvent.id);
+  const attendances = await getAttendances(oneEvent.id);
 
   return (
     <main className="m-8 mt-10">
       {/* <HeaderNav /> */}
+
       <div>
         <h3 className="text-yellow">{oneEvent.title.toUpperCase()}</h3>
         <div className="badge badge-primary mt-5 ">UPCOMING</div>
@@ -84,6 +86,7 @@ export default async function SingleEventPage(props: Props) {
             <p className="mt-2">{oneEvent.date}</p>
           </Link>
         </div>
+
         <div>
           <Link href="/create">
             <svg
@@ -108,6 +111,7 @@ export default async function SingleEventPage(props: Props) {
             <p className="mt-2">{oneEvent.location}</p>
           </Link>
         </div>
+        <div>{user && <DeleteEvent events={oneEvent} user={user} />}</div>
         <div className="mt-6 mb-6">
           {!!oneEvent.imageUrl && (
             <Image
@@ -122,8 +126,6 @@ export default async function SingleEventPage(props: Props) {
         <p className="text-bold text-brown mb-2">WHAT TO EXPECT</p>
         <p>{oneEvent.description}</p>
       </div>
-
-      <div>{user && <DeleteEvent events={oneEvent} user={user} />}</div>
 
       {/* camera icon */}
 
@@ -158,7 +160,11 @@ export default async function SingleEventPage(props: Props) {
             </button>
           </Link>
         </div>
-        <AddAttendance user={user} event={oneEvent} attendances={attendances} />
+        <AddAttendance
+          userId={user.id}
+          eventId={oneEvent.id}
+          attendances={attendances}
+        />
       </div>
       <br />
       <br />

@@ -11,9 +11,11 @@ export const metadata = {
 };
 export default async function RootLayout({ children }) {
   const cookieStore = cookies();
-  const token = cookieStore.get('sessionToken');
+  const sessionToken = cookieStore.get('sessionToken');
 
-  const user = token && (await getUserBySessionToken(token.value));
+  const user = !sessionToken?.value
+    ? undefined
+    : await getUserBySessionToken(sessionToken.value);
 
   return (
     <html lang="en">

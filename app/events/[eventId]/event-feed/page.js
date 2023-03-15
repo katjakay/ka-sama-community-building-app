@@ -104,7 +104,7 @@ export default async function ImagePageEvent(props) {
         <p className="text-4xl mb-6 mt-0 text-gray-500">
           ...share the memory - upload your event photos now!
         </p>
-        {user && <AddImageToEvent events={oneEvent} user={user} />}
+        {user && <AddImageToEvent event={oneEvent} user={user} />}
       </div>
     </main>
   );

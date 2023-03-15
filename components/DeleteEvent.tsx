@@ -33,7 +33,7 @@ export default function DeleteEvent(props: Props) {
             await router.push('/events');
           }}
         >
-          DELETE
+          X
         </button>
       )}
     </div>

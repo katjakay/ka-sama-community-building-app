@@ -1,5 +1,6 @@
 'use client';
 
+// import router from 'next/link';
 import { useState } from 'react';
 import { Attendance } from '../database/attendances';
 
@@ -8,7 +9,7 @@ type Props = {
     id: number;
     username: string;
   };
-  event: {
+  oneEvent: {
     id: number;
   };
   attendances: Attendance[];
@@ -32,8 +33,8 @@ export default function AddAttendance(props: Props) {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              eventId: props.event.id,
               userId: props.user.id,
+              eventId: props.oneEvent.id,
             }),
           });
 

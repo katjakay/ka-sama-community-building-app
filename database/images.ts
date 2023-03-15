@@ -10,14 +10,14 @@ export type Image = {
 };
 
 // Get all images from one user
-export const getImagesByUserId = cache(async (userId: number) => {
+export const getImageById = cache(async (id: number) => {
   const [image] = await sql<Image[]>`
     SELECT
       *
     FROM
     images
     WHERE
-      user_id = ${userId}
+      id = ${id}
   `;
   return image;
 });
@@ -41,13 +41,13 @@ export const createImage = cache(
   },
 );
 
-// Delete an image by UserId
-export const deleteImageByUserId = cache(async (userId: number) => {
+// Delete an image by UserId and EventId
+export const deleteImageById = cache(async (id: number) => {
   const [image] = await sql<Image[]>`
     DELETE FROM
       images
     WHERE
-      user_id = ${userId}
+      id = ${id},
     RETURNING *
   `;
   return image;
