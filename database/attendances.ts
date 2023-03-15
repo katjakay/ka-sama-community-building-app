@@ -51,10 +51,10 @@ export type AttendanceByUserIdAndEventId = {
   eventTitle: string;
   eventDate: string;
   eventLocation: string;
+  eventImageUrl: string;
 };
 
 // displaying Attendance on user profile
-
 export const getAttendanceByUserId = cache(async (userId: number) => {
   const attendancesOfUser = await sql<AttendanceByUserIdAndEventId[]>`
 SELECT
@@ -62,7 +62,8 @@ users.id AS user_id,
 events.id AS event_id,
 events.title AS event_title,
 events.date AS event_date,
-events.location AS event_location
+events.location AS event_location,
+events.image_url AS event_image_url
 FROM
 attendances
 INNER JOIN

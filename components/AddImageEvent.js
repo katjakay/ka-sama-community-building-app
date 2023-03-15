@@ -87,7 +87,7 @@ export default function AddImageToEvent(props) {
               return;
             }
 
-            // router.replace(`/events/${event.id}`);
+            // router.replace(`/events/${event.id}/event-feed`);
             router.refresh();
           }}
         >
