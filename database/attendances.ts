@@ -55,7 +55,7 @@ export type AttendanceByUserIdAndEventId = {
 
 // displaying Attendance on user profile
 
-export const getAttendanceByUserIdAndEventId = cache(async (userId: number) => {
+export const getAttendanceByUserId = cache(async (userId: number) => {
   const attendancesOfUser = await sql<AttendanceByUserIdAndEventId[]>`
 SELECT
 users.id AS user_id,

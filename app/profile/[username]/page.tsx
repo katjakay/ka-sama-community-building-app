@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import FooterNav from '../../../components/FooterNav';
-import { getAttendanceByUserIdAndEventId } from '../../../database/attendances';
-import { getEventById, getEvents } from '../../../database/events';
+import { getAttendanceByUserId } from '../../../database/attendances';
+import { getEventById } from '../../../database/events';
 import { getUserWithAllInfo } from '../../../database/users';
 
 type Props = {
@@ -15,17 +15,13 @@ type Props = {
 
 export default async function UserProfile({ params }: Props) {
   const oneEvent = await getEventById(params.eventId);
-  const attendances = await getAttendanceByUserIdAndEventId(params.userId);
-  const events = await getEvents();
-  const filteredAttendances = attendances.filter(
-    (attendance) => attendance.eventId === oneEvent?.id,
-  );
-
   const user = await getUserWithAllInfo(params.username);
 
   if (!user) {
     notFound();
   }
+
+  const attendances = await getAttendanceByUserId(user.id);
 
   return (
     <main className="m-8 mt-10">
@@ -75,10 +71,13 @@ export default async function UserProfile({ params }: Props) {
           </button>
         </Link>
       </div>
+      <div className="badge badge-primary badge-outline mt-4 mb-4">
+        My upcoming events{' '}
+      </div>
       <span>
-        {filteredAttendances.map((attendance) => {
+        {attendances.map((attendance) => {
           return (
-            <div key={`event-${attendance.id}`}>
+            <div key={`oneEvent-${attendance.eventId}`}>
               <h1>{attendance.eventTitle}</h1>
             </div>
           );
