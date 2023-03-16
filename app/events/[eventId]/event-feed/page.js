@@ -27,7 +27,7 @@ export default async function ImagePageEvent(props) {
     : await getUserBySessionToken(sessionToken.value);
 
   return (
-    <main className="m-8 mt-10">
+    <main className="m-6 mt-10">
       <h3 className="text-yellow">{oneEvent.title.toUpperCase()}</h3>
       <div className="mt-2">
         <svg

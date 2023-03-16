@@ -53,30 +53,35 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
     setUploadData(data);
   }
 
+  const placeholderImage =
+    'https://res.cloudinary.com/dy40peu7s/image/upload/v1678802320/my-uploads/k1q1ocwpetnfven43j5m.jpg';
+
   return (
     <main>
       <form method="post" onSubmit={handleOnSubmit}>
-        <label>
-          Upload your profile image here:
+        <div className="flex flex-wrap flex-col place-items-center">
           <br />
+
+          <div className="avatar">
+            <div className="w-40 rounded-full self-center">
+              <img
+                className="card w-96 bg-base-100 shadow-xl"
+                placeholder="placeholderImage"
+                src={imageSrc}
+                alt="User"
+              />
+            </div>
+          </div>
           <input
             onChange={handleOnChange}
             type="file"
             name="file"
-            className="file-input file-input-bordered file-input-primary w-full max-w-xs mt-4 mb-4"
+            className="file-input file-input-bordered file-input-primary file-input-xs w-full max-w-xs mt-6 "
           />
-        </label>
-        <div className="avatar">
-          <div className="w-40 rounded-full">
-            <img
-              className="card w-96 bg-base-100 shadow-xl"
-              placeholder="https://res.cloudinary.com/dy40peu7s/image/upload/v1678432538/my-uploads/pd6gper7n2gtqvxxelck.png"
-              src={imageSrc}
-              alt="User"
-            />
-          </div>
+
+          <br />
+          <button className="btn btn-sm mb-8">Upload</button>
         </div>
-        <button className="btn btn-sm mt-2 mb-6">Upload</button>
       </form>
       <form
         onSubmit={async (event) => {
@@ -120,7 +125,7 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
         <label>
           Username
           <input
-            className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block w-full input input-bordered input-md w-full max-w-screen-md"
             value={username}
             onChange={(event) => setUsername(event.currentTarget.value)}
           />
@@ -128,7 +133,7 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
         <label>
           Location
           <input
-            className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block w-full input input-bordered input-md w-full max-w-screen-md"
             value={location}
             onChange={(event) => setLocation(event.currentTarget.value)}
           />
@@ -136,7 +141,7 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
         <label>
           Description
           <input
-            className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block w-full input input-bordered input-md w-full max-w-screen-md"
             value={description}
             onChange={(event) => setDescription(event.currentTarget.value)}
           />
@@ -144,12 +149,12 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
         <label>
           Password{' '}
           <input
-            className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block w-full input input-bordered input-md w-full max-w-screen-md "
             value={password}
             onChange={(event) => setPassword(event.currentTarget.value)}
           />
         </label>
-        <button className="text-white bg-brown text-white font-regular text-sm rounded mt-4 mb-4 min-w-full h-11">
+        <button className="text-white bg-brown text-white font-regular text-sm rounded mt-16 mb-4 min-w-full h-11">
           Register
         </button>
       </form>

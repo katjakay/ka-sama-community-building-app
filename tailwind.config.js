@@ -19,6 +19,7 @@ module.exports = {
       blue: '#2F5FFF',
       white: '#FFFFFF',
       beige: '#BEB3B5',
+      purple: '#BEB3B5',
     },
     extend: {},
     fontFamily: {

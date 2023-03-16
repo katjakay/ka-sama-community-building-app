@@ -30,7 +30,8 @@ export default async function LoginPage(props: Props) {
     <main className="m-6 mt-10">
       <h3 className="text-yellow">LOGIN</h3>
       <h1 className="text-4xl mb-6 mt-4">
-        Welcome back, login to join and create
+        Welcome back,
+        <br /> login to create & connect
       </h1>
       <span>
         {/* if no render login component */}
@@ -43,9 +44,6 @@ export default async function LoginPage(props: Props) {
             />
           </div> */}
         {/* </div> */}
-        <div className="text-center">
-          <Link href="/register"> Register now</Link>
-        </div>
       </span>
     </main>
   );

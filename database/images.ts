@@ -21,6 +21,18 @@ export const getImageByEventId = cache(async (eventId: number) => {
   `;
   return images;
 });
+// Get all images from one user
+export const getImagesByUserId = cache(async (userId: number) => {
+  const images = await sql<Image[]>`
+    SELECT
+      *
+    FROM
+    images
+    WHERE
+      images.user_id = ${userId}
+  `;
+  return images;
+});
 
 // Create a new image
 export const createImage = cache(

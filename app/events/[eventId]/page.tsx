@@ -59,7 +59,7 @@ export default async function SingleEventPage(props: Props) {
   const attendances = await getAttendances(oneEvent.id);
 
   return (
-    <main className="m-8 mt-10">
+    <main className="m-6 mt-10">
       {/* <HeaderNav /> */}
 
       <div>

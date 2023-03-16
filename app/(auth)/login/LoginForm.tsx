@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { RegisterResponseBody } from '../../api/(auth)/register/route';
@@ -45,25 +46,36 @@ export default function LoginForm(props: { returnTo?: string | string[] }) {
         {errors.map((error) => (
           <div key={`error-${error.message}`}>Error: {error.message}</div>
         ))}
-        <label>
-          Username
-          <input
-            className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            value={username}
-            onChange={(event) => setUsername(event.currentTarget.value)}
-          />
-        </label>
-        <label>
-          Password
-          <input
-            className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            value={password}
-            onChange={(event) => setPassword(event.currentTarget.value)}
-          />
-        </label>
-        <button className="text-white bg-yellow text-white font-regular text-sm rounded mt-4 mb-4 min-w-full h-11">
-          Login
-        </button>
+        <div className="flex flex-wrap flex-col space-y-10">
+          <div className="mt-16">
+            <label>
+              Username
+              <input
+                className="block w-full input input-bordered input-md w-full max-w-screen-md"
+                value={username}
+                onChange={(event) => setUsername(event.currentTarget.value)}
+              />
+            </label>
+            <label>
+              Password
+              <input
+                className="block w-full input input-bordered input-md w-full max-w-screen-md"
+                value={password}
+                onChange={(event) => setPassword(event.currentTarget.value)}
+              />
+            </label>
+          </div>
+          <div>
+            <button className="text-white bg-yellow text-white font-regular uppercase text-md rounded mt-4 mb-1 min-w-full h-11">
+              Login
+            </button>
+            <div className="flex flex-wrap justify-center">
+              <Link className="link text-brown font-regular" href="/register">
+                <p> Register now</p>
+              </Link>
+            </div>
+          </div>
+        </div>
       </form>
     </main>
   );

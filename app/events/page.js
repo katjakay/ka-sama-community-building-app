@@ -28,7 +28,7 @@ export default async function EventsPage() {
     : await getUserBySessionToken(sessionToken.value);
 
   return (
-    <main className="m-8 mt-10">
+    <main className="m-6 mt-10">
       {/* <HeaderNav /> */}
       <h3 className="text-yellow">EVENTS</h3>
       <h1 className="text-4xl mt-4">All events</h1>

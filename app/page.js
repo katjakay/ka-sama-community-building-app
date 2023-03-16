@@ -19,16 +19,6 @@ export default function HomePage() {
     <main className="bg-white">
       <div className="flex flex-wrap justify-center m-5 min-h-screen">
         <div className="text-center min-h-screen justify-items-stretch">
-          <div className="artboard phone-3">
-            <Image
-              className="h-auto min-w-min mb-4 rounded-lg bg-base-100 shadow-xl"
-              src="/images/shirt.png"
-              alt="background"
-              width="500"
-              height="600"
-            />
-          </div>
-
           <h1 className="text-6xl m-7 text-brown">Mabuhay, welcome!</h1>
           <div className="text-xl mt-20">
             Building a stronger filipino community through events, anywhere in
