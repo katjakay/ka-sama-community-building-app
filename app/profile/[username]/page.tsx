@@ -33,10 +33,7 @@ export default async function UserProfile({ params }: Props) {
       <div className="mt-4">
         <div className="avatar online">
           <div className="w-40 rounded-full">
-            <img
-              src="https://cdn.shopify.com/s/files/1/0632/4659/8402/files/JUNACO_SEPT_2020_53_d019cd72-9817-4cd7-a9d2-da75f8268227.jpg?v=1652992090&width=1100"
-              alt="girl with curls"
-            />
+            <img src={user.imageUrl} alt="girl with curls" />
           </div>
         </div>
         <div className="flex flex-col justify-center">
@@ -80,7 +77,7 @@ export default async function UserProfile({ params }: Props) {
               <figure>
                 {!!attendance.eventImageUrl && (
                   <img
-                    className="min-w-min min-w-min mb-4 rounded-lg"
+                    className="max-w-sm min-h-full mb-4 rounded-lg"
                     src={attendance.eventImageUrl}
                     alt="event attendance"
                   />

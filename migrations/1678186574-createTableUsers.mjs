@@ -5,7 +5,8 @@ export async function up(sql) {
     username varchar(80) NOT NULL UNIQUE,
     location varchar(80),
     description varchar(1000),
-    password_hash varchar(70) NOT NULL
+    password_hash varchar(70) NOT NULL,
+    image_url varchar (1000)
   )
 `;
 }

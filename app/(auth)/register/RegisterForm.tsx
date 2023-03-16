@@ -5,83 +5,154 @@ import { useState } from 'react';
 import { RegisterResponseBody } from '../../api/(auth)/register/route';
 
 export default function RegisterForm(props: { returnTo?: string | string[] }) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [location, setLocation] = useState('');
-  const [description, setDescription] = useState('');
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [location, setLocation] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
+  const [imageSrc, setImageSrc] = useState<string>('');
+  const [uploadData, setUploadData] = useState<Blob>();
   const [errors, setErrors] = useState<{ message: string }[]>([]);
   const router = useRouter();
 
+  function handleOnChange(changeEvent: React.ChangeEvent<HTMLInputElement>) {
+    const reader = new FileReader();
+
+    reader.onload = function (onLoadEvent: ProgressEvent<FileReader>) {
+      setImageSrc(onLoadEvent.target!.result as string);
+      setUploadData(undefined);
+    };
+
+    reader.readAsDataURL(changeEvent.target.files[0]);
+  }
+
+  async function handleOnSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const fileInput = Array.from(form.elements).find(
+      ({ name }) => name === 'file',
+    ) as HTMLInputElement;
+
+    const formData = new FormData();
+
+    for (const file of fileInput.files as FileList) {
+      formData.append('file', file);
+    }
+
+    formData.append('upload_preset', 'my-uploads');
+
+    const data = await fetch(
+      'https://api.cloudinary.com/v1_1/dofvjgdq6/image/upload',
+      {
+        method: 'POST',
+        body: formData,
+      },
+    ).then((r) => r.json());
+
+    setImageSrc(data.secure_url);
+    setUploadData(data);
+  }
+
   return (
-    <form
-      onSubmit={async (event) => {
-        event.preventDefault();
+    <main>
+      <form method="post" onSubmit={handleOnSubmit}>
+        <label>
+          Upload your profile image here:
+          <br />
+          <input
+            onChange={handleOnChange}
+            type="file"
+            name="file"
+            className="file-input file-input-bordered file-input-primary w-full max-w-xs mt-4 mb-4"
+          />
+        </label>
+        <div className="avatar">
+          <div className="w-40 rounded-full">
+            <img
+              className="card w-96 bg-base-100 shadow-xl"
+              placeholder="https://res.cloudinary.com/dy40peu7s/image/upload/v1678432538/my-uploads/pd6gper7n2gtqvxxelck.png"
+              src={imageSrc}
+              alt="User"
+            />
+          </div>
+        </div>
+        <button className="btn btn-sm mt-2 mb-6">Upload</button>
+      </form>
+      <form
+        onSubmit={async (event) => {
+          event.preventDefault();
 
-        const response = await fetch('/api/register', {
-          method: 'POST',
-          body: JSON.stringify({ username, password, location, description }),
-        });
+          const response = await fetch('/api/register', {
+            method: 'POST',
+            body: JSON.stringify({
+              username: username,
+              password: password,
+              location: location,
+              description: description,
+              imageUrl: imageSrc,
+            }),
+          });
 
-        const data: RegisterResponseBody = await response.json();
+          const data: RegisterResponseBody = await response.json();
 
-        if ('errors' in data) {
-          setErrors(data.errors);
-          return;
-        }
+          if ('errors' in data) {
+            setErrors(data.errors);
+            return;
+          }
 
-        if (
-          props.returnTo &&
-          !Array.isArray(props.returnTo) &&
-          // This is checking that the return to is a valid path in your application and not going to a different domain
-          /^\/[a-zA-Z0-9-?=/]*$/.test(props.returnTo)
-        ) {
-          router.push(props.returnTo);
-          return;
-        }
+          if (
+            props.returnTo &&
+            !Array.isArray(props.returnTo) &&
+            // This is checking that the return to is a valid path in your application and not going to a different domain
+            /^\/[a-zA-Z0-9-?=/]*$/.test(props.returnTo)
+          ) {
+            router.push(props.returnTo);
+            return;
+          }
 
-        router.replace(`/profile/${data.user.username}`);
-        router.refresh();
-      }}
-    >
-      {errors.map((error) => (
-        <div key={`error-${error.message}`}>Error: {error.message}</div>
-      ))}
-      <label>
-        Username
-        <input
-          className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          value={username}
-          onChange={(event) => setUsername(event.currentTarget.value)}
-        />
-      </label>
-      <label>
-        Location
-        <input
-          className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          value={location}
-          onChange={(event) => setLocation(event.currentTarget.value)}
-        />
-      </label>
-      s
-      <label>
-        Description
-        <input
-          className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          value={description}
-          onChange={(event) => setDescription(event.currentTarget.value)}
-        />
-      </label>
-      <label>
-        Password{' '}
-        <input
-          className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          value={password}
-          onChange={(event) => setPassword(event.currentTarget.value)}
-        />
-      </label>
-      <button className="text-white bg-brown text-white font-regular text-sm rounded mt-4 mb-4 min-w-full h-11">
-        Register
-      </button>
-    </form>
+          router.replace(`/profile/${data.user.username}`);
+          router.refresh();
+        }}
+      >
+        {errors.map((error) => (
+          <div key={`error-${error.message}`}>Error: {error.message}</div>
+        ))}
+        <label>
+          Username
+          <input
+            className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            value={username}
+            onChange={(event) => setUsername(event.currentTarget.value)}
+          />
+        </label>
+        <label>
+          Location
+          <input
+            className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            value={location}
+            onChange={(event) => setLocation(event.currentTarget.value)}
+          />
+        </label>
+        <label>
+          Description
+          <input
+            className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            value={description}
+            onChange={(event) => setDescription(event.currentTarget.value)}
+          />
+        </label>
+        <label>
+          Password{' '}
+          <input
+            className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            value={password}
+            onChange={(event) => setPassword(event.currentTarget.value)}
+          />
+        </label>
+        <button className="text-white bg-brown text-white font-regular text-sm rounded mt-4 mb-4 min-w-full h-11">
+          Register
+        </button>
+      </form>
+    </main>
   );
 }

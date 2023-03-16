@@ -7,6 +7,7 @@ export type User = {
   location: string;
   description: string;
   passwordHash: string;
+  imageUrl: string;
 };
 
 export const getUserBySessionToken = cache(async (token: string) => {
@@ -40,20 +41,35 @@ export const getUserByUsernameWithPasswordHash = cache(
   },
 );
 
+export const getUserByUsername = cache(async (username: string) => {
+  const [user] = await sql<{ id: number; username: string }[]>`
+    SELECT
+      id,
+      username
+    FROM
+      users
+    WHERE
+      username = ${username}
+  `;
+  return user;
+});
+
 export const getUserWithAllInfo = cache(async (username: string) => {
   const [user] = await sql<
     {
-      location: string;
-      description: string;
       id: number;
       username: string;
+      location: string;
+      description: string;
+      imageUrl: string;
     }[]
   >`
     SELECT
       id,
       username,
       location,
-      description
+      description,
+      image_url
     FROM
       users
     WHERE
@@ -68,17 +84,19 @@ export const createUser = cache(
     passwordHash: string,
     location: string,
     description: string,
+    imageUrl: string,
   ) => {
     const [user] = await sql<User[]>`
       INSERT INTO users
-        (username, password_hash, location, description)
+        (username, password_hash, location, description, image_url)
       VALUES
-        (${username}, ${passwordHash}, ${location}, ${description})
+        (${username}, ${passwordHash}, ${location}, ${description}, ${imageUrl})
       RETURNING
         id,
         username,
         location,
-        description
+        description,
+        image_url
     `;
     return user;
   },
