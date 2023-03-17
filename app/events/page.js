@@ -44,7 +44,7 @@ export default async function EventsPage() {
               <figure>
                 {!!event.imageUrl && (
                   <Image
-                    className="h-auto min-w-min mb-4 rounded-lg"
+                    className="h-auto min-w-min rounded-lg"
                     src={event.imageUrl}
                     alt="event photo"
                     width="500"
@@ -53,12 +53,35 @@ export default async function EventsPage() {
                 )}
               </figure>
               <div className="card-body">
-                <h2 className="card-title mr-24 text-3xl">{event.title}</h2>
-                <div className="badge badge-primary mt-2 ">UPCOMING</div>
+                <div className="badge badge-primary">UPCOMING</div>
+                <h2 className="card-title mr-24 text-3xl text-light">
+                  {event.title}
+                </h2>
                 <p>{event.date}</p>
+
                 <div className="card-actions justify-end">
                   <Link href={`/events/${event.id}`}>
-                    <button className="btn btn-primary">Read more</button>
+                    <button className="btn btn-circle mr-2 bg-yellow border-transparent">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="white"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                      </svg>
+                    </button>
                   </Link>
                 </div>
               </div>

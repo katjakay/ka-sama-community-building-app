@@ -1,8 +1,7 @@
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import FooterNav from '../../../components/FooterNav';
 import { getAttendanceByUserId } from '../../../database/attendances';
-import { getEventById } from '../../../database/events';
+// import { getEventById } from '../../../database/events';
 import { getImagesByUserId } from '../../../database/images';
 import { getUserWithAllInfo } from '../../../database/users';
 
@@ -15,7 +14,7 @@ type Props = {
 };
 
 export default async function UserProfile({ params }: Props) {
-  const oneEvent = await getEventById(params.eventId);
+  // const oneEvent = await getEventById(params.eventId);
   const user = await getUserWithAllInfo(params.username);
 
   if (!user) {
@@ -99,7 +98,7 @@ export default async function UserProfile({ params }: Props) {
             {images.map((image) => {
               return (
                 <div
-                  key={`oneEvent-${image.userId}`}
+                  key={`images-${image.userId}`}
                   className="card card-side bg-base-100 shadow-xl mt-2"
                 >
                   <figure>

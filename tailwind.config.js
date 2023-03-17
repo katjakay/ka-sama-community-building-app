@@ -4,6 +4,7 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx}',
     './components/*.{js,ts,jsx,tsx}',
     './src/**/*.{js,ts,jsx,tsx,png,jpg}',
+    './node_modules/flowbite/**/*.js',
   ],
 
   theme: {
@@ -27,5 +28,5 @@ module.exports = {
       mono: ['Cinetype', 'sans-serif'],
     },
   },
-  plugins: [require('daisyui')],
+  plugins: [require('daisyui', 'flowbite/plugin')],
 };

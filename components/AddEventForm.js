@@ -12,6 +12,8 @@ export default function AddEventForm(props) {
   const [imageSrc, setImageSrc] = useState('');
   const [uploadData, setUploadData] = useState();
   const [errors, setErrors] = useState();
+  const [successUpload, setSuccessUpload] = useState(false);
+  const [success, setSuccess] = useState(false);
   const router = useRouter();
 
   function handleOnChange(changeEvent) {
@@ -51,6 +53,7 @@ export default function AddEventForm(props) {
 
     setImageSrc(data.secure_url);
     setUploadData(data);
+    setSuccessUpload(true);
   }
 
   return (
@@ -78,6 +81,9 @@ export default function AddEventForm(props) {
           alt="User"
         />
         <button className="btn btn-sm mt-2 mb-6">Upload</button>
+        <div className="text-blue">
+          {successUpload && <p>Your event image was uploaded!</p>}
+        </div>
       </form>
       <form
         onSubmit={async (event) => {
@@ -99,6 +105,7 @@ export default function AddEventForm(props) {
             setErrors(data.errors);
             return;
           }
+          setSuccess(true);
 
           router.replace(`/events`);
           router.refresh();
@@ -130,6 +137,7 @@ export default function AddEventForm(props) {
             className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
+
         <div className="mb-6">
           <label
             htmlFor="title"
@@ -170,6 +178,9 @@ export default function AddEventForm(props) {
           >
             Create event
           </button>
+          <div className="text-blue">
+            {success && <p>Your event was created!</p>}
+          </div>
         </div>
       </form>
     </main>

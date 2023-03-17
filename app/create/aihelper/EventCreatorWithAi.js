@@ -19,7 +19,12 @@ export default function EventCreatorWithAi() {
 
     const completion = await openai.createCompletion({
       model: 'text-davinci-003',
-      prompt: `${prompt}To create an event, please provide the following details: Name, Date, Time, Location.`,
+      prompt: `Write an event description based on these taglines: ${prompt}  `,
+      temperature: 0,
+      max_tokens: 60,
+      top_p: 1,
+      frequency_penalty: 0.5,
+      presence_penalty: 0,
     });
 
     if (completion.data.choices.length > 0 && completion.data.choices[0].text) {

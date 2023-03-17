@@ -26,9 +26,9 @@ export default async function RootLayout({ children }) {
           <div className="flex justify-end flex-2 px-0">
             <div className="flex items-stretch">
               <div className="dropdown dropdown-end">
-                <label tabIndex={0} className="btn btn-ghost rounded-btn">
+                <button tabIndex={0} className="btn btn-ghost rounded-btn">
                   MENU
-                </label>
+                </button>
                 <ul className="menu dropdown-content p-2 shadow bg-beige rounded-box w-52 mt-4">
                   <li>
                     <a href="/">HOME</a>
@@ -38,22 +38,23 @@ export default async function RootLayout({ children }) {
                     <a href="/events">EVENTS</a>
                   </li>
                   <li>
-                    {' '}
-                    <Link href="/login">LOGIN</Link>
-                  </li>
-                  <li>
-                    {' '}
-                    <Link href="/register">REGISTER</Link>
-                  </li>
-                  <li>
-                    <Link href="/logout" prefetch={false}>
-                      LOGOUT{' '}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href={`/profile/${user && user.username}`}>
-                      Nice to see you, {user && user.username}
-                    </Link>
+                    {user ? (
+                      <>
+                        <Link href={`/profile/${user.username}`}>
+                          <div className="text-blue">
+                            {user.username.toUpperCase()}
+                          </div>
+                        </Link>
+                        <Link href="/logout" prefetch={false}>
+                          LOGOUT
+                        </Link>
+                      </>
+                    ) : (
+                      <>
+                        <Link href="/register">REGISTER</Link>
+                        <Link href="/login">LOGIN</Link>
+                      </>
+                    )}
                   </li>
                 </ul>
               </div>
