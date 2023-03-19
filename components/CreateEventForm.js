@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-export default function AddEventForm(props) {
+export default function CreateEventForm(props) {
   const [title, setTitle] = useState('');
   const [location, setLocation] = useState('');
   const [date, setDate] = useState('');
@@ -58,9 +58,9 @@ export default function AddEventForm(props) {
 
   return (
     <main>
-      <h1 className="text-4xl mb-6 mt-4">
-        Your contribution is precious. <br />
-        Drop your ideas here to preserve culture
+      <h1 className="text-2xl mb-6 mt-4">
+        Host a cultural event on Ka-sama - <br />{' '}
+        <div className="text-beige">share your passion for your heritage.</div>
       </h1>
       <p className="text-brown">{errors}</p>
       <form method="post" onChange={handleOnChange} onSubmit={handleOnSubmit}>
@@ -126,6 +126,7 @@ export default function AddEventForm(props) {
             </label>
             <input
               value={title}
+              placeholder="Give your event a title"
               onChange={(event) => setTitle(event.currentTarget.value)}
               className="block w-full input input-bordered input-md w-full max-w-screen-md"
             />
@@ -139,6 +140,7 @@ export default function AddEventForm(props) {
             </label>
             <input
               value={date}
+              placeholder="YYYY-MM-DD"
               onChange={(event) => setDate(event.currentTarget.value)}
               className="block w-full input input-bordered input-md w-full max-w-screen-md"
             />
@@ -172,6 +174,7 @@ export default function AddEventForm(props) {
               value={description}
               onChange={(event) => setDescription(event.currentTarget.value)}
               id="large-input"
+              placeholder="Give us some information about the event"
               className="block w-full input input-bordered input-md w-full max-w-screen-md"
             />
           </div>

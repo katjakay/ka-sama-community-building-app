@@ -1,9 +1,15 @@
-import { notFound } from 'next/navigation';
+import { cookies } from 'next/headers';
+import { notFound, redirect } from 'next/navigation';
+import { NextResponse } from 'next/server';
 import FooterNav from '../../../components/FooterNav';
 import { getAttendanceByUserId } from '../../../database/attendances';
 // import { getEventById } from '../../../database/events';
 import { getImagesByUserId } from '../../../database/images';
-import { getUserWithAllInfo } from '../../../database/users';
+import {
+  getUserBySessionToken,
+  getUserWithAllInfo,
+} from '../../../database/users';
+import DeleteImage from './DeleteImage';
 
 type Props = {
   params: {
@@ -14,6 +20,20 @@ type Props = {
 };
 
 export default async function UserProfile({ params }: Props) {
+  const cookieStore = cookies();
+  const token = cookieStore.get('sessionToken');
+
+  // 2. validate that session
+  // 3. get the user profile matching the session
+  const currentUser = token && (await getUserBySessionToken(token.value));
+
+  if (!currentUser) {
+    return (
+      NextResponse.json({ error: 'session token is not valid' }),
+      redirect(`/login?returnTo=/locations`)
+    );
+  }
+
   // const oneEvent = await getEventById(params.eventId);
   const user = await getUserWithAllInfo(params.username);
 
@@ -50,7 +70,7 @@ export default async function UserProfile({ params }: Props) {
         About me
       </div>
       <p>{user.description}</p>
-      <div
+      <span
         tabIndex={0}
         className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box mt-6"
       >
@@ -84,14 +104,12 @@ export default async function UserProfile({ params }: Props) {
             })}
           </span>
         </div>
-      </div>
-      <div
+      </span>
+      <span
         tabIndex={0}
         className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box mt-2"
       >
-        <div className="collapse-title text-xl font-regular bg-purple">
-          My event photos
-        </div>
+        <div className="collapse-title text-xl bg-purple">My event photos</div>
         <div className="collapse-content">
           <span>
             {images.map((image) => {
@@ -105,16 +123,26 @@ export default async function UserProfile({ params }: Props) {
                       <img
                         className="max-w-sm min-h-full mb-4 rounded-lg"
                         src={image.imageUrl}
-                        alt="event attendance"
+                        alt={image.imageUrl}
                       />
                     )}
                   </figure>
+                  <br />
+                  <div>
+                    <button className="btn btn-xs">
+                      {currentUser.id === user.id ? (
+                        <DeleteImage image={image} />
+                      ) : (
+                        ''
+                      )}
+                    </button>
+                  </div>
                 </div>
               );
             })}
           </span>
         </div>
-      </div>
+      </span>
       <br />
       <br />
       <br />

@@ -32,7 +32,7 @@ export default async function EventsPage() {
       {/* <HeaderNav /> */}
       <h3 className="text-yellow">EVENTS</h3>
       <h1 className="text-4xl mt-4">All events</h1>
-      <p className="text-4xl mb-6 mt-0 text-gray-500">Checkout the latest</p>
+      <p className="text-4xl mb-6 mt-0 text-beige">Checkout the latest</p>
 
       <span>
         {events.map((event) => {

@@ -33,6 +33,9 @@ export default async function RootLayout({ children }) {
                   <li>
                     <a href="/">HOME</a>
                   </li>
+                  <li>
+                    <a href="about">ABOUT</a>
+                  </li>
 
                   <li>
                     <a href="/events">EVENTS</a>

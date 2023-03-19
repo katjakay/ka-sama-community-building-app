@@ -141,6 +141,7 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
           Description
           <input
             className="block w-full input input-bordered input-md w-full max-w-screen-md"
+            placeholder="Something about yourself and why you want to be part of the community"
             value={description}
             onChange={(event) => setDescription(event.currentTarget.value)}
           />

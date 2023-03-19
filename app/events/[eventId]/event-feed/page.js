@@ -3,8 +3,8 @@ import Image from 'next/image';
 import { getEventById } from '../../../../database/events';
 import { getImageByEventId } from '../../../../database/images';
 import { getUserBySessionToken } from '../../../../database/users';
+import DeleteImage from '../../../profile/[username]/DeleteImage';
 import AddImageToEvent from './AddImageEvent';
-import DeleteImage from './DeleteImage';
 
 export const dynamic = 'force-dynamic';
 
