@@ -74,7 +74,7 @@ export default async function UserProfile({ params }: Props) {
         tabIndex={0}
         className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box mt-6"
       >
-        <div className="collapse-title text-xl font-regular bg-yellow">
+        <div className="collapse-title text-xl font-light uppercase bg-yellow">
           My upcoming events
         </div>
         <div className="collapse-content">
@@ -109,7 +109,9 @@ export default async function UserProfile({ params }: Props) {
         tabIndex={0}
         className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box mt-2"
       >
-        <div className="collapse-title text-xl bg-purple">My event photos</div>
+        <div className="collapse-title text-xl font-light uppercase bg-purple">
+          My event photos
+        </div>
         <div className="collapse-content">
           <span>
             {images.map((image) => {

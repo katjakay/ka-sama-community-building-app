@@ -31,7 +31,9 @@ export default async function RegisterPage(props: Props) {
     <main className="m-6 mt-10">
       <h3 className="text-brown">REGISTER</h3>
       <h1 className="text-4xl mb-6 mt-4">
-        This is KA-SAMA! Filipino culture and more
+        This is <br />
+        KA-SAMA! <br />
+        <div className="text-beige"> Filipino culture and more</div>
       </h1>
       <RegisterForm returnTo={props.searchParams.returnTo} />
     </main>

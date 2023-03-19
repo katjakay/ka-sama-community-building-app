@@ -11,6 +11,9 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
   const [description, setDescription] = useState<string>('');
   const [imageSrc, setImageSrc] = useState<string>('');
   const [uploadData, setUploadData] = useState<Blob>();
+  const [successUpload, setSuccessUpload] = useState(false);
+  const [success, setSuccess] = useState(false);
+
   const [errors, setErrors] = useState<{ message: string }[]>([]);
   const router = useRouter();
 
@@ -51,6 +54,7 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
 
     setImageSrc(data.secure_url);
     setUploadData(data);
+    setSuccessUpload(true);
   }
 
   const placeholderImage =
@@ -80,6 +84,9 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
 
           <br />
           <button className="btn btn-sm mb-8">Upload</button>
+        </div>
+        <div className="text-blue text-xs">
+          {successUpload && <p>Your profile image was uploaded!</p>}
         </div>
       </form>
       <form
@@ -157,6 +164,9 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
         <button className="text-white bg-brown text-white font-regular text-sm rounded mt-16 mb-4 min-w-full h-11">
           Register
         </button>
+        <div className="text-blue">
+          {success && <p>Cool! You are now registered!</p>}
+        </div>
       </form>
     </main>
   );
