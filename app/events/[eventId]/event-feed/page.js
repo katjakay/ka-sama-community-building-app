@@ -9,8 +9,9 @@ import DeleteImage from './DeleteImage';
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: 'Event photo feed',
-  description: 'Placeholder to add photos to your event.',
+  title: 'Explore Ka-sama Event Photos - Connect with Your Community',
+  description:
+    'Browse the event photo feed on Ka-sama, the community building app for cultural preservation and identity building. See photos from events hosted by members of the Ka-sama community, and connect with others who share your interests and passions. Share your own event photos and celebrate the diverse cultures and traditions represented on Ka-sama.',
   icons: {
     shortcut: '/icon.svg',
   },

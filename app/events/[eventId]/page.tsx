@@ -30,7 +30,7 @@ export async function generateMetadata(props: Props) {
 
   return {
     title: oneEvent.title,
-    description: `Our experienced instructors offer a variety of Pilates classes designed to help you achieve your goals, whether you're a beginner or an advanced practitioner. Choose from mat classes, equipment classes, or private sessions tailored to your specific needs. Shop ${oneEvent.title} and many more and start feeling stronger and more energized today`,
+    description: `This event is all about celebrating Filipino culture and heritage, and connecting with others who share similar backgrounds and interests. We'll be sharing stories, traditions, and experiences, as well as learning about different aspects of Filipino culture from our guest speakers. Don't miss out on this opportunity to connect with like-minded individuals and celebrate the rich diversity of Filipino culture with ${oneEvent.title} and many more.`,
     icons: {
       shortcut: '/icon.svg',
     },

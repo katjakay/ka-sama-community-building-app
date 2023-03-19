@@ -8,9 +8,9 @@ import { getUserBySessionToken } from '../../database/users';
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: 'All events',
+  title: 'Events - connect and share stories',
   description:
-    'Your journey to wellness is just a few clicks away. Review your Pilates purchases and complete your transaction securely on our online store. Embrace a healthier, stronger you with our personalized classnames and equipment.',
+    'With Ka-sama, users can share stories, traditions, and experiences, as well as learn about different cultures and customs from around the world. Join Ka-sama today and be a part of a vibrant and supportive community that celebrates diversity and promotes cultural understanding.',
   icons: {
     shortcut: '/icon.svg',
   },

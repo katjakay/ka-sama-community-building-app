@@ -6,9 +6,10 @@ import Link from 'next/link';
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: 'Ka-sama',
+  title:
+    ' Ka-sama - A Community Building App for Cultural Preservation and Identity Building',
   description:
-    'Discover a space for community building and cultural preservation, to help users connect with their roots and build a sense of pride and identity around their heritage',
+    ' Ka-sama is a community building app designed to help users connect with their roots and build a sense of pride and identity around their heritage. It serves as a space for cultural preservation and celebration, allowing users to connect with others who share similar cultural backgrounds and interests. With Ka-sama, users can share stories, traditions, and experiences, as well as learn about different cultures and customs from around the world.',
   icons: {
     shortcut: '/icon.svg',
   },
