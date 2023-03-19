@@ -27,7 +27,20 @@ export default async function RootLayout({ children }) {
             <div className="flex items-stretch">
               <div className="dropdown dropdown-end">
                 <button tabIndex={0} className="btn btn-ghost rounded-btn">
-                  MENU
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+                    />
+                  </svg>
                 </button>
                 <ul className="menu dropdown-content p-2 shadow bg-beige rounded-box w-52 mt-4">
                   <li>
