@@ -7,6 +7,8 @@ export default function AddImageToEvent(props) {
   const [imageSrc, setImageSrc] = useState('');
   const [comment, setComment] = useState('');
   const [uploadData, setUploadData] = useState();
+  const [successUpload, setSuccessUpload] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState();
   const router = useRouter();
 
@@ -47,26 +49,29 @@ export default function AddImageToEvent(props) {
 
     setImageSrc(data.secure_url);
     setUploadData(data);
+    setSuccessUpload(true);
   }
 
   return (
-    <main>
+    <main className="mt-5">
       <div>
         <form method="post" onChange={handleOnChange} onSubmit={handleOnSubmit}>
           <input
             type="file"
             name="file"
-            className="file-input file-input-bordered file-input-primary w-full max-w-xs mt-4 mb-4"
+            className="file-input file-input-bordered file-input-primary file-input-xs w-full max-w-xs mt-6 "
           />
           <img
-            className="card w-96 bg-base-100 shadow-xl"
-            placeholder="https://res.cloudinary.com/dy40peu7s/image/upload/v1678432538/my-uploads/pd6gper7n2gtqvxxelck.png"
+            className="card w-100 bg-base-100 shadow-m"
             src={imageSrc}
-            alt="event feed"
+            alt={imageSrc}
           />
           <button className="mt-4 text-primary cursor-crosshair">
             Upload ↳{' '}
           </button>
+          <div className="text-yellow">
+            {successUpload && <p>Your event image was uploaded!</p>}
+          </div>
         </form>
         <form
           onSubmit={async (event) => {
@@ -86,6 +91,7 @@ export default function AddImageToEvent(props) {
               setErrors(data.errors);
               return;
             }
+            setSuccess(true);
 
             // router.replace(`/events/${event.id}/event-feed`);
             router.refresh();
@@ -94,7 +100,7 @@ export default function AddImageToEvent(props) {
           <div className="mb-6">
             <label
               htmlFor="large-input"
-              className="block mb-2 mt-4 text-xl font-medium text-gray-900 dark:text-white"
+              className="block mb-2 mt-4 text-xl font-medium text-brown dark:text-white"
             >
               Caption
             </label>
@@ -102,17 +108,20 @@ export default function AddImageToEvent(props) {
               value={comment}
               onChange={(event) => setComment(event.currentTarget.value)}
               id="large-input"
-              className="block w-full p-10 text-gray-900 border border-primary rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+              className="block w-full input input-bordered input-md w-full max-w-screen-md p-10"
             />
           </div>
           <button
-            className="btn btn-sm mt-2 mb-6 bg-brown border-transparent cursor-crosshair"
+            className="btn btn-sm mb-4 bg-brown border-transparent cursor-crosshair"
             onClick={() => {
               router.refresh();
             }}
           >
             Share now
           </button>
+          <div className="text-yellow">
+            {success && <p>Your event was posted!</p>}
+          </div>
         </form>
       </div>
     </main>

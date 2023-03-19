@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export const dynamic = 'force-dynamic';
 
 export default function FooterNav() {
@@ -35,12 +37,34 @@ export default function FooterNav() {
           />
         </svg>
       </a>
-      <div className="avatar">
+      <div>
         <div className="w-8 rounded-full">
-          <img
-            src="https://cdn.shopify.com/s/files/1/0632/4659/8402/files/JUNACO_SEPT_2020_53_d019cd72-9817-4cd7-a9d2-da75f8268227.jpg?v=1652992090&width=750"
-            alt="avatar user"
-          />
+          <Link href="/community">
+            <svg
+              width="15"
+              height="16"
+              viewBox="0 0 15 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clip-path="url(#clip0_56_561)">
+                <rect width="15" height="16" fill="#2F5FFF" />
+                <path
+                  d="M0.845455 8V1.01818H1.69091V4.48182H1.77273L4.90909 1.01818H6.01364L3.08182 4.16818L6.01364 8H4.99091L2.56364 4.75455L1.69091 5.73636V8H0.845455ZM7.39432 8H6.50795L9.07159 1.01818H9.94432L12.508 8H11.6216L9.53523 2.12273H9.48068L7.39432 8ZM7.72159 5.27273H11.2943V6.02273H7.72159V5.27273Z"
+                  fill="white"
+                />
+                <path
+                  d="M14.2045 6.69091L11.9545 15.05H11.2182L13.4682 6.69091H14.2045Z"
+                  fill="white"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_56_561">
+                  <rect width="15" height="16" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </Link>
         </div>
       </div>
     </span>

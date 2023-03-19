@@ -101,3 +101,11 @@ export const createUser = cache(
     return user;
   },
 );
+
+export const getAllUsers = cache(async () => {
+  const users = await sql<User[]>`
+  SELECT * FROM users
+  `;
+
+  return users;
+});

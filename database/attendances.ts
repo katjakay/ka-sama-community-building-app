@@ -15,6 +15,22 @@ export const getAttendances = cache(async (userId: number) => {
   return attendances;
 });
 
+export const getAttendanceByUserAndEvent = cache(
+  async (userId: number, eventId: number) => {
+    const attendances = await sql<Attendance[]>`
+SELECT
+user_id,
+event_id
+from
+attendances
+WHERE
+user_id = ${userId} AND
+event_id = ${eventId}
+`;
+    return attendances;
+  },
+);
+
 // Create a new attendance
 export const createAttendance = cache(
   async (userId: number, eventId: number) => {

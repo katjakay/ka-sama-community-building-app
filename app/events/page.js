@@ -46,7 +46,7 @@ export default async function EventsPage() {
                   <Image
                     className="h-auto min-w-min rounded-lg"
                     src={event.imageUrl}
-                    alt="event photo"
+                    alt={event.imageUrl}
                     width="500"
                     height="600"
                   />
@@ -58,7 +58,6 @@ export default async function EventsPage() {
                   {event.title}
                 </h2>
                 <p>{event.date}</p>
-
                 <div className="card-actions justify-end">
                   <Link href={`/events/${event.id}`}>
                     <button className="btn btn-circle mr-2 bg-yellow border-transparent">

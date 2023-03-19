@@ -1,9 +1,10 @@
 import { cookies } from 'next/headers';
 import Image from 'next/image';
-import AddImageToEvent from '../../../../components/AddImageEvent';
 import { getEventById } from '../../../../database/events';
 import { getImageByEventId } from '../../../../database/images';
 import { getUserBySessionToken } from '../../../../database/users';
+import AddImageToEvent from './AddImageEvent';
+import DeleteImage from './DeleteImage';
 
 export const dynamic = 'force-dynamic';
 
@@ -17,7 +18,6 @@ export const metadata = {
 
 export default async function ImagePageEvent(props) {
   const oneEvent = await getEventById(parseInt(props.params.eventId));
-  const images = await getImageByEventId(oneEvent.id);
 
   const cookieStore = cookies();
   const sessionToken = cookieStore.get('sessionToken');
@@ -26,6 +26,7 @@ export default async function ImagePageEvent(props) {
     ? undefined
     : await getUserBySessionToken(sessionToken.value);
 
+  const images = await getImageByEventId(oneEvent.id);
   return (
     <main className="m-6 mt-10">
       <h3 className="text-yellow">{oneEvent.title.toUpperCase()}</h3>
@@ -50,23 +51,23 @@ export default async function ImagePageEvent(props) {
           />
         </svg>
 
-        <h1 className="text-4xl mt-2">Capture the moment...</h1>
+        <p className="text-2xl mt-2">Capture the moment...</p>
       </div>
-
       <span>
         {images.map((image) => {
           return (
             <div
               key={`oneEvent-${image.id}`}
-              className="card card-compact w-96 mt-4 bg-base-100 shadow-xl"
+              className="card card-compact w-auto bg-base-100 shadow-xl mt-2 mb-4"
             >
               <figure>
                 {!!image.imageUrl && (
                   <Image
+                    className="h-auto min-w-min rounded-lg"
                     src={image.imageUrl}
-                    alt="single event image"
+                    alt={image.imageUrl}
                     width="500"
-                    height="300"
+                    height="600"
                   />
                 )}
               </figure>
@@ -86,7 +87,7 @@ export default async function ImagePageEvent(props) {
                       d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z"
                     />
                   </svg>
-                  <p className="text-blue">Posted by {user.username}</p>
+                  <p className="text-blue">Posted by {image.userId}</p>
                 </div>
                 <p>{image.comment}</p>
               </div>
@@ -115,7 +116,7 @@ export default async function ImagePageEvent(props) {
           />
         </svg>
 
-        <p className="text-4xl mb-6 mt-0 text-gray-500">
+        <p className="text-2xl mt-2">
           ...share the memory - upload your event photos now!
         </p>
         {user && <AddImageToEvent event={oneEvent} user={user} />}

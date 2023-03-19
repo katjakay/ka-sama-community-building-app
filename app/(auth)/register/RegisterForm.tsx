@@ -66,9 +66,8 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
             <div className="w-40 rounded-full self-center">
               <img
                 className="card w-96 bg-base-100 shadow-xl"
-                placeholder="placeholderImage"
                 src={imageSrc}
-                alt="User"
+                alt={imageSrc}
               />
             </div>
           </div>

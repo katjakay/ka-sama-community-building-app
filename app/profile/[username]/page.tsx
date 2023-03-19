@@ -50,7 +50,6 @@ export default async function UserProfile({ params }: Props) {
         About me
       </div>
       <p>{user.description}</p>
-
       <div
         tabIndex={0}
         className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box mt-6"

@@ -13,15 +13,17 @@ export type Image = {
 export const getImageByEventId = cache(async (eventId: number) => {
   const images = await sql<Image[]>`
     SELECT
-      *
+*
     FROM
     images
+
     WHERE
       images.event_id = ${eventId}
   `;
   return images;
 });
-// Get all images from one user
+
+// Get all images from one user??
 export const getImagesByUserId = cache(async (userId: number) => {
   const images = await sql<Image[]>`
     SELECT

@@ -67,52 +67,48 @@ export default async function SingleEventPage(props: Props) {
         <div className="badge badge-primary mt-5 ">UPCOMING</div>
         <h1 className="text-4xl mt-3 mb-3">{oneEvent.title}</h1>
         <div>
-          <Link href="/">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="blue"
-              className="w-5 h-5"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="blue"
+            className="w-5 h-5"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
 
-            <p className="mt-2">{oneEvent.date}</p>
-          </Link>
+          <p className="mt-2">{oneEvent.date}</p>
         </div>
 
         <div>
-          <Link href="/create">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="blue"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-              />
-            </svg>
-            <p className="mt-2">{oneEvent.location}</p>
-          </Link>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="blue"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+            />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+            />
+          </svg>
+          <p className="mt-2">{oneEvent.location}</p>
         </div>
         <div>{user && <DeleteEvent events={oneEvent} user={user} />}</div>
-        <div className="mt-6 mb-6">
+        <div className="mt-6">
           {!!oneEvent.imageUrl && (
             <Image
               className="card w-100 bg-base-100 shadow-m"
@@ -123,7 +119,9 @@ export default async function SingleEventPage(props: Props) {
             />
           )}
         </div>
-        <p className="text-bold text-brown mb-2">WHAT TO EXPECT</p>
+        <div className="badge badge-primary badge-outline mt-8 mb-4">
+          WHAT TO EXPECT{' '}
+        </div>
         <p>{oneEvent.description}</p>
       </div>
 
@@ -153,7 +151,7 @@ export default async function SingleEventPage(props: Props) {
           <Link href={`/events/${oneEvent.id}/event-feed`}>
             <button
               type="button"
-              className="text-white bg-brown text-white font-regular text-sm rounded mt-2 mb-4 min-w-full h-11"
+              className="text-white bg-brown text-white font-regular text-sm rounded mt-2 min-w-full h-11"
             >
               {' '}
               VIEW EVENT PHOTOS{' '}
