@@ -5,6 +5,7 @@ export type Event = {
   id: number;
   title: string;
   date: string;
+  time: string;
   location: string;
   description: string;
   imageUrl: string;
@@ -49,6 +50,7 @@ export const createEvent = cache(
   async (
     title: string,
     date: string,
+    time: string,
     location: string,
     description: string,
     imageUrl: string,
@@ -56,9 +58,9 @@ export const createEvent = cache(
   ) => {
     const [event] = await sql<Event[]>`
       INSERT INTO events
-        (title, date, location, description, image_url, user_id)
+        (title, date, time, location, description, image_url, user_id)
       VALUES
-        (${title}, ${date}, ${location}, ${description}, ${imageUrl}, ${userId})
+        (${title}, ${date}, ${time}, ${location}, ${description}, ${imageUrl}, ${userId})
       RETURNING *
     `;
     return event;
@@ -71,6 +73,7 @@ export const updateEventById = cache(
     id: number,
     title: string,
     date: string,
+    time: string,
     location: string,
     description: string,
     imageUrl: string,
@@ -83,6 +86,7 @@ export const updateEventById = cache(
       id = ${id},
       title = ${title},
       date = ${date},
+      time = ${time},
       location = ${location},
         description = ${description},
         imageUrl={imageUrl},

@@ -66,7 +66,11 @@ export default async function EventsPage() {
                 <h2 className="card-title mr-24 text-3xl text-light">
                   {event.title}
                 </h2>
-                <p>{event.date}</p>
+
+                <p>
+                  {event.date} at {event.time}
+                </p>
+
                 <div className="card-actions justify-end">
                   <Link href={`/events/${event.id}`}>
                     <button className="btn btn-circle mr-2 bg-yellow border-transparent">

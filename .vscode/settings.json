@@ -2,6 +2,7 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "cSpell.words": [
+    "aihelper",
     "autohide",
     "Cinetype",
     "cloudinary",
@@ -10,6 +11,7 @@
     "eventfeed",
     "flowbite",
     "flowtype",
+    "Kasama",
     "openai",
     "playsinline",
     "RNZNAO",

@@ -7,6 +7,7 @@ import { getUserBySessionToken } from '../../../database/users';
 const eventSchema = z.object({
   title: z.string(),
   date: z.string(),
+  time: z.string(),
   location: z.string(),
   description: z.string(),
   imageUrl: z.string(),
@@ -81,6 +82,7 @@ export async function POST(
   const newEvent = await createEvent(
     result.data.title,
     result.data.date,
+    result.data.time,
     result.data.location,
     result.data.description,
     result.data.imageUrl,

@@ -8,6 +8,7 @@ export default function CreateEventForm(props) {
   const [title, setTitle] = useState('');
   const [location, setLocation] = useState('');
   const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
   const [description, setDescription] = useState('');
   const [imageSrc, setImageSrc] = useState();
   const [uploadData, setUploadData] = useState();
@@ -99,6 +100,7 @@ export default function CreateEventForm(props) {
               body: JSON.stringify({
                 title: title,
                 date: date,
+                time: time,
                 location: location,
                 description: description,
                 imageUrl: imageSrc,
@@ -142,6 +144,20 @@ export default function CreateEventForm(props) {
               value={date}
               placeholder="YYYY-MM-DD"
               onChange={(event) => setDate(event.currentTarget.value)}
+              className="block w-full input input-bordered input-md w-full max-w-screen-md"
+            />
+          </div>
+          <div className="mb-6">
+            <label
+              htmlFor="title"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Time
+            </label>
+            <input
+              value={time}
+              placeholder="00:00"
+              onChange={(event) => setTime(event.currentTarget.value)}
               className="block w-full input input-bordered input-md w-full max-w-screen-md"
             />
           </div>

@@ -88,7 +88,11 @@ export default async function SingleEventPage(props: Props) {
             />
           </svg>
 
-          <p className="mt-2">{oneEvent.date}</p>
+          <div className="mt-2">
+            <p>
+              {oneEvent.date} / {oneEvent.time}
+            </p>
+          </div>
         </div>
 
         <div>
