@@ -64,8 +64,6 @@ export default async function SingleEventPage(props: Props) {
 
   return (
     <main className="m-6 mt-10">
-      {/* <HeaderNav /> */}
-
       <div>
         <h3 className="text-yellow">{oneEvent.title.toUpperCase()}</h3>
         {/* {isUpcoming ? ( */}

@@ -29,11 +29,20 @@ export default async function EventsPage() {
 
   return (
     <main className="m-6 mt-10">
-      {/* <HeaderNav /> */}
       <h3 className="text-yellow">EVENTS</h3>
       <h1 className="text-4xl mt-4">All events</h1>
       <p className="text-4xl mb-6 mt-0 text-beige">Checkout the latest</p>
 
+      <div className="flex flex-wrap justify-center">
+        {/* <div className="tabs mb-4">
+          <a className="tab tab-bordered tab-active">upcoming</a>
+          <a className="tab tab-bordered">passed</a>
+        </div> */}
+        <div className="tabs tabs-boxed mb-4">
+          <a className="tab tab-active">upcoming</a>
+          <a className="tab">passed</a>
+        </div>
+      </div>
       <span>
         {events.map((event) => {
           return (
