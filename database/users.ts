@@ -3,11 +3,11 @@ import { sql } from './connect';
 
 export type User = {
   id: number;
-  username: string;
-  location: string;
-  description: string;
+  username: string | null;
+  location: string | null;
+  description: string | null;
   passwordHash: string;
-  imageUrl: string;
+  imageUrl: string | null;
 };
 
 export const getUserBySessionToken = cache(async (token: string) => {
@@ -29,8 +29,16 @@ export const getUserBySessionToken = cache(async (token: string) => {
 
 export const getUserByUsernameWithPasswordHash = cache(
   async (username: string) => {
-    const [user] = await sql<User[]>`
-
+    const [user] = await sql<
+      {
+        id: number;
+        username: string;
+        location: string | null;
+        description: string | null;
+        passwordHash: string;
+        imageUrl: string | null;
+      }[]
+    >`
     SELECT
       *
     FROM
@@ -87,7 +95,15 @@ export const createUser = cache(
     description: string,
     imageUrl: string,
   ) => {
-    const [user] = await sql<User[]>`
+    const [user] = await sql<
+      {
+        id: number;
+        username: string;
+        location: string | null;
+        description: string | null;
+        imageUrl: string | null;
+      }[]
+    >`
       INSERT INTO users
         (username, password_hash, location, description, image_url)
       VALUES
@@ -104,7 +120,16 @@ export const createUser = cache(
 );
 
 export const getAllUsers = cache(async () => {
-  const users = await sql<User[]>`
+  const users = await sql<
+    {
+      id: number;
+      username: string;
+      location: string | null;
+      description: string | null;
+      passwordHash: string;
+      imageUrl: string | null;
+    }[]
+  >`
   SELECT * FROM users
   `;
 

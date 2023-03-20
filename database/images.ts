@@ -3,10 +3,10 @@ import { sql } from './connect';
 
 export type Image = {
   id: number;
-  userId: number;
-  eventId: number;
-  comment: string;
-  imageUrl: string;
+  userId: number | null;
+  eventId: number | null;
+  comment: string | null;
+  imageUrl: string | null;
 };
 
 // Get all images from one user
@@ -61,7 +61,7 @@ export const deleteImageById = cache(async (id: number) => {
     DELETE FROM
       images
     WHERE
-      id = ${id},
+      id = ${id}
     RETURNING *
   `;
   return image;

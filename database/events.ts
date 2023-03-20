@@ -7,9 +7,9 @@ export type Event = {
   date: string;
   time: string;
   location: string;
-  description: string;
-  imageUrl: string;
-  userId: number;
+  description: string | null;
+  imageUrl: string | null;
+  userId: number | null;
 };
 
 // Get all events
@@ -61,38 +61,6 @@ export const createEvent = cache(
         (title, date, time, location, description, image_url, user_id)
       VALUES
         (${title}, ${date}, ${time}, ${location}, ${description}, ${imageUrl}, ${userId})
-      RETURNING *
-    `;
-    return event;
-  },
-);
-
-// Update an event by ID
-export const updateEventById = cache(
-  async (
-    id: number,
-    title: string,
-    date: string,
-    time: string,
-    location: string,
-    description: string,
-    imageUrl: string,
-    userId: number,
-  ) => {
-    const [event] = await sql<Event[]>`
-      UPDATE
-        events
-      SET
-      id = ${id},
-      title = ${title},
-      date = ${date},
-      time = ${time},
-      location = ${location},
-        description = ${description},
-        imageUrl={imageUrl},
-        userId = ${userId}
-      WHERE
-        id = ${id}
       RETURNING *
     `;
     return event;
