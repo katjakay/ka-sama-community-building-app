@@ -3,8 +3,8 @@ import { sql } from './connect';
 
 export type Attendance = {
   id: number;
-  userId: number;
-  eventId: number;
+  userId: number | null;
+  eventId: number | null;
 };
 
 // Get attendance (for one user)

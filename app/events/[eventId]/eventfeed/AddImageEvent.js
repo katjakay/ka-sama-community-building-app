@@ -62,12 +62,12 @@ export default function AddImageToEvent(props) {
             className="file-input file-input-bordered file-input-primary file-input-xs w-full max-w-xs mt-6 "
           />
           <img
-            className="card w-100 bg-base-100 shadow-m"
+            className="card w-100 bg-base-100 shadow-m mt-4"
             src={imageSrc}
             alt={imageSrc}
           />
           <button className="mt-4 text-primary cursor-crosshair">
-            Upload ↳{' '}
+            Upload ↳
           </button>
           <div className="text-yellow">
             {successUpload && <p>Your event image was uploaded!</p>}
@@ -93,7 +93,7 @@ export default function AddImageToEvent(props) {
             }
             setSuccess(true);
 
-            // router.replace(`/events/${event.id}/event-feed`);
+            router.replace(`/events/${props.event.id}/eventfeed`);
             router.refresh();
           }}
         >

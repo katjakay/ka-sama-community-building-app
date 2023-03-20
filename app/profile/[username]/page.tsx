@@ -70,7 +70,7 @@ export default async function UserProfile({ params }: Props) {
         About me
       </div>
       <p>{user.description}</p>
-      <span
+      <div
         tabIndex={0}
         className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box mt-6"
       >
@@ -104,8 +104,8 @@ export default async function UserProfile({ params }: Props) {
             })}
           </span>
         </div>
-      </span>
-      <span
+      </div>
+      <div
         tabIndex={0}
         className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box mt-2"
       >
@@ -144,7 +144,7 @@ export default async function UserProfile({ params }: Props) {
             })}
           </span>
         </div>
-      </span>
+      </div>
       <br />
       <br />
       <br />

@@ -3,8 +3,7 @@ import Image from 'next/image';
 import { getEventById } from '../../../../database/events';
 import { getImageByEventId } from '../../../../database/images';
 import { getUserBySessionToken } from '../../../../database/users';
-import DeleteImage from '../../../profile/[username]/DeleteImage';
-import AddImageToEvent from './AddImageEvent';
+import AddImageToEvent from './AddImageEvent.js';
 
 export const dynamic = 'force-dynamic';
 
@@ -75,13 +74,15 @@ export default async function ImagePageEvent(props) {
               <div className="card-body">
                 <div>
                   <div className="avatar">
-                    <div className="w-6 rounded-full">
+                    <div className="w-6 rounded-full mr-2">
                       <img
                         src="https://res.cloudinary.com/dy40peu7s/image/upload/v1679307070/kzeoufkjaw80x5j8ltjm.jpg"
                         alt="test"
                       />
                     </div>
-                    <p className="text-blue"> Posted by {image.userId}</p>
+                    <p className="text-beige text-xs mr-2">
+                      Posted by {image.userId}
+                    </p>
                   </div>
                 </div>
                 <p>{image.comment}</p>

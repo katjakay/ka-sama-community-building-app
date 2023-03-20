@@ -57,9 +57,6 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
     setSuccessUpload(true);
   }
 
-  const placeholderImage =
-    'https://res.cloudinary.com/dy40peu7s/image/upload/v1678802320/my-uploads/k1q1ocwpetnfven43j5m.jpg';
-
   return (
     <main>
       <form method="post" onSubmit={handleOnSubmit}>
@@ -83,7 +80,9 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
           />
 
           <br />
-          <button className="btn btn-sm mb-8">Upload</button>
+          {!!imageSrc && !uploadData && (
+            <button className="btn btn-sm mb-8">Upload</button>
+          )}
         </div>
         <div className="text-blue text-xs">
           {successUpload && <p>Your profile image was uploaded!</p>}
@@ -110,6 +109,7 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
             setErrors(data.errors);
             return;
           }
+          setSuccess(true);
 
           if (
             props.returnTo &&
@@ -154,7 +154,7 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
           />
         </label>
         <label>
-          Password{' '}
+          Password
           <input
             className="block w-full input input-bordered input-md w-full max-w-screen-md "
             value={password}

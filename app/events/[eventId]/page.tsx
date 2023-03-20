@@ -117,7 +117,9 @@ export default async function SingleEventPage(props: Props) {
           </svg>
           <p className="mt-2">{oneEvent.location}</p>
         </div>
-        <div>{user && <DeleteEvent events={oneEvent} user={user} />}</div>
+        <div>
+          <DeleteEvent events={oneEvent} user={user} />
+        </div>
         <div className="mt-6">
           {!!oneEvent.imageUrl && (
             <Image
@@ -158,7 +160,7 @@ export default async function SingleEventPage(props: Props) {
           />
         </svg>
         <div className="object-bottom" key={`event-${oneEvent.id}/event-feed`}>
-          <Link href={`/events/${oneEvent.id}/event-feed`}>
+          <Link href={`/events/${oneEvent.id}/eventfeed`}>
             <button
               type="button"
               className="text-white bg-brown text-white font-regular text-sm rounded mt-2 min-w-full h-11"
