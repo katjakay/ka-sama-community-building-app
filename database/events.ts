@@ -45,6 +45,19 @@ export const getEventById = cache(async (id: number) => {
   return event;
 });
 
+// Get all events created by a user
+export const getEventsByUserId = cache(async (userId: number) => {
+  const events = await sql<Event[]>`
+    SELECT
+      *
+    FROM
+    events
+    WHERE
+      events.user_id = ${userId}
+  `;
+  return events;
+});
+
 // Create a new event
 export const createEvent = cache(
   async (

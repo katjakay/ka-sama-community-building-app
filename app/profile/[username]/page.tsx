@@ -1,8 +1,10 @@
 import { cookies } from 'next/headers';
+import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import { NextResponse } from 'next/server';
 import FooterNav from '../../../components/FooterNav';
 import { getAttendanceByUserId } from '../../../database/attendances';
+import { getEventsByUserId } from '../../../database/events';
 // import { getEventById } from '../../../database/events';
 import { getImagesByUserId } from '../../../database/images';
 import {
@@ -43,6 +45,7 @@ export default async function UserProfile({ params }: Props) {
 
   const attendances = await getAttendanceByUserId(user.id);
   const images = await getImagesByUserId(user.id);
+  const events = await getEventsByUserId(user.id);
 
   return (
     <main className="m-6 mt-10">
@@ -70,12 +73,42 @@ export default async function UserProfile({ params }: Props) {
         About me
       </div>
       <p>{user.description}</p>
+      <div className="badge badge-primary badge-outline mt-8 mb-4">
+        Check out my events
+      </div>
+      <span>
+        {events.map((event) => {
+          return (
+            <div
+              key={`oneEvent-${event.id}`}
+              className="card card-side bg-base-100 shadow-xl mt-2"
+            >
+              <Link href="/">
+                <figure>
+                  {!!event.imageUrl && (
+                    <img
+                      className="max-w-sm min-h-full mb-4 rounded-lg"
+                      src={event.imageUrl}
+                      alt="event"
+                    />
+                  )}
+                </figure>
+              </Link>
+              <div className="card-body">
+                <h2 className="card-title">{event.title}</h2>
+                <p>{event.location}</p>
+                <p>{event.date}</p>
+              </div>
+            </div>
+          );
+        })}
+      </span>
       <div
         tabIndex={0}
         className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box mt-6"
       >
         <div className="collapse-title text-xl font-light uppercase bg-yellow">
-          My upcoming events
+          I'M ATTENDING
         </div>
         <div className="collapse-content">
           <span>
@@ -105,45 +138,45 @@ export default async function UserProfile({ params }: Props) {
           </span>
         </div>
       </div>
-      <div
+      {/* <div
         tabIndex={0}
         className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box mt-2"
       >
         <div className="collapse-title text-xl font-light uppercase bg-purple">
           My event photos
-        </div>
-        <div className="collapse-content">
-          <span>
-            {images.map((image) => {
-              return (
-                <div
-                  key={`images-${image.userId}`}
-                  className="card card-side bg-base-100 shadow-xl mt-2"
-                >
-                  <figure>
-                    {!!image.imageUrl && (
-                      <img
-                        className="max-w-sm min-h-full mb-4 rounded-lg"
-                        src={image.imageUrl}
-                        alt={image.imageUrl}
-                      />
-                    )}
-                  </figure>
-                  <br />
-                  <div>
-                    <button className="btn btn-xs">
-                      {currentUser.id === user.id ? (
-                        <DeleteImage image={image} />
-                      ) : (
-                        ''
-                      )}
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
-          </span>
-        </div>
+        </div> */}
+      {/* <div className="collapse-content"> */}
+      <span>
+        {images.map((image) => {
+          return (
+            <div
+              key={`images-${image.userId}`}
+              className="card card-side bg-base-100 shadow-xl mt-2"
+            >
+              <figure>
+                {!!image.imageUrl && (
+                  <img
+                    className="max-w-sm min-h-full mb-4 rounded-lg"
+                    src={image.imageUrl}
+                    alt={image.imageUrl}
+                  />
+                )}
+              </figure>
+              <br />
+              <div>
+                <button className="btn btn-xs">
+                  {currentUser.id === user.id ? (
+                    <DeleteImage image={image} />
+                  ) : (
+                    ''
+                  )}
+                </button>
+              </div>
+            </div>
+          );
+        })}
+      </span>
+      {/* </div>
       </div>
       <br />
       <br />
@@ -152,7 +185,7 @@ export default async function UserProfile({ params }: Props) {
       <br />
       <br />
       <br />
-      <br />
+      <br /> */}
       <FooterNav />
     </main>
   );

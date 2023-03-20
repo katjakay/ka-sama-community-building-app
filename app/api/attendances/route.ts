@@ -1,11 +1,7 @@
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import {
-  Attendance,
-  createAttendance,
-  getAttendanceByUserAndEvent,
-} from '../../../database/attendances';
+import { Attendance, createAttendance } from '../../../database/attendances';
 import { getUserBySessionToken } from '../../../database/users';
 
 const attendanceSchema = z.object({
@@ -40,17 +36,17 @@ export async function POST(
     );
   }
 
-  const existingAttendance = await getAttendanceByUserAndEvent(
-    user.id,
-    result.data.eventId,
-  );
+  // const existingAttendance = await getAttendanceByUserAndEvent(
+  //   user.id,
+  //   result.data.eventId,
+  // );
 
-  if (existingAttendance) {
-    return NextResponse.json(
-      { errors: [{ message: 'Already saved to favorites!' }] },
-      { status: 400 },
-    );
-  }
+  // if (existingAttendance) {
+  //   return NextResponse.json(
+  //     { errors: [{ message: 'Already saved to favorites!' }] },
+  //     { status: 400 },
+  //   );
+  // }
 
   const newAttendance = await createAttendance(user.id, result.data.eventId);
 
