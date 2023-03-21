@@ -36,6 +36,38 @@ export const getImagesByUserId = cache(async (userId: number) => {
   return images;
 });
 
+export type ImagesWithUserInfo = {
+  imageId: number;
+  userId: number;
+  userName: string;
+  userImageUrl: string | null;
+  eventId: number;
+  imageComment: string | null;
+  imageUrl: string | null;
+};
+
+export const getImagesWithUserInfo = cache(async (eventId: number) => {
+  const imagesWithUserInfo = await sql<ImagesWithUserInfo[]>`
+  SELECT
+  images.id AS image_id,
+  users.id AS user_id,
+  users.username AS user_name,
+  users.image_url AS user_image_url,
+  events.id AS event_id,
+images.comment AS image_comment,
+images.image_url AS image_url
+FROM
+images
+INNER JOIN
+events ON images.event_id = events.id
+INNER JOIN
+users ON images.user_id = users.id
+WHERE
+images.event_id = ${eventId}
+  `;
+  return imagesWithUserInfo;
+});
+
 // Create a new image
 export const createImage = cache(
   async (

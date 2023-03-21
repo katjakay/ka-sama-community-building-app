@@ -46,7 +46,6 @@ export default async function UserProfile({ params }: Props) {
   const attendances = await getAttendanceByUserId(user.id);
   const images = await getImagesByUserId(user.id);
   const events = await getEventsByUserId(user.id);
-
   return (
     <main className="m-6 mt-10">
       <h3 className="text-yellow">
@@ -80,6 +79,34 @@ export default async function UserProfile({ params }: Props) {
         {events.map((event) => {
           return (
             <div
+              className="card-compact card-side bg-base-100 shadow-xl"
+              key={`oneEvent-${event.id}`}
+            >
+              <Link href="/">
+                <figure>
+                  {!!event.imageUrl && (
+                    <img
+                      className="max-w-sm min-h-full mb-4 rounded-lg"
+                      src={event.imageUrl}
+                      alt="event"
+                      width="100"
+                      height="100"
+                    />
+                  )}
+                </figure>
+              </Link>
+              <div className="card-body">
+                <h2 className="card-title">{event.title}</h2>
+              </div>
+            </div>
+          );
+        })}
+      </span>
+
+      {/* <span>
+        {events.map((event) => {
+          return (
+            <div
               key={`oneEvent-${event.id}`}
               className="card card-side bg-base-100 shadow-xl mt-2"
             >
@@ -102,7 +129,7 @@ export default async function UserProfile({ params }: Props) {
             </div>
           );
         })}
-      </span>
+      </span> */}
       <div
         tabIndex={0}
         className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box mt-6"
@@ -176,8 +203,7 @@ export default async function UserProfile({ params }: Props) {
           );
         })}
       </span>
-      {/* </div>
-      </div>
+
       <br />
       <br />
       <br />
@@ -185,7 +211,7 @@ export default async function UserProfile({ params }: Props) {
       <br />
       <br />
       <br />
-      <br /> */}
+      <br />
       <FooterNav />
     </main>
   );

@@ -1,7 +1,10 @@
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import { getEventById } from '../../../../database/events';
-import { getImageByEventId } from '../../../../database/images';
+import {
+  getImageByEventId,
+  getImagesWithUserInfo,
+} from '../../../../database/images';
 import { getUserBySessionToken } from '../../../../database/users';
 import AddImageToEvent from './AddImageEvent.js';
 
@@ -27,6 +30,8 @@ export default async function ImagePageEvent(props) {
     : await getUserBySessionToken(sessionToken.value);
 
   const images = await getImageByEventId(oneEvent.id);
+  const imageUser = await getImagesWithUserInfo(oneEvent.id);
+
   return (
     <main className="m-6 mt-10">
       <h3 className="text-yellow">{oneEvent.title.toUpperCase()}</h3>
@@ -54,7 +59,7 @@ export default async function ImagePageEvent(props) {
         <p className="text-2xl mt-2">Capture the moment...</p>
       </div>
       <span>
-        {images.map((image) => {
+        {imageUser.map((image) => {
           return (
             <div
               key={`oneEvent-${image.id}`}
@@ -75,13 +80,10 @@ export default async function ImagePageEvent(props) {
                 <div>
                   <div className="avatar">
                     <div className="w-6 rounded-full mr-2">
-                      <img
-                        src="https://res.cloudinary.com/dy40peu7s/image/upload/v1679307070/kzeoufkjaw80x5j8ltjm.jpg"
-                        alt="test"
-                      />
+                      <img src={image.userImageUrl} alt="test" />
                     </div>
                     <p className="text-beige text-xs mr-2">
-                      Posted by {image.userId}
+                      Posted by {image.userName}
                     </p>
                   </div>
                 </div>
