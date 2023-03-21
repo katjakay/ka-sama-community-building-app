@@ -41,7 +41,6 @@ export default async function UserProfile({ params }: Props) {
   if (!user) {
     notFound();
   }
-
   const attendances = await getAttendanceByUserId(user.id);
   const images = await getImagesByUserId(user.id);
   const events = await getEventsByUserId(user.id);
