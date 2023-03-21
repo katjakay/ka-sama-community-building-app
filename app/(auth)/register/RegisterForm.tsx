@@ -18,6 +18,8 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
   const router = useRouter();
 
   function handleOnChange(changeEvent: React.ChangeEvent<HTMLInputElement>) {
+    const files = changeEvent.target.files!;
+
     const reader = new FileReader();
 
     reader.onload = function (onLoadEvent: ProgressEvent<FileReader>) {
@@ -25,16 +27,21 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
       setUploadData(undefined);
     };
 
-    reader.readAsDataURL(changeEvent.target.files![0]);
+    reader.readAsDataURL(files[0]!);
   }
 
   async function handleOnSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const form = event.currentTarget;
-    const fileInput = Array.from(form.elements).find(
+    const fileInput = (Array.from(form.elements) as HTMLInputElement[]).find(
       ({ name }) => name === 'file',
-    ) as HTMLInputElement;
+    );
+
+    if (!fileInput) {
+      setErrors([{ message: 'No file found!' }]);
+      return;
+    }
 
     const formData = new FormData();
 

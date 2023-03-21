@@ -58,8 +58,8 @@ export default async function UserProfile({ params }: Props) {
             <div className="w-24 rounded-full">
               <img
                 className="w-40 rounded-full"
-                src={user.imageUrl}
-                alt="girl with curls"
+                src={user.imageUrl || undefined}
+                alt=""
               />
             </div>
           </div>
@@ -121,9 +121,9 @@ export default async function UserProfile({ params }: Props) {
           );
         })}
       </span> */}
-      <div
+      <button
         tabIndex={0}
-        className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box mt-6"
+        className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box mt-6 w-full"
       >
         <div className="collapse-title text-xl font-light uppercase bg-yellow">
           I'M ATTENDING
@@ -155,7 +155,7 @@ export default async function UserProfile({ params }: Props) {
             })}
           </span>
         </div>
-      </div>
+      </button>
       {/* <div
         tabIndex={0}
         className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box mt-2"
