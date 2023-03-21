@@ -45,6 +45,7 @@ export default async function UserProfile({ params }: Props) {
   const attendances = await getAttendanceByUserId(user.id);
   const images = await getImagesByUserId(user.id);
   const events = await getEventsByUserId(user.id);
+
   return (
     <main className="m-6 mt-10">
       <h3 className="text-yellow">
@@ -52,15 +53,19 @@ export default async function UserProfile({ params }: Props) {
         Profile
       </h3>
       <div className="flex flex-wrap flex-col place-items-center text-center">
-        {' '}
         <div className="mt-8">
           <div className="avatar online">
-            <div className="w-40 rounded-full">
-              <img src={user.imageUrl} alt="girl with curls" />
+            <div className="w-24 rounded-full">
+              <img
+                className="w-40 rounded-full"
+                src={user.imageUrl}
+                alt="girl with curls"
+              />
             </div>
           </div>
           <div className="flex flex-col justify-center">
             <p className="text-md mt-4">
+              {' '}
               {user.username.charAt(0).toUpperCase() + user.username.slice(1)}
             </p>
             <p className="text-md mb-3 text-beige">{user.location}</p>

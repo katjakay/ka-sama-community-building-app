@@ -25,7 +25,7 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
       setUploadData(undefined);
     };
 
-    reader.readAsDataURL(changeEvent.target.files[0]);
+    reader.readAsDataURL(changeEvent.target.files![0]);
   }
 
   async function handleOnSubmit(event: React.FormEvent<HTMLFormElement>) {

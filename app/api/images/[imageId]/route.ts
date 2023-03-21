@@ -1,18 +1,7 @@
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
-// import { z } from 'zod';
-import {
-  deleteImageById,
-  getImageById,
-  Image,
-} from '../../../../database/images';
+import { deleteImageById, Image } from '../../../../database/images';
 import { getUserBySessionToken } from '../../../../database/users';
-
-// const imageType = z.object({
-//   imageUrl: z.string(),
-//   caption: z.string(),
-//   userId: z.number(),
-// });
 
 export type ImageResponseBodyGet =
   | {
@@ -30,27 +19,27 @@ export type ImageResponseBodyDelete =
       image: Image;
     };
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Record<string, string | string[]> },
-): Promise<NextResponse<ImageResponseBodyGet>> {
-  const imageId = Number(params.imageId);
+// export async function GET(
+//   request: NextRequest,
+//   { params }: { params: Record<string, string | string[]> },
+// ): Promise<NextResponse<ImageResponseBodyGet>> {
+//   const imageId = Number(params.imageId);
 
-  if (!imageId) {
-    return NextResponse.json(
-      { error: 'Image id is not valid' },
-      { status: 400 },
-    );
-  }
+//   if (!imageId) {
+//     return NextResponse.json(
+//       { error: 'Image id is not valid' },
+//       { status: 400 },
+//     );
+//   }
 
-  const singleImage = await getImageById(imageId);
+//   const singleImage = await getImageById(imageId);
 
-  if (!singleImage) {
-    return NextResponse.json({ error: 'Image not found' }, { status: 400 });
-  }
+//   if (!singleImage) {
+//     return NextResponse.json({ error: 'Image not found' }, { status: 400 });
+//   }
 
-  return NextResponse.json({ image: singleImage });
-}
+//   return NextResponse.json({ image: singleImage });
+// }
 
 export async function DELETE(
   request: NextRequest,

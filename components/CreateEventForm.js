@@ -82,11 +82,11 @@ export default function CreateEventForm(props) {
           alt={imageSrc}
         />
 
-        {!!imageSrc && !uploadData && (
+
           <p>
             <button className="btn btn-sm mt-2 mb-3">Upload</button>
           </p>
-        )}
+
         <div className="text-blue">
           {successUpload && <p>Your event image was uploaded!</p>}
         </div>

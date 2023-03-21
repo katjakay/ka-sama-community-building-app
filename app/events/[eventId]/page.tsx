@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import { NextResponse } from 'next/server';
 import AddAttendance from '../../../components/AddAttendance';
-import DeleteEvent from '../../../components/DeleteEvent';
 import FooterNav from '../../../components/FooterNav';
 import { getAttendances } from '../../../database/attendances';
 import { getEventById } from '../../../database/events';
@@ -117,9 +116,7 @@ export default async function SingleEventPage(props: Props) {
           </svg>
           <p className="mt-2">{oneEvent.location}</p>
         </div>
-        <div>
-          <DeleteEvent events={oneEvent} user={user} />
-        </div>
+
         <div className="mt-6">
           {!!oneEvent.imageUrl && (
             <Image
@@ -165,8 +162,7 @@ export default async function SingleEventPage(props: Props) {
               type="button"
               className="text-white bg-brown text-white font-regular text-sm rounded mt-2 min-w-full h-11"
             >
-              {' '}
-              VIEW EVENT PHOTOS{' '}
+              VIEW EVENT PHOTOS
             </button>
           </Link>
         </div>
