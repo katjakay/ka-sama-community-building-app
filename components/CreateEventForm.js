@@ -50,7 +50,7 @@ export default function CreateEventForm(props) {
         method: 'POST',
         body: formData,
       },
-    ).then((r) => r.json());
+    ).then((response) => response.json());
 
     setImageSrc(data.secure_url);
     setUploadData(data);
