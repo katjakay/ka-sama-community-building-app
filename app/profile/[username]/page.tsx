@@ -5,7 +5,6 @@ import { NextResponse } from 'next/server';
 import FooterNav from '../../../components/FooterNav';
 import { getAttendanceByUserId } from '../../../database/attendances';
 import { getEventsByUserId } from '../../../database/events';
-// import { getEventById } from '../../../database/events';
 import { getImagesByUserId } from '../../../database/images';
 import {
   getUserBySessionToken,
@@ -203,7 +202,6 @@ export default async function UserProfile({ params }: Props) {
           );
         })}
       </span>
-
       <br />
       <br />
       <br />

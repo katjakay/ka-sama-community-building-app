@@ -29,7 +29,6 @@ export default async function ImagePageEvent(props) {
     ? undefined
     : await getUserBySessionToken(sessionToken.value);
 
-  const images = await getImageByEventId(oneEvent.id);
   const imageUser = await getImagesWithUserInfo(oneEvent.id);
 
   return (
@@ -83,11 +82,13 @@ export default async function ImagePageEvent(props) {
                       <img src={image.userImageUrl} alt="test" />
                     </div>
                     <p className="text-beige text-xs mr-2">
-                      Posted by {image.userName}
+                      Posted by{' '}
+                      {image.userName.charAt(0).toUpperCase() +
+                        user.username.slice(1)}
                     </p>
+                    <p>{image.comment}</p>
                   </div>
                 </div>
-                <p>{image.comment}</p>
               </div>
             </div>
           );
