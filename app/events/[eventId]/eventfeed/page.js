@@ -1,10 +1,7 @@
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import { getEventById } from '../../../../database/events';
-import {
-  getImageByEventId,
-  getImagesWithUserInfo,
-} from '../../../../database/images';
+import { getImagesWithUserInfo } from '../../../../database/images';
 import { getUserBySessionToken } from '../../../../database/users';
 import AddImageToEvent from './AddImageEvent.js';
 

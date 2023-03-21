@@ -74,33 +74,20 @@ export default async function UserProfile({ params }: Props) {
       <div className="badge badge-primary badge-outline mt-8 mb-4">
         Check out my events
       </div>
-      <span>
-        {events.map((event) => {
-          return (
-            <div
-              className="card-compact card-side bg-base-100 shadow-xl"
-              key={`oneEvent-${event.id}`}
-            >
-              <Link href="/">
-                <figure>
-                  {!!event.imageUrl && (
-                    <img
-                      className="max-w-sm min-h-full mb-4 rounded-lg"
-                      src={event.imageUrl}
-                      alt="event"
-                      width="100"
-                      height="100"
-                    />
-                  )}
-                </figure>
-              </Link>
-              <div className="card-body">
-                <h2 className="card-title">{event.title}</h2>
+      <br />
+      <div className="avatar">
+        <div className="w-24 rounded">
+          {events.map((event) => {
+            return (
+              <div key={`oneEvent-${event.id}`}>
+                <Link href="/">
+                  {!!event.imageUrl && <img src={event.imageUrl} alt="event" />}
+                </Link>
               </div>
-            </div>
-          );
-        })}
-      </span>
+            );
+          })}
+        </div>
+      </div>
 
       {/* <span>
         {events.map((event) => {

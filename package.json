@@ -40,6 +40,7 @@
   "devDependencies": {
     "@babel/eslint-parser": "7.19.1",
     "@next/eslint-plugin-next": "13.2.3",
+    "@playwright/test": "^1.31.2",
     "@ts-safeql/eslint-plugin": "latest",
     "@types/eslint": "8.21.1",
     "@types/node": "18.15.0",

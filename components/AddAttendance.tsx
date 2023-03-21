@@ -1,6 +1,5 @@
 'use client';
 
-// import router from 'next/link';
 import { useState } from 'react';
 import { Attendance } from '../database/attendances';
 
@@ -49,6 +48,7 @@ export default function AddAttendance(props: Props) {
       >
         YES! I'm joining
       </button>
+      <p className="text-brown">{errors}</p>
     </div>
   );
 }

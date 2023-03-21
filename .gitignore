@@ -37,3 +37,7 @@ yarn-error.log*
 next-env.d.ts
 
 .eslintcache
+*.tsbuildinfo
+/playwright/test-results/
+/playwright-report/
+/playwright/.cache/

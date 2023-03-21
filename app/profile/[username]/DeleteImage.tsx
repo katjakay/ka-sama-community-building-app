@@ -19,8 +19,6 @@ export default function RemoveImage(props: Props) {
       <div key={`image-${props.image.id}`}>
         <button
           onClick={async () => {
-            // const locationId = props.locationId;
-
             const response = await fetch(`/api/images/${props.image.id}`, {
               method: 'DELETE',
             });

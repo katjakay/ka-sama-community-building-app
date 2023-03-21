@@ -17,7 +17,9 @@ export const getAttendances = cache(async (userId: number) => {
 
 export const getAttendanceByUserAndEvent = cache(
   async (userId: number, eventId: number) => {
-    const attendances = await sql<Attendance[]>`
+    const attendances = await sql<
+      { userId: number | null; eventId: number | null }[]
+    >`
 SELECT
 user_id,
 event_id
@@ -61,13 +63,12 @@ export const deleteAttendanceById = cache(async (id: number) => {
 });
 
 export type AttendanceByUserIdAndEventId = {
-  id: any;
   userId: number;
   eventId: number;
   eventTitle: string;
   eventDate: string;
   eventLocation: string;
-  eventImageUrl: string;
+  eventImageUrl: string | null;
 };
 
 // displaying Attendance on user profile
