@@ -156,44 +156,46 @@ export default async function UserProfile({ params }: Props) {
           </span>
         </div>
       </button>
-      {/* <div
+      <button
         tabIndex={0}
-        className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box mt-2"
+        className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box mt-2 w-full"
       >
         <div className="collapse-title text-xl font-light uppercase bg-purple">
           My event photos
-        </div> */}
-      {/* <div className="collapse-content"> */}
-      <span>
-        {images.map((image) => {
-          return (
-            <div
-              key={`images-${image.userId}`}
-              className="card card-side bg-base-100 shadow-xl mt-2"
-            >
-              <figure>
-                {!!image.imageUrl && (
-                  <img
-                    className="max-w-sm min-h-full mb-4 rounded-lg"
-                    src={image.imageUrl}
-                    alt={image.imageUrl}
-                  />
-                )}
-              </figure>
-              <br />
-              <div>
-                <button className="btn btn-xs">
-                  {currentUser.id === user.id ? (
-                    <DeleteImage image={image} />
-                  ) : (
-                    ''
-                  )}
-                </button>
-              </div>
-            </div>
-          );
-        })}
-      </span>
+        </div>
+        <div className="collapse-content">
+          <span>
+            {images.map((image) => {
+              return (
+                <div
+                  key={`images-${image.userId}`}
+                  className="card card-side bg-base-100 shadow-xl mt-2"
+                >
+                  <figure>
+                    {!!image.imageUrl && (
+                      <img
+                        className="max-w-sm min-h-full mb-4 rounded-lg"
+                        src={image.imageUrl}
+                        alt={image.imageUrl}
+                      />
+                    )}
+                  </figure>
+                  <br />
+                  <div>
+                    <button className="btn btn-xs">
+                      {currentUser.id === user.id ? (
+                        <DeleteImage image={image} />
+                      ) : (
+                        ''
+                      )}
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </span>
+        </div>
+      </button>
       <br />
       <br />
       <br />
