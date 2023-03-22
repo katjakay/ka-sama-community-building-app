@@ -8,8 +8,7 @@ import FooterNav from '../../../components/FooterNav';
 import { getAttendances } from '../../../database/attendances';
 import { getEventById } from '../../../database/events';
 import { getUserBySessionToken } from '../../../database/users';
-import { events } from '../../../migrations/1678189022-insertIntoEvents.mjs';
-import DeleteEvent from '../DeleteEvent';
+import DeleteEvent from './DeleteEvent';
 import { eventNotFoundMetadata } from './not-found';
 
 export const dynamic = 'force-dynamic';

@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
-import { getUserBySessionToken, User } from '../../../database/users';
+import { getUserBySessionToken } from '../../../database/users';
 
 export type ProfileResponseBodyGet =
   | {

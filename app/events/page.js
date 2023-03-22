@@ -1,9 +1,10 @@
 // import { cookies } from 'next/headers';
-import { cookies } from 'next/headers';
+// import { cookies } from 'next/headers';
 import Image from 'next/image';
 import FooterNav from '../../components/FooterNav';
 import { getEvents } from '../../database/events';
-import { getUserBySessionToken } from '../../database/users';
+
+// import { getUserBySessionToken } from '../../database/users';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,14 +20,14 @@ export const metadata = {
 export default async function EventsPage() {
   const events = await getEvents();
 
-  const cookieStore = cookies();
-  const sessionToken = cookieStore.get('sessionToken');
+  // const cookieStore = cookies();
+  // const sessionToken = cookieStore.get('sessionToken');
 
-  // 2. validate that session
-  // 3. get the user profile matching the session
-  const user = !sessionToken?.value
-    ? undefined
-    : await getUserBySessionToken(sessionToken.value);
+  // // 2. validate that session
+  // // 3. get the user profile matching the session
+  // const user = !sessionToken?.value
+  //   ? undefined
+  //   : await getUserBySessionToken(sessionToken.value);
 
   return (
     <main className="m-6 mt-10">

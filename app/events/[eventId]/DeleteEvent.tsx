@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { Event } from '../../database/events';
+import { Event } from '../../../database/events';
 
 type Props = {
   user: { id: number };
