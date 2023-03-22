@@ -28,6 +28,7 @@
     "sharp": "^0.31.3",
     "stylelint": "^15.3.0",
     "stylelint-config-recommended": "^11.0.0",
+    "stylelint-config-recommended-scss": "^9.0.1",
     "zod": "^3.20.6"
   },
   "devDependencies": {
