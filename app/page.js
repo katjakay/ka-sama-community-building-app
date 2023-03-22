@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
@@ -17,14 +16,7 @@ export default function HomePage() {
   return (
     <main>
       <div className="w-90 carousel rounded-box m-1">
-        {' '}
-        <img
-          src="/ka-sama-full.svg"
-          className="w-full"
-          alt="ka-sama logo"
-          // width="100"
-          // height="300"
-        />
+        <img src="/ka-sama-full.svg" className="w-full" alt="ka-sama logo" />
       </div>
       <div className="w-90 bg-lightBrown h-auto rounded-box shadow-xl">
         <div className="min-h-screen justify-items-stretch">
@@ -45,23 +37,24 @@ export default function HomePage() {
             <br />
           </div>
           <div className="flex flex-wrap place-content-center">
-            <Link href="/events">
-              <button className="btn btn-circle bg-yellow border-transparent mt-9 justify-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="yellow"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                  />
-                </svg>
-              </button>
+            <Link
+              href="/events"
+              className="btn btn-circle bg-yellow border-transparent mt-9 justify-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="yellow"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                />
+              </svg>
             </Link>
           </div>
         </div>

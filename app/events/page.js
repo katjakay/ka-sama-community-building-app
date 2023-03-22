@@ -1,3 +1,4 @@
+// import { cookies } from 'next/headers';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import FooterNav from '../../components/FooterNav';
@@ -17,6 +18,7 @@ export const metadata = {
 
 export default async function EventsPage() {
   const events = await getEvents();
+
   const cookieStore = cookies();
   const sessionToken = cookieStore.get('sessionToken');
 

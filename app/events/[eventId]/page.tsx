@@ -8,6 +8,8 @@ import FooterNav from '../../../components/FooterNav';
 import { getAttendances } from '../../../database/attendances';
 import { getEventById } from '../../../database/events';
 import { getUserBySessionToken } from '../../../database/users';
+import { events } from '../../../migrations/1678189022-insertIntoEvents.mjs';
+import DeleteEvent from '../DeleteEvent';
 import { eventNotFoundMetadata } from './not-found';
 
 export const dynamic = 'force-dynamic';
@@ -116,7 +118,7 @@ export default async function SingleEventPage(props: Props) {
           </svg>
           <p className="mt-2">{oneEvent.location}</p>
         </div>
-
+        <DeleteEvent user={user} event={oneEvent} />
         <div className="mt-6">
           {!!oneEvent.imageUrl && (
             <Image
@@ -157,13 +159,11 @@ export default async function SingleEventPage(props: Props) {
           />
         </svg>
         <div className="object-bottom" key={`event-${oneEvent.id}/event-feed`}>
-          <Link href={`/events/${oneEvent.id}/eventfeed`}>
-            <button
-              type="button"
-              className="text-white bg-brown text-white font-regular text-sm rounded mt-2 min-w-full h-11"
-            >
-              VIEW EVENT PHOTOS
-            </button>
+          <Link
+            href={`/events/${oneEvent.id}/eventfeed`}
+            className="btn border-transparent text-white bg-brown text-white font-regular text-sm rounded mt-2 min-w-full h-11"
+          >
+            VIEW EVENT PHOTOS
           </Link>
         </div>
         <AddAttendance

@@ -11,6 +11,7 @@ export default function Home() {
     <div>
       <main>
         <h3>Event description</h3>
+        <p>{errors}</p>
         <form
           onSubmit={async (event) => {
             event.preventDefault();

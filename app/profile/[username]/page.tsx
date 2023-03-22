@@ -12,6 +12,16 @@ import {
 } from '../../../database/users';
 import DeleteImage from './DeleteImage';
 
+export const metadata = {
+  title:
+    ' Ka-sama - A Community Building App for Cultural Preservation and Identity Building',
+  description:
+    ' Ka-sama is a community building app designed to help users connect with their roots and build a sense of pride and identity around their heritage. It serves as a space for cultural preservation and celebration, allowing users to connect with others who share similar cultural backgrounds and interests.',
+  icons: {
+    shortcut: '/icon.svg',
+  },
+};
+
 type Props = {
   params: {
     username: string;

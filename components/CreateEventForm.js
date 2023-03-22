@@ -25,6 +25,8 @@ export default function CreateEventForm(props) {
       setUploadData(undefined);
     };
 
+    console.log(uploadData);
+
     reader.readAsDataURL(changeEvent.target.files[0]);
   }
 
@@ -82,11 +84,7 @@ export default function CreateEventForm(props) {
           alt={imageSrc}
         />
 
-        <p>
-          {!!imageSrc && !uploadData && (
-            <button className="btn btn-sm mb-8">Upload</button>
-          )}
-        </p>
+        <button className="btn btn-sm mb-8">Upload</button>
 
         <div className="text-blue">
           {successUpload && <p>Your event image was uploaded!</p>}

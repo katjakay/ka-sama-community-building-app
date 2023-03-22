@@ -2,10 +2,11 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { Event } from '../../database/events';
 
 type Props = {
   user: { id: number };
-  events: { userId: number; id: number };
+  event: Event;
 };
 
 export default function DeleteEvent(props: Props) {
@@ -14,10 +15,10 @@ export default function DeleteEvent(props: Props) {
 
   return (
     <div>
-      {props.user.id === props.events.userId && (
+      {props.user.id === props.event.userId && (
         <button
           onClick={async () => {
-            const response = await fetch(`/api/events/${props.events.id}`, {
+            const response = await fetch(`/api/events/${props.event.id}`, {
               method: 'DELETE',
             });
 
@@ -29,12 +30,14 @@ export default function DeleteEvent(props: Props) {
             }
 
             router.refresh();
-
-            await router.push('/events');
+            router.push('/events');
           }}
         >
           X
         </button>
+      )}
+      {typeof errors === 'string' && (
+        <div style={{ color: 'red' }}>{errors}</div>
       )}
     </div>
   );

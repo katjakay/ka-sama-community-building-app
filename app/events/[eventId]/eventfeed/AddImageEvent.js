@@ -50,10 +50,13 @@ export default function AddImageToEvent(props) {
     setImageSrc(data.secure_url);
     setUploadData(data);
     setSuccessUpload(true);
+
+    console.log(uploadData);
   }
 
   return (
     <main className="mt-5">
+      <p>{errors}</p>
       <div>
         <form method="post" onChange={handleOnChange} onSubmit={handleOnSubmit}>
           <input
