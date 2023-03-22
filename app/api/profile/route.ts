@@ -7,7 +7,7 @@ export type ProfileResponseBodyGet =
       error: string;
     }
   | {
-      user: User[];
+      user: { id: number; username: string };
     };
 
 export async function GET(): Promise<NextResponse<ProfileResponseBodyGet>> {
