@@ -21,6 +21,7 @@
     "next": "13.2.3",
     "openai": "^3.2.1",
     "patch-package": "^6.5.1",
+    "postcss-styled": "^0.34.0",
     "postgres": "^3.3.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
