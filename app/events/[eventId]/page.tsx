@@ -63,7 +63,7 @@ export default async function SingleEventPage(props: Props) {
   // const isUpcoming = eventDate > new Date();
 
   return (
-    <main className="m-6 mt-10">
+    <main className="m-2 mt-10">
       <div>
         <h3 className="text-yellow">{oneEvent.title.toUpperCase()}</h3>
         {/* {isUpcoming ? ( */}

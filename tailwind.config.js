@@ -26,7 +26,6 @@ module.exports = {
     extend: {},
     fontFamily: {
       sans: ['Supply', 'sans-serif'],
-      mono: ['Cinetype', 'sans-serif'],
     },
   },
   plugins: [require('daisyui', 'flowbite/plugin')],

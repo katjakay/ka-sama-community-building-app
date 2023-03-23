@@ -9,7 +9,7 @@ import { getEvents } from '../../database/events';
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: 'Events - connect and share stories',
+  title: 'Events - Connect and share stories',
   description:
     'With Ka-sama, users can share stories, traditions, and experiences, as well as learn about different cultures and customs from around the world. Join Ka-sama today and be a part of a vibrant and supportive community that celebrates diversity and promotes cultural understanding.',
   icons: {
@@ -30,10 +30,10 @@ export default async function EventsPage() {
   //   : await getUserBySessionToken(sessionToken.value);
 
   return (
-    <main className="m-6 mt-10">
+    <main className="m-2 mt-10">
       <h3 className="text-yellow">EVENTS</h3>
       <h1 className="text-4xl mt-4">All events</h1>
-      <p className="text-4xl mb-6 mt-0 text-beige">Checkout the latest</p>
+      <p className="text-4xl mb-6 mt-0 text-beige">Check out the latest</p>
 
       <div className="flex flex-wrap justify-center">
         {/* <div className="tabs mb-4">

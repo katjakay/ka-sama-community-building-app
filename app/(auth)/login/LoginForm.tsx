@@ -66,11 +66,14 @@ export default function LoginForm(props: { returnTo?: string | string[] }) {
             </label>
           </div>
           <div>
-            <button className="text-white bg-yellow text-white font-regular uppercase text-md rounded mt-4 mb-1 min-w-full h-11">
+            <button className="text-white bg-yellow text-white font-regular uppercase text-md rounded mt-2 mb-1 min-w-full h-11">
               Login
             </button>
             <div className="flex flex-wrap justify-center">
-              <Link className="link text-brown font-regular" href="/register">
+              <Link
+                className="link text-blue text-xs font-regular"
+                href="/register"
+              >
                 <p> Register now</p>
               </Link>
             </div>

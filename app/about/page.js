@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="m-6 mt-10">
+    <main className="m-2 mt-10">
       <h3 className="text-yellow">About KA-SAMA</h3>
       <h1 className="text-4xl mt-4">A space to create</h1>
       <span className="text-4xl mb-6 mt-0 text-beige">

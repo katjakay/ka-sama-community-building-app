@@ -1,20 +1,23 @@
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
-import { deleteImageById, Image } from '../../../../database/images';
+import {
+  Attendance,
+  deleteAttendanceById,
+} from '../../../../database/attendances';
 import { getUserBySessionToken } from '../../../../database/users';
 
-export type ImageResponseBodyDelete =
+export type AttendanceResponseBodyDelete =
   | {
       error: string;
     }
   | {
-      image: Image;
+      attendance: Attendance;
     };
 
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Record<string, string | string[]> },
-): Promise<NextResponse<ImageResponseBodyDelete>> {
+): Promise<NextResponse<AttendanceResponseBodyDelete>> {
   // this is a protected Route Handler
   // 1. get the session token from the cookie
   const cookieStore = cookies();
@@ -28,20 +31,20 @@ export async function DELETE(
     return NextResponse.json({ error: 'session token is not valid' });
   }
 
-  const imageId = Number(params.imageId);
+  const attendanceId = Number(params.attendanceId);
 
-  if (!imageId) {
+  if (!attendanceId) {
     return NextResponse.json(
       {
-        error: 'Image id is not valid',
+        error: 'Attendance id is not valid',
       },
       { status: 400 },
     );
   }
 
-  const oneImage = await deleteImageById(imageId);
+  const oneAttendance = await deleteAttendanceById(attendanceId);
 
-  if (!oneImage) {
+  if (!oneAttendance) {
     return NextResponse.json(
       {
         error: 'Image not found',
@@ -50,5 +53,5 @@ export async function DELETE(
     );
   }
 
-  return NextResponse.json({ image: oneImage });
+  return NextResponse.json({ attendance: oneAttendance });
 }

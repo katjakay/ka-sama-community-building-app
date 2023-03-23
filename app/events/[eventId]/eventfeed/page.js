@@ -29,7 +29,7 @@ export default async function ImagePageEvent(props) {
   const imageUser = await getImagesWithUserInfo(oneEvent.id);
 
   return (
-    <main className="m-6 mt-10">
+    <main className="m-2 mt-10">
       <h3 className="text-yellow">{oneEvent.title.toUpperCase()}</h3>
       <div className="mt-2">
         <svg
@@ -76,11 +76,11 @@ export default async function ImagePageEvent(props) {
                 <div>
                   <div className="avatar">
                     <div className="w-6 rounded-full mr-2">
+                      {image.comment}
                       <img src={image.userImageUrl} alt="test" />
                     </div>
                     <p className="text-beige text-xs mr-2">
                       Posted by {image.userName}
-                      {image.comment}
                     </p>
                   </div>
                 </div>

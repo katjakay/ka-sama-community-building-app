@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { RegisterResponseBody } from '../../api/(auth)/register/route';
@@ -171,6 +172,14 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
         <button className="text-white bg-brown text-white font-regular text-sm rounded mt-16 mb-4 min-w-full h-11">
           Register
         </button>
+        <div className="flex flex-wrap justify-center">
+          <Link
+            className="link text-blue text-xs font-regular"
+            href="/register"
+          >
+            <p> Already a user? Login here</p>
+          </Link>
+        </div>
         <div className="text-blue">
           {success && <p>Cool! You are now registered!</p>}
         </div>

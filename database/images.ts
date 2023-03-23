@@ -42,6 +42,7 @@ export type ImagesWithUserInfo = {
   userName: string;
   userImageUrl: string | null;
   eventId: number;
+  eventTitle: string;
   imageComment: string | null;
   imageUrl: string | null;
 };
@@ -54,6 +55,7 @@ export const getImagesWithUserInfo = cache(async (eventId: number) => {
   users.username AS user_name,
   users.image_url AS user_image_url,
   events.id AS event_id,
+  events.title AS event_title,
 images.comment AS image_comment,
 images.image_url AS image_url
 FROM

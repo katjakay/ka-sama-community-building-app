@@ -61,22 +61,22 @@ export default function CreateEventForm(props) {
 
   return (
     <main>
-      <h1 className="text-2xl mb-6 mt-4">
+      <h1 className="text-2xl mb-9 mt-4">
         Host a cultural event on Ka-sama - <br />{' '}
         <div className="text-beige">share your passion for your heritage.</div>
       </h1>
       <p className="text-brown">{errors}</p>
       <form method="post" onChange={handleOnChange} onSubmit={handleOnSubmit}>
         <label>
-          Upload your event image here:
+          Choose your event image:
           <br />
           <input
             type="file"
             name="file"
-            className="file-input file-input-bordered file-input-primary file-input-xs w-full max-w-xs mt-6 "
+            className="file-input file-input-bordered file-input-primary file-input-xs w-full max-w-xs mt-2"
           />
         </label>
-        <p>Preview</p>
+        <p className="text-xs mt-2 mb-2">Preview</p>
         <img
           className="card w-96 bg-base-100 shadow-xl"
           placeholder=""
@@ -84,13 +84,13 @@ export default function CreateEventForm(props) {
           alt={imageSrc}
         />
 
-        <button className="btn btn-sm mb-8">Upload</button>
+        <button className="btn btn-sm mt-4">Upload</button>
 
-        <div className="text-blue">
+        <div className="text-blue text-xs mt-2">
           {successUpload && <p>Your event image was uploaded!</p>}
         </div>
       </form>
-      <div className="mt-6">
+      <div className="mt-2">
         <form
           onSubmit={async (event) => {
             event.preventDefault();
@@ -127,7 +127,6 @@ export default function CreateEventForm(props) {
             </label>
             <input
               value={title}
-              placeholder="Give your event a title"
               onChange={(event) => setTitle(event.currentTarget.value)}
               className="block w-full input input-bordered input-md w-full max-w-screen-md"
             />
@@ -189,8 +188,7 @@ export default function CreateEventForm(props) {
               value={description}
               onChange={(event) => setDescription(event.currentTarget.value)}
               id="large-input"
-              placeholder="Give us some information about the event"
-              className="block w-full input input-bordered input-md w-full max-w-screen-md"
+              className="input input-bordered input-md w-full"
             />
           </div>
           <div className="flex flex-wrap justify-center">
@@ -202,7 +200,7 @@ export default function CreateEventForm(props) {
             >
               Create event
             </button>
-            <div className="text-blue">
+            <div className="text-blue text-xs">
               {success && <p>Your event was created!</p>}
             </div>
           </div>

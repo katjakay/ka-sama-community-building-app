@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { getAllUsers } from '../../database/users';
 
 export const metadata = {
-  title: 'The K-asama Community - Celebrate Culture and Heritage',
+  title: 'The Ka-sama Community - Celebrate Culture and Heritage',
   description:
     'Join the Ka-sama community and connect with others who share your passion for cultural preservation and identity building. With Ka-sama, you can connect with people from different cultures and backgrounds, learn about different customs and traditions, and celebrate the rich diversity of our world´s heritage.',
   icons: {

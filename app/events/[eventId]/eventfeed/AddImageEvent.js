@@ -62,17 +62,18 @@ export default function AddImageToEvent(props) {
           <input
             type="file"
             name="file"
-            className="file-input file-input-bordered file-input-primary file-input-xs w-full max-w-xs mt-6 "
+            className="file-input file-input-bordered file-input-primary file-input-xs w-full max-w-xs mt-2"
           />
+          <p className="text-xs mt-2 mb-2">Preview</p>
+
           <img
-            className="card w-100 bg-base-100 shadow-m mt-4"
+            className="card w-96 bg-base-100 shadow-xl"
             src={imageSrc}
             alt={imageSrc}
           />
-          <button className="mt-4 text-primary cursor-crosshair">
-            Upload ↳
-          </button>
-          <div className="text-yellow">
+          <button className="btn btn-sm mt-4">Upload</button>
+
+          <div className="text-blue text-xs mt-2">
             {successUpload && <p>Your event image was uploaded!</p>}
           </div>
         </form>
