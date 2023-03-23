@@ -48,8 +48,7 @@ export default function AboutPage() {
           </div>
           <div className="carousel-item w-full">
             <img
-              src="https://res.cloudinary.com/dy40peu7s/image/upload/v1679243389/my-uploads/hpeqide1h82gjux3pdrf.jpg"
-              className="w-full"
+              src="https://res.cloudinary.com/dy40peu7s/image/upload/v1679584462/my-uploads/jvqu6imj2skcekv3iydr.jpg"
               alt="Philippine island"
             />
           </div>
@@ -69,7 +68,7 @@ export default function AboutPage() {
           </div>
           <div className="carousel-item w-full">
             <img
-              src="https://res.cloudinary.com/dy40peu7s/image/upload/v1679245775/my-uploads/wrkvtfloelb3oeybadci.png"
+              src="https://res.cloudinary.com/dy40peu7s/image/upload/v1679584430/my-uploads/o7jrmnif1crqe12v9ocf.jpg"
               className="w-full"
               alt="Philippine island"
             />
@@ -102,6 +101,12 @@ export default function AboutPage() {
                 <br />↳
               </span>
             </div>
+          </div>
+          <div className="carousel-item w-full">
+            <img
+              src="https://res.cloudinary.com/dy40peu7s/image/upload/v1679584504/my-uploads/gztjuimywpi0pvoynvoj.jpg"
+              alt="Philippine island"
+            />
           </div>
           <div className="carousel-item w-full flex flex-wrap flex-col  text-center text-justify m-10">
             <div>

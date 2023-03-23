@@ -24,16 +24,15 @@ export default function HomePage() {
           <br />
           <br />
           <br />
-          <h1 className="text-6xl text-blue mb-10 text-center">
-            Mabuhay, welcome!
+          <h1 className="text-4xl text-blue mb-15 mt-10 text-center">
+            <p className="italic"> Ka-sama - meaning: companion, together</p>
           </h1>
           <br />
-          <h1 className="text-2xl m-4 text-brown mb-10 text-center">
-            Rediscover your heritage
-          </h1>
+
           <div className="text-ls mt-10 m-10 text-center text-justify">
-            Connect with your roots and celebrate diversity with Kasama - Your
-            community for cultural preservation and identity building.
+            Events to connect with your roots and celebrate diversity with
+            Kasama - Your community for cultural preservation and identity
+            building.
             <br />
           </div>
           <div className="flex flex-wrap place-content-center">
