@@ -1,10 +1,6 @@
-// import { cookies } from 'next/headers';
-// import { cookies } from 'next/headers';
 import Image from 'next/image';
 import FooterNav from '../../components/FooterNav';
 import { getEvents } from '../../database/events';
-
-// import { getUserBySessionToken } from '../../database/users';
 
 export const dynamic = 'force-dynamic';
 
@@ -20,15 +16,6 @@ export const metadata = {
 export default async function EventsPage() {
   const events = await getEvents();
 
-  // const cookieStore = cookies();
-  // const sessionToken = cookieStore.get('sessionToken');
-
-  // // 2. validate that session
-  // // 3. get the user profile matching the session
-  // const user = !sessionToken?.value
-  //   ? undefined
-  //   : await getUserBySessionToken(sessionToken.value);
-
   return (
     <main className="m-2 mt-2">
       <h3 className="text-yellow">EVENTS</h3>
@@ -36,10 +23,6 @@ export default async function EventsPage() {
       <p className="text-4xl mb-6 mt-0 text-beige">Check out the latest</p>
 
       <div className="flex flex-wrap justify-center">
-        {/* <div className="tabs mb-4">
-          <a className="tab tab-bordered tab-active">upcoming</a>
-          <a className="tab tab-bordered">passed</a>
-        </div> */}
         <div className="tabs tabs-boxed mb-4">
           <a className="tab tab-active">upcoming</a>
           <a className="tab">passed</a>
@@ -107,7 +90,6 @@ export default async function EventsPage() {
       <br />
       <br />
       <br />
-
       <FooterNav />
     </main>
   );

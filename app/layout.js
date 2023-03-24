@@ -24,17 +24,24 @@ export default async function RootLayout({ children }) {
         <div className="navbar bg-transparent rounded-box">
           <div className="flex-1 px-2 lg:flex-none">
             <svg
-              xmlns="http://www.w3.org/2000/svg"
+              width="45"
+              height="22"
+              viewBox="0 0 45 22"
               fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
+              xmlns="http://www.w3.org/2000/svg"
             >
+              <rect width="45" height="21.9286" fill="white" />
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 19.5L8.25 12l7.5-7.5"
+                d="M3 19H5.60462V13.6442L8.16144 10.9184L13.5618 19H16.7161L9.97751 9.07736L16.6444 2H13.0123L5.60462 9.93812V2H3V19Z"
+                fill="#2F5FFF"
+              />
+              <path
+                d="M28.7604 19H31.5084L25.3194 2H23.3361L17.1471 19H19.8951L21.4005 14.7201H27.2788L28.7604 19ZM22.2847 12.1857L24.3397 6.27989L26.3947 12.1857H22.2847Z"
+                fill="#2F5FFF"
+              />
+              <path
+                d="M42.5079 2L35.403 19H32.5395L39.7599 2H42.5079Z"
+                fill="#2F5FFF"
               />
             </svg>
           </div>
@@ -57,7 +64,7 @@ export default async function RootLayout({ children }) {
                     />
                   </svg>
                 </button>
-                <ul
+                <button
                   tabIndex={0}
                   className="menu dropdown-content p-2 shadow bg-yellow rounded-box w-52 mt-4"
                 >
@@ -90,7 +97,7 @@ export default async function RootLayout({ children }) {
                       </>
                     )}
                   </li>
-                </ul>
+                </button>
               </div>
             </div>
           </div>

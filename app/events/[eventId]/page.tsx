@@ -58,19 +58,12 @@ export default async function SingleEventPage(props: Props) {
 
   const attendances = await getAttendances(oneEvent.id);
 
-  // checks if date is in the future
-  // const eventDate = new Date(oneEvent.date);
-  // const isUpcoming = eventDate > new Date();
-
   return (
     <main className="m-2 mt-2">
       <div>
         <h3 className="text-yellow">{oneEvent.title.toUpperCase()}</h3>
-        {/* {isUpcoming ? ( */}
+
         <div className="badge badge-primary mt-5">UPCOMING</div>
-        {/* ) : (
-          <div className="badge badge-secondary mt-5">PASSED</div> */}
-        {/* )}         */}
         <h1 className="text-4xl mt-3 mb-3">{oneEvent.title}</h1>
         <div>
           <svg
