@@ -2,7 +2,6 @@ import './globals.css';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
 import { getUserBySessionToken } from '../database/users';
-import BackButton from './BackButton';
 
 export const dynamic = 'force-dynamic';
 
@@ -23,7 +22,22 @@ export default async function RootLayout({ children }) {
       <head />
       <body className="p-2">
         <div className="navbar bg-transparent rounded-box">
-          <div className="flex-1 px-2 lg:flex-none">{/* <BackButton /> */}</div>
+          <div className="flex-1 px-2 lg:flex-none">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 19.5L8.25 12l7.5-7.5"
+              />
+            </svg>
+          </div>
           <div className="flex justify-end flex-2 px-0">
             <div className="flex items-stretch">
               <div className="dropdown dropdown-end">
