@@ -30,7 +30,7 @@ export default async function EventsPage() {
   //   : await getUserBySessionToken(sessionToken.value);
 
   return (
-    <main className="m-2 mt-10">
+    <main className="m-2 mt-2">
       <h3 className="text-yellow">EVENTS</h3>
       <h1 className="text-4xl mt-4">All events</h1>
       <p className="text-4xl mb-6 mt-0 text-beige">Check out the latest</p>
@@ -50,7 +50,7 @@ export default async function EventsPage() {
           return (
             <div
               key={`event-${event.id}`}
-              className="card card-compact w-auto bg-base-100 shadow-xl mt-2 mb-4"
+              className="card card-compact w-auto bg-base-100 shadow-md mt-2 mb-4"
             >
               <figure>
                 {!!event.imageUrl && (
@@ -104,6 +104,10 @@ export default async function EventsPage() {
           );
         })}
       </span>
+      <br />
+      <br />
+      <br />
+
       <FooterNav />
     </main>
   );

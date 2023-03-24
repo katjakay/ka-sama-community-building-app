@@ -63,7 +63,7 @@ export default async function SingleEventPage(props: Props) {
   // const isUpcoming = eventDate > new Date();
 
   return (
-    <main className="m-2 mt-10">
+    <main className="m-2 mt-2">
       <div>
         <h3 className="text-yellow">{oneEvent.title.toUpperCase()}</h3>
         {/* {isUpcoming ? ( */}
@@ -121,7 +121,7 @@ export default async function SingleEventPage(props: Props) {
         <div className="mt-6">
           {!!oneEvent.imageUrl && (
             <Image
-              className="card w-100 bg-base-100 shadow-m"
+              className="card w-100 bg-base-100 shadow"
               src={oneEvent.imageUrl}
               alt={oneEvent.title}
               width="800"

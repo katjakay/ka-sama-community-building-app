@@ -31,7 +31,7 @@ export default function AboutPage() {
               Swipe to read about Ka-sama <br />↳
             </div>
           </div>
-          <div className="carousel-item w-full flex flex-wrap flex-col  text-center text-justify m-10">
+          <div className="carousel-item w-full flex flex-wrap flex-col  text-center text-justify m-20">
             <div>
               <span>
                 <p className="text-brown">WHY KA-SAMA?</p>
@@ -48,11 +48,11 @@ export default function AboutPage() {
           </div>
           <div className="carousel-item w-full">
             <img
-              src="https://res.cloudinary.com/dy40peu7s/image/upload/v1679584462/my-uploads/jvqu6imj2skcekv3iydr.jpg"
+              src="https://res.cloudinary.com/dy40peu7s/image/upload/v1679584462/my-uploads/about/jvqu6imj2skcekv3iydr.jpg"
               alt="Philippine island"
             />
           </div>
-          <div className="carousel-item w-full flex flex-wrap flex-col  text-center text-justify m-10">
+          <div className="carousel-item w-full flex flex-wrap flex-col  text-center text-justify m-20">
             <div>
               <span>
                 <p className="text-blue">WHAT IS KA-SAMA?</p>
@@ -68,20 +68,18 @@ export default function AboutPage() {
           </div>
           <div className="carousel-item w-full">
             <img
-              src="https://res.cloudinary.com/dy40peu7s/image/upload/v1679584430/my-uploads/o7jrmnif1crqe12v9ocf.jpg"
+              src="https://res.cloudinary.com/dy40peu7s/image/upload/v1679584504/my-uploads/about/gztjuimywpi0pvoynvoj.jpg"
               className="w-full"
-              alt="Philippine island"
+              alt="flowers"
             />
           </div>
-          <div className="carousel-item w-full flex flex-wrap flex-col  text-center text-justify m-10">
+          <div className="carousel-item w-full flex flex-wrap flex-col  text-center text-justify m-20">
             <div>
               <span>
                 <p className="text-blue">HOW TO BUILD A COMMUNITY?</p>
                 <br />
                 KA-SAMA emphasizes community building and stands out from other
-                event platforms through <div className="text-blue">
-                  EVENTS
-                </div>{' '}
+                event platforms through <div className="text-blue">EVENTS</div>
                 and meet-ups that bring people together. Users can connect and
                 build relationships based on a shared cultural identity. The app
                 includes a community forum for discussions on Philippine
@@ -90,7 +88,7 @@ export default function AboutPage() {
               </span>
             </div>
           </div>
-          <div className="carousel-item w-full flex flex-wrap flex-col  text-center text-justify m-10">
+          <div className="carousel-item w-full flex flex-wrap flex-col text-center text-justify m-20">
             <div>
               <span>
                 <p className="text-blue">COLLABORATION AND SHARING KNOWLEDGE</p>
@@ -104,11 +102,11 @@ export default function AboutPage() {
           </div>
           <div className="carousel-item w-full">
             <img
-              src="https://res.cloudinary.com/dy40peu7s/image/upload/v1679584504/my-uploads/gztjuimywpi0pvoynvoj.jpg"
-              alt="Philippine island"
+              src="https://res.cloudinary.com/dy40peu7s/image/upload/v1679584504/my-uploads/about/gztjuimywpi0pvoynvoj.jpg"
+              alt="shells"
             />
           </div>
-          <div className="carousel-item w-full flex flex-wrap flex-col  text-center text-justify m-10">
+          <div className="carousel-item w-full flex flex-wrap flex-col  text-center text-justify m-20">
             <div>
               <span>
                 <p className="text-blue">BUILDING TOGETHER</p>

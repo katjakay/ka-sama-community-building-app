@@ -29,7 +29,7 @@ export default async function ImagePageEvent(props) {
   const imageUser = await getImagesWithUserInfo(oneEvent.id);
 
   return (
-    <main className="m-2 mt-10">
+    <main className="m-2 mt-2">
       <h3 className="text-yellow">{oneEvent.title.toUpperCase()}</h3>
       <div className="mt-2">
         <svg

@@ -20,7 +20,6 @@ export async function POST(
 ): Promise<NextResponse<LoginResponseBodyPost>> {
   // 1. validate the data
   const body = await request.json();
-
   const result = userSchema.safeParse(body);
 
   if (!result.success) {

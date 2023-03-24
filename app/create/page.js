@@ -23,7 +23,7 @@ export default async function CreateEventPage(props) {
     : await getUserBySessionToken(sessionToken.value);
 
   return (
-    <main className="m-2 mt-10">
+    <main className="m-2 mt-2">
       <div>
         <h3 className="text-yellow">HOST YOUR EVENT</h3>
       </div>

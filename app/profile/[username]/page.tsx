@@ -53,7 +53,7 @@ export default async function UserProfile({ params }: Props) {
   const images = await getImagesByUserId(user.id);
 
   return (
-    <main className="m-2 mt-10">
+    <main className="m-2 mt-2">
       <h3 className="text-yellow">
         {user.username.charAt(0).toUpperCase() + user.username.slice(1)}'s
         Profile
@@ -94,7 +94,8 @@ export default async function UserProfile({ params }: Props) {
             return (
               <div
                 key={`images-${image.userId}`}
-                className="card lg:card-side bg-base-100 shadow-xl mt-2"
+                className="card lg:card-side bg-base-100 shadow-md
+                 mt-2"
               >
                 <figure>
                   {!!image.imageUrl && (

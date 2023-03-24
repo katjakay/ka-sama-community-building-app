@@ -29,7 +29,7 @@ export default function SelectForm(props) {
               return (
                 <div
                   key={`oneEvent-${event.id}`}
-                  className="card lg:card-side bg-base-100 shadow-xl mt-2"
+                  className="card lg:card-side bg-base-100 shadow-md mt-2"
                 >
                   <Link href={`/events/${event.id}`}>
                     <figure>

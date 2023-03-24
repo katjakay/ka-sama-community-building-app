@@ -2,6 +2,7 @@ import './globals.css';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
 import { getUserBySessionToken } from '../database/users';
+import BackButton from './BackButton';
 
 export const dynamic = 'force-dynamic';
 
@@ -20,9 +21,9 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <head />
-      <body className="mb-4 p-2">
-        <div className="navbar">
-          <div className="flex-1 px-2 lg:flex-none" />
+      <body className="p-2">
+        <div className="navbar bg-transparent rounded-box">
+          <div className="flex-1 px-2 lg:flex-none">{/* <BackButton /> */}</div>
           <div className="flex justify-end flex-2 px-0">
             <div className="flex items-stretch">
               <div className="dropdown dropdown-end">
@@ -42,12 +43,15 @@ export default async function RootLayout({ children }) {
                     />
                   </svg>
                 </button>
-                <ul className="menu dropdown-content p-2 shadow bg-beige rounded-box w-52 mt-4">
+                <ul
+                  tabIndex={0}
+                  className="menu dropdown-content p-2 shadow bg-yellow rounded-box w-52 mt-4"
+                >
                   <li>
                     <a href="/">HOME</a>
                   </li>
                   <li>
-                    <a href="about">ABOUT</a>
+                    <a href="/about">ABOUT</a>
                   </li>
 
                   <li>

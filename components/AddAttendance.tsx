@@ -18,6 +18,7 @@ export default function AddAttendance(props: Props) {
   const [attendances, setAttendances] = useState<Attendance[]>(
     props.attendances,
   );
+  const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState();
 
   return (
@@ -43,11 +44,16 @@ export default function AddAttendance(props: Props) {
             setErrors(data.errors);
             return;
           }
+          setSuccess(true);
+
           setAttendances([...attendances, data.attendance]);
         }}
       >
         YES! I'm joining
       </button>
+      <div className="text-blue text-xs text-center">
+        {success && <p>Nice! You're joining this event!</p>}
+      </div>
       <p className="text-brown">{errors}</p>
     </div>
   );

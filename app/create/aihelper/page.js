@@ -2,7 +2,7 @@ import EventCreatorWithAi from './EventCreatorWithAi';
 
 export default function CreateEventWithAi() {
   return (
-    <main className="m-8 mt-10">
+    <main className="m-2 mt-2">
       <div className="mt-4">
         <EventCreatorWithAi />
       </div>

@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -180,9 +179,9 @@ export default function CreateEventForm(props) {
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Description{' '}
-              <Link href="/create/aihelper">
+              <a href="https://ka-sama-ai-helper.netlify.app/">
                 <p className="text-brown text-xs"> Need help?</p>
-              </Link>
+              </a>
             </label>
             <input
               value={description}
