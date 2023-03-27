@@ -161,7 +161,7 @@ export default function CreateEventForm(props) {
             </label>
             <input
               value={time}
-              placeholder="00:00"
+              placeholder="00:00 am/pm"
               onChange={(event) => setTime(event.currentTarget.value)}
               className="block w-full input input-bordered input-md w-full max-w-screen-md"
             />
