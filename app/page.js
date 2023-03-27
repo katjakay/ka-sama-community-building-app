@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
@@ -35,26 +33,13 @@ export default function HomePage() {
             building.
             <br />
           </div>
-          <div className="flex flex-wrap place-content-center">
-            <Link
-              href="/events"
-              className="btn btn-circle bg-yellow border-transparent mt-9 justify-center"
+          <div className="flex flex-wrap place-content-center mt-20">
+            <a
+              className="btn btn-wide bg-yellow border-transparent"
+              href="/register"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="yellow"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                />
-              </svg>
-            </Link>
+              JOIN KA-SAMA
+            </a>
           </div>
         </div>
       </div>

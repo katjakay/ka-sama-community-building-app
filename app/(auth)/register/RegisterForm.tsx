@@ -169,14 +169,11 @@ export default function RegisterForm(props: { returnTo?: string | string[] }) {
             onChange={(event) => setPassword(event.currentTarget.value)}
           />
         </label>
-        <button className="text-white bg-brown text-white font-regular text-sm rounded mt-16 mb-4 min-w-full h-11">
+        <button className="text-white bg-brown text-white font-regular text-sm rounded mt-16 mb-1 min-w-full h-11">
           Register
         </button>
         <div className="flex flex-wrap justify-center">
-          <Link
-            className="link text-blue text-xs font-regular"
-            href="/register"
-          >
+          <Link className="link text-blue text-xs font-regular" href="/login">
             <p> Already a user? Login here</p>
           </Link>
         </div>

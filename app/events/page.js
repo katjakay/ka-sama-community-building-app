@@ -24,8 +24,8 @@ export default async function EventsPage() {
 
       <div className="flex flex-wrap justify-center">
         <div className="tabs tabs-boxed mb-4">
-          <a className="tab tab-active">upcoming</a>
-          <a className="tab">passed</a>
+          <a className="tab tab-active">Upcoming</a>
+          <a className="tab">Passed</a>
         </div>
       </div>
       <span>
@@ -33,7 +33,7 @@ export default async function EventsPage() {
           return (
             <div
               key={`event-${event.id}`}
-              className="card card-compact w-auto bg-base-100 shadow-md mt-2 mb-4"
+              className="card lg:card-side bg-base-100 shadow-md mt-2 mb-4"
             >
               <figure>
                 {!!event.imageUrl && (

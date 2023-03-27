@@ -9,7 +9,6 @@ type Props = {
 
 export default function RemoveImage(props: Props) {
   const [error, setError] = useState<string>();
-
   const router = useRouter();
 
   return (

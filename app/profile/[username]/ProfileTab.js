@@ -82,7 +82,7 @@ export default function SelectForm(props) {
                     </p>
                   </div>
                   <button className="btn btn-xs border-transparent bg-beige ml-1 mr-1">
-                    <DeleteAttendance attendance={attendance} />
+                    <DeleteAttendance attendances={attendance} />
                   </button>
                 </div>
               );

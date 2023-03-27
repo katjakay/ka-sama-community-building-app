@@ -47,7 +47,7 @@ export async function DELETE(
   if (!oneAttendance) {
     return NextResponse.json(
       {
-        error: 'Image not found',
+        error: 'Attendance not found',
       },
       { status: 404 },
     );

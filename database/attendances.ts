@@ -63,6 +63,7 @@ export const deleteAttendanceById = cache(async (id: number) => {
 });
 
 export type AttendanceByUserIdAndEventId = {
+  attendanceId: number;
   userId: number;
   eventId: number;
   eventTitle: string;
@@ -75,6 +76,7 @@ export type AttendanceByUserIdAndEventId = {
 export const getAttendanceByUserId = cache(async (userId: number) => {
   const attendancesOfUser = await sql<AttendanceByUserIdAndEventId[]>`
 SELECT
+attendances.id AS attendance_id,
 users.id AS user_id,
 events.id AS event_id,
 events.title AS event_title,

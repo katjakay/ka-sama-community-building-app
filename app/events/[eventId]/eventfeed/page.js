@@ -80,8 +80,9 @@ export default async function ImagePageEvent(props) {
                       <img src={image.userImageUrl} alt="test" />
                     </div>
                     <p className="text-beige text-xs mr-2">
-                      Posted by {image.userName}
+                      by {image.userName}:
                     </p>
+                    <p className=" text-xs mr-2">{image.imageComment}</p>
                   </div>
                 </div>
               </div>

@@ -1,12 +1,16 @@
 'use client';
 
+import 'react-datepicker/dist/react-datepicker.css';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
+
+const { format } = require('date-fns');
 
 export default function CreateEventForm(props) {
   const [title, setTitle] = useState('');
   const [location, setLocation] = useState('');
-  const [date, setDate] = useState('');
+  const [selectedDate, setSelectedDate] = useState(null);
   const [time, setTime] = useState('');
   const [description, setDescription] = useState('');
   const [imageSrc, setImageSrc] = useState();
@@ -15,6 +19,8 @@ export default function CreateEventForm(props) {
   const [successUpload, setSuccessUpload] = useState(false);
   const [success, setSuccess] = useState(false);
   const router = useRouter();
+
+  const formattedDate = selectedDate ? format(selectedDate, 'dd-MM-yyyy') : '';
 
   function handleOnChange(changeEvent) {
     const reader = new FileReader();
@@ -97,7 +103,7 @@ export default function CreateEventForm(props) {
               method: 'POST',
               body: JSON.stringify({
                 title: title,
-                date: date,
+                date: formattedDate,
                 time: time,
                 location: location,
                 description: description,
@@ -137,11 +143,13 @@ export default function CreateEventForm(props) {
             >
               Date
             </label>
-            <input
-              value={date}
-              placeholder="YYYY-MM-DD"
-              onChange={(event) => setDate(event.currentTarget.value)}
-              className="block w-full input input-bordered input-md w-full max-w-screen-md"
+            <DatePicker
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              selected={selectedDate}
+              placeholderText="Select a date"
+              onChange={(date) => setSelectedDate(date)}
+              dateFormat="dd-MM-yyyy"
+              value={formattedDate}
             />
           </div>
           <div className="mb-6">
@@ -174,20 +182,20 @@ export default function CreateEventForm(props) {
             />
           </div>
           <div className="mb-6">
-            <label
-              htmlFor="large-input"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Description{' '}
-              <a href="https://ka-sama-ai-helper.netlify.app/">
+            <a href="https://ka-sama-ai-helper.netlify.app/">
+              <label
+                htmlFor="large-input"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Description
                 <p className="text-brown text-xs"> Need help?</p>
-              </a>
-            </label>
+              </label>
+            </a>
             <input
               value={description}
               onChange={(event) => setDescription(event.currentTarget.value)}
               id="large-input"
-              className="input input-bordered input-md w-full"
+              className="block w-full input input-bordered input-md w-full max-w-screen-md"
             />
           </div>
           <div className="flex flex-wrap justify-center">

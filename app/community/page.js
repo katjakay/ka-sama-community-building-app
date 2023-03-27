@@ -13,15 +13,21 @@ export const metadata = {
 export default async function CommunityDashboard() {
   const users = await getAllUsers();
   return (
-    <main className="mt-2 mb-4">
-      <h3 className="text-yellow text-left mr-2 ml-2">KA-SAMA Community</h3>
+    <main className="m-2 mb-4">
+      <h3 className="text-yellow text-left">KA-SAMA Community</h3>
+      <p className="text-4xl mb-6 mt-4 text-beige">Where creativity thrives</p>
+      <div className="flex flex-wrap justify-center mt-4">
+        <div className="tabs tabs-boxed mb-4">
+          <a className="tab tab-active">Community</a>
+          <a className="tab">Forum</a>
+        </div>
+      </div>
       <div className="w-90 bg-lightBrown h-auto rounded-box mt-2">
         <div className="flex flex-wrap flex-col text-center">
-          <p className="text-4xl  mt-0 text-brown text-left mr-6 ml-6 mt-6 mb-6">
-            Where ideas collide, creativity thrives, and collaboration reigns
-            supreme.{' '}
+          <p className="text-2xl  mt-0 text-blue text-left mr-6 ml-6 mt-6 mb-6">
+            ..,and collaboration reigns supreme.
           </p>
-          <p className="text-left mr-6 ml-6 mb-6">
+          <p className="text-left text-xs mr-6 ml-6 mb-6">
             We're all about inclusivity, diversity, and embracing different
             perspectives. So don't be shy – ask questions, share your thoughts,
             and let's build something amazing together!

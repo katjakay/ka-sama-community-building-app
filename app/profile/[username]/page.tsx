@@ -81,8 +81,7 @@ export default async function UserProfile({ params }: Props) {
         About me
       </div>
       <p className="mb-4">{user.description}</p>
-
-      <ProfileTab attendances={attendances} events={events} />
+      <ProfileTab attendances={attendances} events={events} user={user} />
 
       <div className="badge badge-primary badge-outline mt-6 mb-4">
         My event photos

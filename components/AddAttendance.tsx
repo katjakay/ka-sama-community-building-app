@@ -24,8 +24,7 @@ export default function AddAttendance(props: Props) {
   return (
     <div>
       <button
-        className="text-white bg-yellow text-white font-regular
-       text-sm rounded mt-4 mb-4 min-w-full h-11"
+        className="btn border-transparent text-white bg-yellow text-white font-regular text-sm rounded mt-2 min-w-full h-11"
         onClick={async () => {
           const response = await fetch('/api/attendances', {
             method: 'POST',
