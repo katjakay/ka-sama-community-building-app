@@ -30,10 +30,16 @@ Click on the [link](https://www.figma.com/file/Ypz6BAuMq7hg2oBMHHKS0w/KA-SAMA---
 
 ## Screenshots
 
-### KA-SAMA Home
+#### Home & About
 
 ![Home & About](public/screenshots/KA-SAMA-home-about.png)
+
+#### Events
+
 ![Events](public/screenshots/KA-SAMA-events.png)
+
+#### User profile & community
+
 ![User & Community](public/screenshots/KA-SAMA-user-community.png)
 
 ## Database schema
