@@ -31,7 +31,7 @@ export default async function ImagePageEvent(props) {
   return (
     <main className="m-2 mt-2 h-auto">
       <h3 className="text-yellow">{oneEvent.title.toUpperCase()}</h3>
-      <div className="flex flex-wrap justify-center mt-4">
+      <div className="flex flex-wrap justify-center mt-6">
         <div className="tabs tabs-boxed mb-4">
           <a className="tab tab-active">View photos</a>
           <a className="tab" href="#upload">

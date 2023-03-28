@@ -75,7 +75,7 @@ export default async function RootLayout(props: Props) {
               </button>
               <button
                 tabIndex={0}
-                className="menu dropdown-content p-2 shadow bg-yellow rounded-box w-52 mt-4"
+                className="menu dropdown-content p-2 shadow bg-lightBrown rounded-box w-52 mt-4"
               >
                 <li>
                   <a href="/">HOME</a>
