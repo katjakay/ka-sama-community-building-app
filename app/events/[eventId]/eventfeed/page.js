@@ -29,8 +29,16 @@ export default async function ImagePageEvent(props) {
   const imageUser = await getImagesWithUserInfo(oneEvent.id);
 
   return (
-    <main className="m-2 mt-2">
+    <main className="m-2 mt-2 h-auto">
       <h3 className="text-yellow">{oneEvent.title.toUpperCase()}</h3>
+      <div className="flex flex-wrap justify-center mt-4">
+        <div className="tabs tabs-boxed mb-4">
+          <a className="tab tab-active">View photos</a>
+          <a className="tab" href="#upload">
+            Upload
+          </a>
+        </div>
+      </div>
       <div className="mt-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -51,8 +59,9 @@ export default async function ImagePageEvent(props) {
             d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
           />
         </svg>
-
-        <p className="text-2xl mt-2">Capture the moment...</p>
+        <p className="text-4xl mb-6 mt-0 text-blue">
+          Browse through good times
+        </p>
       </div>
       <span>
         {imageUser.map((image) => {
@@ -90,30 +99,7 @@ export default async function ImagePageEvent(props) {
           );
         })}
       </span>
-      <div className="mt-6">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="blue"
-          className="w-6 h-6"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"
-          />
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"
-          />
-        </svg>
-
-        <p className="text-2xl mt-2">
-          ...share the memory - upload your event photos now!
-        </p>
+      <div id="upload">
         {user && <AddImageToEvent event={oneEvent} user={user} />}
       </div>
     </main>

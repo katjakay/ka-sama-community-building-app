@@ -16,7 +16,7 @@ export default function HomePage() {
       <div className="w-90 carousel rounded-box mb-2">
         <img src="/ka-sama-full.svg" className="w-full" alt="ka-sama logo" />
       </div>
-      <div className="w-90 bg-lightBrown h-auto rounded-box">
+      <div className="w-90 bg-lightBrown rounded-box">
         <div className="min-h-screen justify-items-stretch">
           <br />
           <br />

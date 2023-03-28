@@ -17,6 +17,7 @@ export default function DeleteEvent(props: Props) {
     <div>
       {props.user.id === props.event.userId && (
         <button
+          className="text-xs text-beige"
           onClick={async () => {
             const response = await fetch(`/api/events/${props.event.id}`, {
               method: 'DELETE',
@@ -33,7 +34,7 @@ export default function DeleteEvent(props: Props) {
             router.push('/events');
           }}
         >
-          X
+          DELETE{' '}
         </button>
       )}
       {typeof errors === 'string' && (

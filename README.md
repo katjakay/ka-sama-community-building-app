@@ -46,7 +46,7 @@ Click on the [link](https://www.figma.com/file/Ypz6BAuMq7hg2oBMHHKS0w/KA-SAMA---
 
 ![Database Schema](public/screenshots/database-schema_Ka-sama-community-building-app.png)
 
-[Link to drawSQL] (https://drawsql.app/teams/katja-sabando/diagrams/final-project-ka-sama)
+[Link to drawSQL](https://drawsql.app/teams/katja-sabando/diagrams/final-project-ka-sama)
 
 ## Setup instructions
 
