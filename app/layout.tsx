@@ -30,7 +30,7 @@ export default async function RootLayout(props: Props) {
       <head />
       <body className="p-2">
         <div className="navbar bg-transparent rounded-box">
-          <div className="flex-1 px-2 lg:flex-none">
+          <div className="flex-1">
             <a href="/events">
               <svg
                 width="45"
@@ -55,60 +55,58 @@ export default async function RootLayout(props: Props) {
               </svg>
             </a>
           </div>
-          <div className="flex justify-end flex-2 px-0">
-            <div className="flex items-stretch">
-              <div className="dropdown dropdown-end">
-                <button tabIndex={0} className="btn btn-ghost rounded-btn">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M3.75 9h16.5m-16.5 6.75h16.5"
-                    />
-                  </svg>
-                </button>
-                <button
-                  tabIndex={0}
-                  className="menu dropdown-content p-2 shadow bg-yellow rounded-box w-52 mt-4"
+          <div className="flex-none">
+            <div className="dropdown dropdown-end">
+              <button tabIndex={0} className="btn btn-ghost rounded-btn">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
                 >
-                  <li>
-                    <a href="/">HOME</a>
-                  </li>
-                  <li>
-                    <a href="/about">ABOUT</a>
-                  </li>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3.75 9h16.5m-16.5 6.75h16.5"
+                  />
+                </svg>
+              </button>
+              <button
+                tabIndex={0}
+                className="menu dropdown-content p-2 shadow bg-yellow rounded-box w-52 mt-4"
+              >
+                <li>
+                  <a href="/">HOME</a>
+                </li>
+                <li>
+                  <a href="/about">ABOUT</a>
+                </li>
 
-                  <li>
-                    <a href="/events">EVENTS</a>
-                  </li>
-                  <li>
-                    {user ? (
-                      <>
-                        <Link href={`/profile/${user.username}`}>
-                          <div className="text-blue">
-                            {user.username.toUpperCase()}
-                          </div>
-                        </Link>
-                        <Link href="/logout" prefetch={false}>
-                          LOGOUT
-                        </Link>
-                      </>
-                    ) : (
-                      <>
-                        <Link href="/register">REGISTER</Link>
-                        <Link href="/login">LOGIN</Link>
-                      </>
-                    )}
-                  </li>
-                </button>
-              </div>
+                <li>
+                  <a href="/events">EVENTS</a>
+                </li>
+                <li>
+                  {user ? (
+                    <>
+                      <Link href={`/profile/${user.username}`}>
+                        <div className="text-blue">
+                          {user.username.toUpperCase()}
+                        </div>
+                      </Link>
+                      <Link href="/logout" prefetch={false}>
+                        LOGOUT
+                      </Link>
+                    </>
+                  ) : (
+                    <>
+                      <Link href="/register">REGISTER</Link>
+                      <Link href="/login">LOGIN</Link>
+                    </>
+                  )}
+                </li>
+              </button>
             </div>
           </div>
         </div>

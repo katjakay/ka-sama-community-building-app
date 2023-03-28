@@ -22,12 +22,12 @@ export default function HomePage() {
           <br />
           <br />
           <br />
-          <h1 className="text-4xl text-blue mb-15 mt-10 text-center">
+          <h1 className="text-4xl text-blue mb-15 mt-10 text-center xl:text-8xl xl:ml-96 xl:mr-96">
             <p className="italic"> Ka-sama - meaning: companion, together</p>
           </h1>
           <br />
 
-          <div className="text-ls mt-10 m-10 text-center text-justify">
+          <div className="text-ls mt-10 m-10 xl:text-4xl xl:ml-96 xl:mr-96 text-center text-justify">
             Events to connect with your roots and celebrate diversity with
             Kasama - Your community for cultural preservation and identity
             building.

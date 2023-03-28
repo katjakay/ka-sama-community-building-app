@@ -20,6 +20,7 @@ export default function CreateEventForm(props) {
   const [success, setSuccess] = useState(false);
   const router = useRouter();
 
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   const formattedDate = selectedDate ? format(selectedDate, 'dd-MM-yyyy') : '';
 
   function handleOnChange(changeEvent) {
