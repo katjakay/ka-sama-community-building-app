@@ -25,7 +25,8 @@ module.exports = {
     },
     extend: {},
     fontFamily: {
-      sans: ['Supply', 'sans-serif'],
+      // sans: ['Supply', 'sans-serif'],
+      sans: ['IBM Plex Mono', 'monospace'],
     },
   },
   plugins: [require('daisyui', 'flowbite/plugin')],
