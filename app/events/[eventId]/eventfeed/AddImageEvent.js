@@ -151,6 +151,8 @@ export default function AddImageToEvent(props) {
           </div>
         </form>
       </div>
+      <br />
+      <br />
     </main>
   );
 }

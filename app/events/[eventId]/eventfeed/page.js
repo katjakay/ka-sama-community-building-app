@@ -1,5 +1,6 @@
 import { cookies } from 'next/headers';
 import Image from 'next/image';
+import FooterNav from '../../../../components/FooterNav';
 import { getEventById } from '../../../../database/events';
 import { getImagesWithUserInfo } from '../../../../database/images';
 import { getUserBySessionToken } from '../../../../database/users';
@@ -102,6 +103,7 @@ export default async function ImagePageEvent(props) {
       <div id="upload">
         {user && <AddImageToEvent event={oneEvent} user={user} />}
       </div>
+      <FooterNav />
     </main>
   );
 }

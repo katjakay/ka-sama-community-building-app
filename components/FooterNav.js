@@ -38,7 +38,7 @@ export default function FooterNav() {
         </svg>
       </a>
       <div>
-        <div className="w-8 rounded-full">
+        <div className="w-9 rounded-full">
           <Link href="/community">
             <svg
               width="15"
